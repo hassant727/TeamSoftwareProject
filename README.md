@@ -1,2 +1,13 @@
 # TeamSoftwareProject
 Team Software Project - Group 13
+
+
+After cloning the project 
+-
+> execute the code as follows
+>> `cd CS3305`
+>>> `python manage.py migrate` 
+>>>> `python manage.py createsuperuser`
+> follow the steps and finally run the server
+> `python manage.py runserver.py`
+
