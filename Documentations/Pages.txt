@@ -1,0 +1,37 @@
+- Home
+	- Search box
+	- Most viewed properties
+- Registor/Log in
+	- Email
+	- Password
+	- Name
+	- Phone number
+	- Location
+- Profile
+	- Profile picture
+	- Last log-in
+	- Description
+- Manage Profile
+	- Change profile
+	- Change email
+	- Change password
+	- Change name
+	- Change description
+- Search result
+	- Listing
+		- Photos
+		- Price
+		- Key Features
+- Property
+	- Ower Info
+	- Photos
+	- Address(area)
+	- Property type
+	- Key Features
+	- Size
+	- Bedrooms
+	- Bathrooms
+	- Price
+	- Owner occupancy
+	- Description
+	- Post date
