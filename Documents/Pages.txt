@@ -1,7 +1,7 @@
 - Home
 	- Search box
 	- Most viewed properties
-- Registor/Log in
+- Register/Log in
 	- Email
 	- Password
 	- Name
