@@ -16,6 +16,9 @@ def homefunction(request):
 def aboutfunction(request):
     return render(request, 'webpages/about.html', {'title': 'About'})
 
+def searchfunction(request):
+    return render(request, 'webpages/search.html')
+
 
 class PostListView(ListView):
     """
@@ -96,3 +99,4 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
+        

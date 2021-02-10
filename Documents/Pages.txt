@@ -7,11 +7,10 @@
 	- Name
 	- Phone number
 	- Location
-- Profile
+- Profile (Manage Profile)
 	- Profile picture
 	- Last log-in
 	- Description
-- Manage Profile
 	- Change profile
 	- Change email
 	- Change password
@@ -22,7 +21,7 @@
 		- Photos
 		- Price
 		- Key Features
-- Property
+- Add/Manage Property
 	- Ower Info
 	- Photos
 	- Address(area)
@@ -32,6 +31,7 @@
 	- Bedrooms
 	- Bathrooms
 	- Price
-	- Owner occupancy
 	- Description
 	- Post date
+	- Age (Construction year)
+- Property Display

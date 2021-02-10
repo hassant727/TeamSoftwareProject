@@ -1,19 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1 class="text-center my-5 py-5">Property Pricer</h1>
-    <!-- Search Bar -->
-    <section class="my-4 pb-5">
-        <h2>Search Properties</h2>
-        <form method="GET" action="/search/">
-            <div class="input-group">
-                <input name="q" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                <button class="btn btn-outline-info" type="submit">Search</button>
-            </div>
-        </form>
-    </section>
-    <!-- List Posts -->
-    <section class="my-4 pb-5">
-        <h2>All Posts</h2>
+    <h2>Search Results</h2>
+    {% if posts %}
         {% for post in posts %}
             <article class="media content-section">
                 <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
@@ -27,7 +15,9 @@
                 </div>
             </article>
         {% endfor %}
-    </section>
+    {% else %}
+        <p>No There are no results that match your search</p>
+    {% endif %}
     <!--  paginating page s  -->
     {% if is_paginated %}
         {% if page_obj.has_previous %}
