@@ -4,6 +4,24 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 
+from itertools import islice
+from random import randint, shuffle
+
+from django.utils.translation import ugettext_lazy as _
+from django.views.generic import TemplateView
+
+from chartjs.colors import COLORS, next_color
+from chartjs.util import date_range, value_or_null
+from chartjs.views.columns import BaseColumnsHighChartsView
+from chartjs.views.lines import (
+    BaseLineChartView,
+    BaseLineOptionsChartView,
+    HighchartPlotLineChartView,
+)
+from chartjs.views.pie import HighChartDonutView, HighChartPieView
+
+# from CS3305TSP.models import Meter
+# from TeamSoftwareProject.CS3305TSP.CS3305TSP.models import Meter
 
 def homefunction(request):
     """sql modeling passing in a dictionary of post """
@@ -15,6 +33,7 @@ def homefunction(request):
 
 def aboutfunction(request):
     return render(request, 'webpages/about.html', {'title': 'About'})
+
 
 def searchfunction(request):
     return render(request, 'webpages/search.html')
@@ -99,4 +118,5 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
-        
+
+

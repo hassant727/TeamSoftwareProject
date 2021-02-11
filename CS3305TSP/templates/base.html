@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
 
     {% if title %}
         <title>CS3305TSP - {{ title }}</title>
@@ -69,6 +70,40 @@
                 {% endif %}
                 {% block content %}{% endblock %}
             </div>
+<!--            <div class="col-md-13">-->
+<!--                <div class="content-section">-->
+<!--                    <h2>Chart.js</h2>-->
+
+<!--                    <canvas id="myChart" width="1000" height="500"></canvas>-->
+
+<!--                    <script type="text/javascript">-->
+<!--                        $.get("{% url 'line_chart_json' %}", function (data) {-->
+<!--                            var ctx = $("#myChart").get(0).getContext("2d");-->
+<!--                            new Chart(ctx, {-->
+<!--                                type: 'line',-->
+<!--                                data: data,-->
+<!--                                options: {-->
+<!--                                    responsive: false-->
+<!--                                }-->
+<!--                            });-->
+<!--                        });-->
+<!--                    </script>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-4">-->
+<!--                <h2>HighCharts</h2>-->
+
+<!--&lt;!&ndash;                <div id="myHighChart" style="height: 500px; width: 500px;"></div>&ndash;&gt;-->
+<!--                <canvas id="myHighChart" width="500" height="500"></canvas>-->
+
+<!--                <script type="text/javascript">-->
+<!--                    $.get("{% url 'line_highchart_json' %}", function (data){-->
+<!--                        data["chart"] = {type: "line"};-->
+<!--                        $("#myHighChart").highcharts(data);-->
+<!--                    });-->
+<!--                </script>-->
+<!--            </div>-->
+
             <!-- <div class="col-md-4">
                 <div class="content-section">
                     <h3>Our Sidebar</h3>
@@ -90,5 +125,9 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/highcharts/highcharts.js' %}"></script>
+
+
 </body>
 </html>

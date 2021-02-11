@@ -1,10 +1,14 @@
-from django.shortcuts import render
-
-# Create your views here.
+# views here.
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from random import randint, shuffle
+from django.utils.translation import ugettext_lazy as _
+from django.views.generic import TemplateView
+from chartjs.colors import COLORS, next_color
+from chartjs.views.lines import BaseLineChartView, HighchartPlotLineChartView
+from .models import Meter
 
 
 def register(request):
@@ -52,3 +56,56 @@ def profile(request):
         'p_form': p_form
     }
     return render(request, 'userpages/profile.html', context)
+
+
+class ChartMixin(object):
+    def get_providers(self):
+        """Return names of datasets."""
+        return ["year1", "year2", "year3"]
+
+    def get_labels(self):
+        """Return 12 labels."""
+        return ["January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+                ]
+
+    def get_data(self):
+        """Return 3 random dataset to plot."""
+
+        def data():
+            """Return 12 randint between 0 and 100."""
+            return [randint(0, 100) for x in range(12)]
+
+        """change the number in range to increase line comparisons, you will have to increase the dataset as well """
+        return [data() for x in range(1)]
+
+    def get_colors(self):
+        """Return a new shuffle list of color so we change the color
+        each time."""
+        colors = COLORS[:]
+        shuffle(colors)
+        return next_color(colors)
+
+
+class LineChartJSONView(ChartMixin, BaseLineChartView):
+    pass
+
+
+class LineHighChartJSONView(ChartMixin, HighchartPlotLineChartView):
+    title = _("Line HighChart Test")
+    y_axis_title = _("Kangaroos")
+
+    # special - line charts credits are personalized
+    credits = {
+        "enabled": True,
+        "href": "http://example.com",
+        "text": "Novapost Team",
+    }
+
+
+# Pre-configured views.
+# colors = ColorsView.as_view()
+
+line_chart = TemplateView.as_view(template_name="userpages/profile.html")
+line_chart_json = LineChartJSONView.as_view()
+line_highchart_json = LineHighChartJSONView.as_view()

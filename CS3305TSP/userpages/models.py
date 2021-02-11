@@ -19,3 +19,14 @@ class Profile(models.Model):
             output_size = (300, 300)
             img.thumbnail(output_size)
             img.save(self.image.path)
+
+
+class Meter(models.Model):
+    """the variables below are the keys in the json dictionary """
+    date = models.DateField()
+    name = models.CharField(max_length=255)
+    reading = models.IntegerField()
+
+    """ordering from latest to oldest"""
+    class Meta:
+        ordering = ("-date", "name")

@@ -29,3 +29,5 @@ class Post(models.Model):
         :return:
         """
         return reverse('post-detail', kwargs={'pk': self.pk})
+
+
