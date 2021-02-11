@@ -31,6 +31,15 @@
                     <div class="navbar-nav mr-auto">
                         <a class="nav-item nav-link" href="{% url 'home-page' %}">Home</a>
                         <a class="nav-item nav-link" href="{% url 'about-page' %}">About</a>
+                        {% url 'home-page' as home_url %}
+                        {% if request.get_full_path != home_url %}
+                            <form method="GET" action="/search/" class="nav-item form-inline mx-2">
+                                <div class="input-group">
+                                    <input name="q" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                                    <button class="btn btn-outline-info" type="submit">Search</button>
+                                </div>
+                            </form>
+                        {% endif %}
                     </div>
                     <!-- Navbar Right Side -->
                     <!-- conditional statement to either display login/logout page if a user is authenticated or -->
