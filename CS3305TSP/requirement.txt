@@ -44,4 +44,4 @@ env==0.1.0
 parse==1.14.0
 pytest==5.3.5
 Flask==0.10.1
-
+django-chartjs
