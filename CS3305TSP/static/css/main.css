@@ -36,6 +36,13 @@ ul {
     margin-bottom: 20px;
 }
 
+.chart {
+    background: #ffffff;
+    padding: 10px 20px;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
 .article-title {
     color: #444444;
 }
@@ -75,8 +82,7 @@ a.article-title:hover {
 .account-img {
     height: 125px;
     width: 125px;
-    margin-right: 20px;
-    margin-bottom: 16px;
+    margin: 16px 20px 16px 20px;
 }
 
 .account-heading {
