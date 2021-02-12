@@ -14,7 +14,15 @@
                 {% endif %}
             </div>
             <h2 class="article-title" >{{ object.title }}</h2>
-            <p class="article-content">{{ object.content }}</p>
+            {% if object.address_line_2 %}
+                <p class="article-content">{{ object.address_line_1 }}, {{ object.address_line_2 }}, {{ object.city }}, {{ object.county }}</p>
+            {% else %}
+                <p class="article-content">{{ object.address_line_1 }}, {{ object.city }}, {{ object.county }}</p>
+            {% endif %}
+            {% if object.images %}
+                <img src="{{ object.images.url }}" class="img-fluid mb-2" />
+            {% endif %}
+            <p class="article-content">{{ object.property_description }}</p>
         </div>
     </article>
 {% endblock content %}
