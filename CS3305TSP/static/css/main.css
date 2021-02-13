@@ -36,6 +36,13 @@ ul {
     margin-bottom: 20px;
 }
 
+.chart {
+    background: #ffffff;
+    padding: 10px 20px;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
 .article-title {
     color: #444444;
 }
@@ -75,10 +82,61 @@ a.article-title:hover {
 .account-img {
     height: 125px;
     width: 125px;
-    margin-right: 20px;
-    margin-bottom: 16px;
+    margin: 16px 20px 16px 20px;
 }
 
 .account-heading {
     font-size: 2.5rem;
+}
+
+.overlay-content {
+    position: relative;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+    color: #ffffff;
+}
+
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #ffffff;
+    display: block;
+    transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+    .overlay a {font-size: 20px}
+    .overlay .closebtn {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
+}
+.overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #4f4f4f;
+
+    /*background-color: rgb(0,0,0);*/
+    /*background-color: rgba(0,0,0, 0.9);*/
+    overflow-x: hidden;
+    transition: 0.5s;
 }

@@ -2,58 +2,77 @@
 {% load crispy_forms_tags %}
 {% block content %}
     <div class="content-section">
-        <div class="media">
-            <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
-            <div class="media-body">
-                <h2 class="account-heading">{{ user.username }}</h2>
-                <p class="text-secondary">{{ user.email }}</p>
+        <div class="media row">
+            <div class="col-md-4 text-center">
+                <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" />
+                <div class="media-body">
+                    <h2 class="account-heading">{{ user.username }}</h2>
+                    <p class="text-secondary">{{ user.email }}</p>
+                </div>
+            </div>
+            <div class="chart col-md-8">
+                <h2 class="text-center">Chart</h2>
+
+                <canvas id="myChart" class="w-100"></canvas>
+
+                <script type="text/javascript">
+                    $.get("{% url 'line_chart_json' %}", function (data) {
+                        var ctx = $("#myChart").get(0).getContext("2d");
+                        new Chart(ctx, {
+                            type: 'line',
+                            data: data,
+                            options: {
+                                responsive: false
+                            }
+                        });
+                    });
+                </script>
             </div>
         </div>
-        <!-- FORM HERE -->
-        <!-- enctype is used for saving images in data    -->
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Profile Info</legend>
-                {{ u_form|crispy }}
-                {{ p_form|crispy }}
-                
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Update</button>
+        <!--  the button is used for overlay curtain display      -->
+        <button style="font-size:30px;cursor:pointer" onclick="openNav()">Edit Profile</button>
+        <div id="myNav" class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="overlay-content">
+                <!-- FORM HERE -->
+                <!-- enctype is used for saving images in data    -->
+                <form method="POST" enctype="multipart/form-data" >
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4">Profile Info</legend>
+                        {{ u_form|crispy }}
+                        {{ p_form|crispy }}
+
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn btn-outline-info" type="submit">Update</button>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
 
-<div class="row">
-    <div class="col-md-8 mx-auto">
+    <div class="content-section mx-auto">
+        <h2>Messages</h2>
         {% if messages %}
         {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">
-            {{ message }}
-        </div>
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
         {% endfor %}
+        {% else %}
+            <p>No Message avaliable</p>
         {% endif %}
     </div>
-    <div class="col-md-13">
-        <div class="content-section">
-            <h2>Chart.js</h2>
 
-            <canvas id="myChart" width="1000" height="500"></canvas>
+    <!-- the css section for the overlays opening and closing   -->
+    <script>
+        function openNav() {
+            document.getElementById("myNav").style.width = "100%";
+        }
 
-            <script type="text/javascript">
-                $.get("{% url 'line_chart_json' %}", function (data) {
-                    var ctx = $("#myChart").get(0).getContext("2d");
-                    new Chart(ctx, {
-                        type: 'line',
-                        data: data,
-                        options: {
-                            responsive: false
-                        }
-                    });
-                });
-            </script>
-        </div>
-    </div>
-</div>
+        function closeNav() {
+            document.getElementById("myNav").style.width = "0%";
+        }
+    </script>
 {% endblock content %}
