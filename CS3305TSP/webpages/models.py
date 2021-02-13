@@ -11,8 +11,14 @@ python manage.py sqlmigrate blog 0001 --> for our case
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=100)
-    content = models.TextField()
+    title = models.CharField(max_length=128)
+    property_description = models.TextField()
+    images = models.ImageField(upload_to='post_images', null=True, blank=True)
+    address_line_1 = models.CharField(max_length=255, default='')
+    address_line_2 = models.CharField(max_length=255, null=True, blank=True)
+    city = models.CharField(max_length=128, default='')
+    county = models.CharField(max_length=128, default='')
+
     date_posted = models.DateField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -30,4 +36,6 @@ class Post(models.Model):
         """
         return reverse('post-detail', kwargs={'pk': self.pk})
 
-
+# class PostImage(models.Model):
+#     image = models.FileField()
+#     post = models.ForeignKey(Post, related_name='post_images', on_delete=models.CASCADE)

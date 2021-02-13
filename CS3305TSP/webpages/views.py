@@ -4,6 +4,8 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 
+# from .forms import PostForm
+
 from itertools import islice
 from random import randint, shuffle
 
@@ -80,7 +82,7 @@ class PostDetailView(DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'content']
+    fields = ['title', 'address_line_1', 'address_line_2', 'city', 'county', 'property_description', 'images']
 
     def form_valid(self, form):
         """ this function allows user to create a new post if they login """
@@ -90,7 +92,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title', 'content']
+    fields = ['title', 'address_line_1', 'address_line_2', 'city', 'county', 'property_description', 'images']
 
     def form_valid(self, form):
         """this function ensure that a user can only  update if they are login"""
@@ -118,5 +120,3 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
-
-

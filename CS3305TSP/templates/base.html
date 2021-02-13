@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
 
     {% if title %}
@@ -33,7 +34,9 @@
                         <a class="nav-item nav-link" href="{% url 'home-page' %}">Home</a>
                         <a class="nav-item nav-link" href="{% url 'about-page' %}">About</a>
                         {% url 'home-page' as home_url %}
-                        {% if request.get_full_path != home_url %}
+                        {% url 'login-page' as login_url %}
+                        {% url 'register-page' as register_url %}
+                        {% if request.get_full_path != home_url and request.get_full_path != login_url and request.get_full_path != register_url %}
                             <form method="GET" action="/search/" class="nav-item form-inline mx-2">
                                 <div class="input-group">
                                     <input name="q" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
@@ -60,7 +63,7 @@
     </header>
     <main role="main" class="container">
         <div class="row">
-            <div class="col-md-12 mx-auto">
+            <div class="mx-auto w-75">
                 {% if messages %}
                     {% for message in messages %}
                         <div class="alert alert-{{ message.tags }}">

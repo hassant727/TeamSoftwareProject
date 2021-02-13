@@ -2,7 +2,7 @@
 {% block content %}
     <h1 class="text-center my-5 py-5">Property Pricer</h1>
     <!-- Search Bar -->
-    <section class="my-4 pb-5">
+    <section class="my-4 mx-auto pb-5">
         <h2>Search Properties</h2>
         <form method="GET" action="/search/">
             <div class="input-group">
@@ -23,7 +23,15 @@
                         <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
                     </div>
                     <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-                    <p class="article-content">{{ post.content }}</p>
+                    {% if object.address_line_2 %}
+                        <p class="article-content">{{ object.address_line_1 }}, {{ post.address_line_2 }}, {{ post.city }}, {{ post.county }}</p>
+                    {% else %}
+                        <p class="article-content">{{ post.address_line_1 }}, {{ post.city }}, {{ post.county }}</p>
+                    {% endif %}
+                    {% if post.images %}
+                        <img src="{{ post.images.url }}" class="img-fluid mb-2" />
+                    {% endif %}
+                    <p class="article-content">{{ post.property_description }}</p>
                 </div>
             </article>
         {% endfor %}

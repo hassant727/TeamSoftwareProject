@@ -45,3 +45,5 @@ parse==1.14.0
 pytest==5.3.5
 Flask==0.10.1
 django-chartjs
+validate_email
+django-multiupload
