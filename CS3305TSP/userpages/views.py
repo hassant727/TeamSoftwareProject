@@ -1,83 +1,84 @@
 # views here.
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+import json
 from random import randint, shuffle
-from django.utils.translation import ugettext_lazy as _
-from django.views.generic import TemplateView
 from chartjs.colors import COLORS, next_color
 from chartjs.views.lines import BaseLineChartView, HighchartPlotLineChartView
-from .models import Meter
-from django.contrib.auth import login
-from django.contrib.auth.models import User
-from django.shortcuts import render
-
-from django.contrib.auth.decorators import login_required
-from django.views import View
-
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
-
-from django.shortcuts import render, redirect
-from django.views import View
-import json
-from django.http import JsonResponse, HttpResponse
-from django.contrib.auth.models import User
-from validate_email import validate_email
-from django.contrib import messages
-from django.core.mail import EmailMessage
-from django.contrib.sites.shortcuts import get_current_site
-from django.utils.encoding import force_bytes, force_text, DjangoUnicodeDecodeError
-from django.core.mail import send_mail
-from django.contrib.sites.shortcuts import get_current_site
-from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
-from django.template.loader import render_to_string
-from .utils import account_activation_token
-from django.urls import reverse
 from django.contrib import auth
+from django.contrib import messages
+from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import EmailMessage
+from django.http import JsonResponse, HttpResponse
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from django.utils.translation import ugettext_lazy as _
+from django.views import View
+from django.views.generic import TemplateView
+from validate_email import validate_email
+
+from .forms import UserUpdateForm, ProfileUpdateForm
+from .utils import account_activation_token
 
 """-----------------This section deals with authentication---------------"""
 
 
-def register(request):
-    """
-    this section collects user details and stores it on the server using the post method
-    :param request:
-    :return: login page or redict if successful
-    """
-    if request.method == 'POST':
-        form = UserRegisterForm(request.POST)
-        form.save()
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.is_active = False
-            user.save()
-            """
-                this section is used for generating confirmation email to activated the user account
-                this is essential to avoid automated attacks on the server and it ensures the minimum security
-            """
-            current_site = get_current_site(request)
-            mail_subject = 'Activate your property price prediction account.'
-            message = render_to_string('userpages/acc_active_email.html', {
-                'user': user,
-                'domain': current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': account_activation_token.make_token(user),
-            })
-            to_email = form.cleaned_data.get('email')
-            email = EmailMessage(
-                mail_subject, message, to=[to_email]
-            )
-            email.send()
-            # username = form.cleaned_data.get('username')
-            # email = form.cleaned_data.get('email')
-            messages.success(request, f'Please confirm your email address to complete the registration')
-            # return redirect('redirect')
-            return render(request, 'userpages/redirect.html')
+class RegistrationView(View):
+    def get(self, request):
+        return render(request, 'userpages/register.html')
 
-    else:
-        form = UserRegisterForm()
-    return render(request, 'userpages/register.html', {'form': form})
+    def post(self, request):
+        # GET USER DATA
+        # VALIDATE
+        # create a user account
+
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+
+        context = {
+            'fieldValues': request.POST
+        }
+
+        if not User.objects.filter(username=username).exists():
+            if not User.objects.filter(email=email).exists():
+                if len(password) < 6:
+                    messages.error(request, 'Password too short')
+                    return render(request, 'userpages/register.html', context)
+
+                user = User.objects.create_user(username=username, email=email)
+                user.set_password(password)
+                user.is_active = False
+                user.save()
+                current_site = get_current_site(request)
+                email_body = {
+                    'user': user,
+                    'domain': current_site.domain,
+                    'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                    'token': account_activation_token.make_token(user),
+                }
+
+                link = reverse('activate', kwargs={
+                    'uidb64': email_body['uid'], 'token': email_body['token']})
+
+                email_subject = 'Activate your account'
+
+                activate_url = 'http://'+current_site.domain+link
+
+                email = EmailMessage(
+                    email_subject,
+                    'Hi '+user.username + ', Please the link below to activate your account \n'+activate_url,
+                    'noreply@semycolon.com',
+                    [email],
+                    )
+                email.send(fail_silently=False)
+                messages.success(request, f"An Account activation link has ben sent to {user.email}")
+                return redirect('login')
+
+        return render(request, 'userpages/register.html')
 
 
 class EmailValidationView(View):
@@ -156,6 +157,7 @@ def activated(request):
 
 
 def redirectpages(request):
+    """this will be used to redirect all 404 errors to this page"""
     return render(request, "userpages/redirect.html")
 
 
@@ -175,7 +177,7 @@ class LoginView(View):
                     auth.login(request, user)
                     messages.success(request, 'Welcome, ' +
                                      user.username + ' you are now logged in')
-                    return redirect('expenses')
+                    return redirect('profile-page')
                 messages.error(
                     request, 'Account is not active,please check your email')
                 return render(request, 'userpages/login.html')

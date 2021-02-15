@@ -1,26 +1,12 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Post
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+
+from .models import Post
+
 
 # from .forms import PostForm
-
-from itertools import islice
-from random import randint, shuffle
-
-from django.utils.translation import ugettext_lazy as _
-from django.views.generic import TemplateView
-
-from chartjs.colors import COLORS, next_color
-from chartjs.util import date_range, value_or_null
-from chartjs.views.columns import BaseColumnsHighChartsView
-from chartjs.views.lines import (
-    BaseLineChartView,
-    BaseLineOptionsChartView,
-    HighchartPlotLineChartView,
-)
-from chartjs.views.pie import HighChartDonutView, HighChartPieView
 
 # from CS3305TSP.models import Meter
 # from TeamSoftwareProject.CS3305TSP.CS3305TSP.models import Meter

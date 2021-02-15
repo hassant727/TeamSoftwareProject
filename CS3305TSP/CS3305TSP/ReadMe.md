@@ -19,6 +19,7 @@ DB_HOST=localhost,`
 > since we're sharing a github repo, this is essential for individual privacy
 > 
 ----
+> no chnages i just added an alternative smtp loggin option that we can you  if you cant set up your .env file
 external links
 if the above doesnt work for you(see the link below on how to add enviroment variables)
 https://stackoverflow.com/questions/42708389/how-to-set-environment-variables-in-pycharm

@@ -140,3 +140,27 @@ a.article-title:hover {
     overflow-x: hidden;
     transition: 0.5s;
 }
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+.showPasswordToggle {
+    cursor: pointer;
+    transition: all;
+}
+
+.showPasswordToggle:hover {
+    transform: scale(1.2);
+}

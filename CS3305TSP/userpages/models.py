@@ -21,6 +21,9 @@ class Profile(models.Model):
             img.save(self.image.path)
 
 
+"""chart modeling"""
+
+
 class Meter(models.Model):
     """the variables below are the keys in the json dictionary """
     date = models.DateField()
@@ -28,5 +31,6 @@ class Meter(models.Model):
     reading = models.IntegerField()
 
     """ordering from latest to oldest"""
+
     class Meta:
         ordering = ("-date", "name")

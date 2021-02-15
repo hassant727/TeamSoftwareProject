@@ -1,24 +1,45 @@
-{% extends "base.html" %}
-{% load crispy_forms_tags %}
+{% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<div class="content-section">
-    <form method="POST">
-        {% csrf_token %}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Log In</legend>
-            {{ form|crispy }}
-        </fieldset>
-        <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Login</button>
-            <small class="text-muted ml-2">
-                <a href="{% url 'password_reset' %}">Forgot Password</a>
-            </small>
+    <div class="row">
+        <div class="mx-auto w-100">
+            <div class="content-section">
+                <form action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                    <legend class="border-bottom mb-4">Login</legend>
+                    <div class="form-group">
+                        <input
+                                type="text"
+                                name="username"
+                                placeholder="username"
+                                id="usernameField"
+                                value="{{fieldValues.username}}"
+                                class="form-control form-control-sm"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <input
+                                type="password"
+                                name="password"
+                                placeholder="Password"
+                                class="form-control form-control-sm"
+                                id="passwordField"
+                        />
+                    </div>
+                    <input type="submit" value="Login" class="btn btn-block btn-primary submit-btn" style="background: #5f788a; border:none; "/>
+                </form>
+                <div class="border-top pt-3">
+                    <small class="text-muted">
+                        Register a new Account? <a class="ml-2" href="{% url 'register-page' %}">Register</a>
+                    </small>
+                    <small class="text-muted">
+                        Forgot Password? <a class="ml-2" href="{% url 'password_reset' %}">Reset password</a>
+                    </small>
+                </div>
+            </div>
         </div>
-    </form>
-    <div class="border-top pt-3">
-        <small class="text-muted">
-            Need An Account? <a class="ml-2" href="{% url 'register-page' %}">Sign Up Now</a>
-        </small>
     </div>
-</div>
+    <div class="col-md-4"></div>
+<script src="{% static 'js/register.js' %}"></script>
+
 {% endblock content %}
