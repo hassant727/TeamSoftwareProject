@@ -19,7 +19,6 @@ from django.utils.translation import ugettext_lazy as _
 from django.views import View
 from django.views.generic import TemplateView
 from validate_email import validate_email
-
 from .forms import UserUpdateForm, ProfileUpdateForm
 from .utils import account_activation_token
 
@@ -31,10 +30,7 @@ class RegistrationView(View):
         return render(request, 'userpages/register.html')
 
     def post(self, request):
-        # GET USER DATA
-        # VALIDATE
-        # create a user account
-
+        """this method is used for getting user data, validating it and creating an account"""
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
@@ -82,6 +78,7 @@ class RegistrationView(View):
 
 
 class EmailValidationView(View):
+    """this method is used to validate emails as the use is typing or submit an email"""
     def post(self, request):
         data = json.loads(request.body)
         email = data['email']
@@ -93,6 +90,8 @@ class EmailValidationView(View):
 
 
 class UsernameValidationView(View):
+    """this method is used to validate username as the use is typing or submit an email"""
+
     def post(self, request):
         data = json.loads(request.body)
         username = data['username']
@@ -104,6 +103,7 @@ class UsernameValidationView(View):
 
 
 class VerificationView(View):
+    """this method is used to validate account by sending users an email with token for activation """
     def get(self, request, uidb64, token):
         try:
             id = force_text(urlsafe_base64_decode(uidb64))
@@ -152,16 +152,17 @@ def activate(request, uidb64, token):
         return HttpResponse('Activation link is invalid!')
 
 
-def activated(request):
-    return render(request, 'userpages/activated_account.html')
-
-
 def redirectpages(request):
-    """this will be used to redirect all 404 errors to this page"""
+    """this will be used to redirect all 404 errors to this page--> i haven't modeled it yet"""
     return render(request, "userpages/redirect.html")
 
 
 class LoginView(View):
+    """
+        the following class is used for logging in the method are self explanatory
+        the get method is used when the page is requested adn post method is used when
+        the page is posted,
+     """
     def get(self, request):
         return render(request, 'userpages/login.html')
 
@@ -191,6 +192,7 @@ class LoginView(View):
 
 
 class LogoutView(View):
+    """the class is self explanatory"""
     def post(self, request):
         auth.logout(request)
         messages.success(request, 'You have been logged out')
