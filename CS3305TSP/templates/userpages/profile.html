@@ -38,7 +38,7 @@
                 <!-- enctype is used for saving images in data    -->
                 <form method="POST" enctype="multipart/form-data" >
                     {% csrf_token %}
-                    <fieldset class="form-group">
+                    <fieldset >
                         <legend class="border-bottom mb-4">Profile Info</legend>
                         {{ u_form|crispy }}
                         {{ p_form|crispy }}

@@ -281,9 +281,6 @@ class LineHighChartJSONView(ChartMixin, HighchartPlotLineChartView):
     }
 
 
-# Pre-configured views.
-# colors = ColorsView.as_view()
-
 line_chart = TemplateView.as_view(template_name="userpages/profile.html")
 line_chart_json = LineChartJSONView.as_view()
 line_highchart_json = LineHighChartJSONView.as_view()
