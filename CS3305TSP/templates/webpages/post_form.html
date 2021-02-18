@@ -7,7 +7,14 @@
                 <fieldset class="form-group">
                     <legend class="border-bottom mb-4">Post your property</legend>
                     {{ form|crispy }}
-                    <input type="file" name="post_images" multiple>
+                    <div class="div_id_post_images">
+                        <label for="id_post_images">
+                            Upload Images
+                        </label>
+                        <div class="">
+                            <input id="id_post_images" class="clearablefileinput form-control-file" accept="image/*" type="file" name="post_images" multiple>
+                        </div>
+                    </div>
                 </fieldset>
                 <div class="form-group">
                     <button class="btn btn-outline-info" type="submit">POST</button>
