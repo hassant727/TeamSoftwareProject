@@ -4,6 +4,13 @@
         <div class="article-metadata">
             <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
             <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+            {% url 'post-detail' object.id as post_url %}
+            {% if request.get_full_path == post_url and object.author == user%}
+                <div class="d-inline float-right">
+                    <a class="btn-info btn-sm" href="{% url 'post-update' object.id %}">Edit</a>
+                    <a class="btn-danger btn-sm" href="{% url 'post-delete' object.id %}">Delete</a>
+                </div>
+            {% endif %}
         </div>
         <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
         {% if object.address_line_2 %}
