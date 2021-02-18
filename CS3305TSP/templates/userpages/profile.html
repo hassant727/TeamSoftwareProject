@@ -55,6 +55,14 @@
     </div>
 
     <div class="content-section mx-auto">
+        <h2 class="mb-3">My Posts</h2>
+        {% for post in user.user_posts.all %}
+            {% include 'webpages/short_post.html' %} 
+        {% endfor %}
+        {% include 'webpages/pagination.html' %}
+    </div>
+
+    <div class="content-section mx-auto">
         <h2>Messages</h2>
         {% if messages %}
         {% for message in messages %}
