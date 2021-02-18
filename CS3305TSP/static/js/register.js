@@ -7,11 +7,11 @@ const usernameSuccessOutput = document.querySelector(".usernameSuccessOutput");
 const showPasswordToggle = document.querySelector(".showPasswordToggle");
 const submitBtn = document.querySelector(".submit-btn");
 const handleToggleInput = (e) => {
-    if (showPasswordToggle.textContent === "SHOW") {
-        showPasswordToggle.textContent = "HIDE";
+    if (showPasswordToggle.textContent === "SHOW PASSWORD") {
+        showPasswordToggle.textContent = "HIDE PASSWORD";
         passwordField.setAttribute("type", "text");
     } else {
-        showPasswordToggle.textContent = "SHOW";
+        showPasswordToggle.textContent = "SHOW PASSWORD";
         passwordField.setAttribute("type", "password");
     }
 };
