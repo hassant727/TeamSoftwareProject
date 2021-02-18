@@ -17,7 +17,7 @@ urlpatterns = [
 
     path('redirect/', views.redirectpages, name="redirect"),
     path('login/', LoginView.as_view(), name="login"),
-    path('profile/', views.profile, name='profile-page'),
+    path('user/<str:username>', views.profile, name='profile-page'),
     path('logout/', LogoutView.as_view(), name="logout"),
 
     # the path to the chart

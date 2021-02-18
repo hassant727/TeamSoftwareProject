@@ -199,8 +199,7 @@ class LogoutView(View):
         return redirect('login')
 
 
-@login_required
-def profile(request):
+def profile(request, username):
     """
     creating an instance of both userformUpdate and profileUpdateform
     then we storing in the current user details in u_form and p_form for profile picture within the first if condition
@@ -212,25 +211,29 @@ def profile(request):
     :return: if updated we  redirect in place to avoid having to take to the last return which prompt users if they
     wish to reload th page which will submit the form again
     """
-    if request.method == 'POST':
-        u_form = UserUpdateForm(request.POST, instance=request.user)
-        p_form = ProfileUpdateForm(request.POST,
-                                   request.FILES,
-                                   instance=request.user.profile)
-        if u_form.is_valid() and p_form.is_valid():
-            u_form.save()
-            p_form.save()
-            messages.success(request, f'Your account has been updated')
-            return redirect('profile-page')
-    else:
-        u_form = UserUpdateForm(instance=request.user)
-        p_form = ProfileUpdateForm(instance=request.user.profile)
-    context = {
 
-        'u_form': u_form,
-        'p_form': p_form
-    }
-    return render(request, 'userpages/profile.html', context)
+    if request.user.is_authenticated and username == request.user.username:
+        if request.method == 'POST':
+            u_form = UserUpdateForm(request.POST, instance=request.user)
+            p_form = ProfileUpdateForm(request.POST,
+                                       request.FILES,
+                                       instance=request.user.profile)
+            if u_form.is_valid() and p_form.is_valid():
+                u_form.save()
+                p_form.save()
+                messages.success(request, f'Your account has been updated')
+                return redirect('profile-page')
+        else:
+            u_form = UserUpdateForm(instance=request.user)
+            p_form = ProfileUpdateForm(instance=request.user.profile)
+        context = {
+            'u_form': u_form,
+            'p_form': p_form
+        }
+        return render(request, 'userpages/profile.html', context)
+    else:
+        person = User.objects.get(username = username)
+        return render(request,'userpages/profile.html', {'user':person})
 
 
 """-----------The section below is for chart/graph manipulation--------"""
