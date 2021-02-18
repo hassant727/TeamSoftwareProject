@@ -19,8 +19,10 @@
             {% else %}
                 <p class="article-content">{{ object.address_line_1 }}, {{ object.city }}, {{ object.county }}</p>
             {% endif %}
-            {% if object.images %}
-                <img src="{{ object.images.url }}" class="img-fluid mb-2" />
+            {% if object.post_images %}
+                {% for img in object.post_images.all %}
+                    <img src="{{ img.image.url }}" class="img-fluid mb-2" />
+                {% endfor %}
             {% endif %}
             <p class="article-content">{{ object.property_description }}</p>
         </div>

@@ -1,12 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 
-from .models import Post
+from .models import Post, PostImage
 
-
-# from .forms import PostForm
 
 # from CS3305TSP.models import Meter
 # from TeamSoftwareProject.CS3305TSP.CS3305TSP.models import Meter
@@ -68,17 +66,22 @@ class PostDetailView(DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'address_line_1', 'address_line_2', 'city', 'county', 'property_description', 'images']
+    fields = ['title', 'address_line_1', 'address_line_2', 'city', 'county', 'property_description']
 
     def form_valid(self, form):
         """ this function allows user to create a new post if they login """
         form.instance.author = self.request.user
+        p = form.save()
+        if self.request.POST:
+            for file in self.request.FILES.getlist('post_images'):
+                img = PostImage(post=p,image=file)
+                img.save()
         return super().form_valid(form)
 
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title', 'address_line_1', 'address_line_2', 'city', 'county', 'property_description', 'images']
+    fields = ['title', 'address_line_1', 'address_line_2', 'city', 'county', 'property_description']
 
     def form_valid(self, form):
         """this function ensure that a user can only  update if they are login"""

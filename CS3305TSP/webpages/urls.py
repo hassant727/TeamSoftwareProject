@@ -8,6 +8,7 @@ urlpatterns = [
     path('about/', views.aboutfunction, name='about-page'),
     path('search/', views.searchfunction, name='search-page'),
     path('user/<str:username>', UserPostListView.as_view(), name='user-posts'),
+    # path('post/new', views.postcreatefunction, name='post-create'),
 
     path('post/new/', PostCreateView.as_view(), name='post-create'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
