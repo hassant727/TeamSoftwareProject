@@ -30,24 +30,26 @@
             </div>
         </div>
         <!--  the button is used for overlay curtain display      -->
-        <button style="font-size:30px;cursor:pointer" onclick="openNav()">Edit Profile</button>
+        <button class="btn btn-outline-info" onclick="openNav()">Edit Profile</button>
         <div id="myNav" class="overlay">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <div class="overlay-content">
                 <!-- FORM HERE -->
                 <!-- enctype is used for saving images in data    -->
-                <form method="POST" enctype="multipart/form-data" >
-                    {% csrf_token %}
-                    <fieldset class="form-group">
-                        <legend class="border-bottom mb-4">Profile Info</legend>
-                        {{ u_form|crispy }}
-                        {{ p_form|crispy }}
+                <div class="container">
+                    <form method="POST" enctype="multipart/form-data" class="update-profile">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            <legend class="border-bottom mb-4">Profile Info</legend>
+                            {{ u_form|crispy }}
+                            {{ p_form|crispy }}
 
-                    </fieldset>
-                    <div class="form-group">
-                        <button class="btn btn-outline-info" type="submit">Update</button>
-                    </div>
-                </form>
+                        </fieldset>
+                        <div class="form-group">
+                            <button class="btn btn-outline-info" type="submit">Update</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

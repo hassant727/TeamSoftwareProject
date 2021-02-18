@@ -93,37 +93,34 @@ a.article-title:hover {
     position: relative;
     top: 25%;
     width: 100%;
-    text-align: center;
-    margin-top: 30px;
-    color: #ffffff;
+    /*text-align: center;*/
+    margin-top: 40px;
 }
 
 .overlay a {
     padding: 8px;
     text-decoration: none;
-    font-size: 36px;
-    color: #ffffff;
+    color: #000000;
     display: block;
     transition: 0.3s;
 }
 
 .overlay a:hover, .overlay a:focus {
-    color: #f1f1f1;
+    color: #5F788A;
 }
 
 .overlay .closebtn {
     position: absolute;
-    top: 20px;
-    right: 45px;
+    top: 30px;
+    right: 15px;
     font-size: 60px;
 }
 
 @media screen and (max-height: 450px) {
-    .overlay a {font-size: 20px}
     .overlay .closebtn {
         font-size: 40px;
-        top: 15px;
-        right: 35px;
+        top: 35px;
+        right: 5px;
     }
 }
 .overlay {
@@ -133,12 +130,15 @@ a.article-title:hover {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #4f4f4f;
-
-    /*background-color: rgb(0,0,0);*/
-    /*background-color: rgba(0,0,0, 0.9);*/
+    background-color: rgb(223,228,231);
     overflow-x: hidden;
     transition: 0.5s;
+}
+
+form.update-profile {
+    width: 75%;
+    margin: auto;
+    padding: 10px 20px;
 }
 
 .bd-placeholder-img {
