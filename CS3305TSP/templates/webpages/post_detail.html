@@ -1,30 +1,4 @@
 {% extends "base.html" %}
 {% block content %}
-    <article class="media content-section">
-        <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
-        <div class="media-body">
-            <div class="article-metadata">
-                <a class="mr-2" href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a>
-                <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
-                {% if object.author == user%}
-                    <div>
-                        <a class="btn-secondary btn-sm mt-1 mb-1 " href="{% url 'post-update' object.id %}">Update</a>
-                        <a class="btn-danger btn-sm mt-1 mb-1 " href="{% url 'post-delete' object.id %}">Delete</a>
-                    </div>
-                {% endif %}
-            </div>
-            <h2 class="article-title" >{{ object.title }}</h2>
-            {% if object.address_line_2 %}
-                <p class="article-content">{{ object.address_line_1 }}, {{ object.address_line_2 }}, {{ object.city }}, {{ object.county }}</p>
-            {% else %}
-                <p class="article-content">{{ object.address_line_1 }}, {{ object.city }}, {{ object.county }}</p>
-            {% endif %}
-            {% if object.post_images %}
-                {% for img in object.post_images.all %}
-                    <img src="{{ img.image.url }}" class="img-fluid mb-2" />
-                {% endfor %}
-            {% endif %}
-            <p class="article-content">{{ object.property_description }}</p>
-        </div>
-    </article>
+    {% include 'webpages/post.html' %}
 {% endblock content %}
