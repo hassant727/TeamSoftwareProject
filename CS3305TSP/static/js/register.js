@@ -1,3 +1,5 @@
+// create form variable using query selectors
+
 const usernameField = document.querySelector("#usernameField");
 const feedBackArea = document.querySelector(".invalid_feedback");
 const emailField = document.querySelector("#emailField");
@@ -6,6 +8,7 @@ const passwordField = document.querySelector("#passwordField");
 const usernameSuccessOutput = document.querySelector(".usernameSuccessOutput");
 const showPasswordToggle = document.querySelector(".showPasswordToggle");
 const submitBtn = document.querySelector(".submit-btn");
+
 const handleToggleInput = (e) => {
     if (showPasswordToggle.textContent === "SHOW PASSWORD") {
         showPasswordToggle.textContent = "HIDE PASSWORD";
@@ -18,20 +21,30 @@ const handleToggleInput = (e) => {
 
 showPasswordToggle.addEventListener("click", handleToggleInput);
 
+// event listeners --> in this case when a user start typing
 emailField.addEventListener("keyup", (e) => {
+    // above ^ type of event is keyup and what we listening to is event
+    // below we are storing the event into a variable
     const emailVal = e.target.value;
 
+    //
     emailField.classList.remove("is-invalid");
     emailFeedBackArea.style.display = "none";
 
+    // we only want to start listening if the value in the field is greater then 0
     if (emailVal.length > 0) {
-        fetch("/authentication/validate-email", {
+        // the fetch method returns a promise ans then you to use the .then method, whhich then return a response and
+        // from that response is when we are going to get data
+        fetch("/validate-email", {
+            // the body contain the key, and value, which we are using to validate and store if it exits or not
+            // stringfying ensures that the js object is properly returned for json to be sent over a network
             body: JSON.stringify({ email: emailVal }),
             method: "POST",
         })
             .then((res) => res.json())
             .then((data) => {
                 console.log("data", data);
+                // these few lines are used to avoid sql injection when invalid characters are passed into the fields
                 if (data.email_error) {
                     submitBtn.disabled = true;
                     emailField.classList.add("is-invalid");
@@ -44,6 +57,7 @@ emailField.addEventListener("keyup", (e) => {
     }
 });
 
+// event listeners --> in this case when a user start typing
 usernameField.addEventListener("keyup", (e) => {
     const usernameVal = e.target.value;
 
@@ -55,7 +69,7 @@ usernameField.addEventListener("keyup", (e) => {
     feedBackArea.style.display = "none";
 
     if (usernameVal.length > 0) {
-        fetch("/authentication/validate-username", {
+        fetch("/validate-username", {
             body: JSON.stringify({ username: usernameVal }),
             method: "POST",
         })
