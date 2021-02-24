@@ -85,8 +85,17 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def form_valid(self, form):
         """this function ensure that a user can only  update if they are login"""
-
         form.instance.author = self.request.user
+        p = form.save()
+        if self.request.POST:
+            # remove relations of all old images of the post and attach new images
+            # it also delete the file itself
+            if self.request.FILES.getlist('post_images'):
+                for images in p.post_images.all():
+                    images.delete()
+                for file in self.request.FILES.getlist('post_images'):
+                    img = PostImage(post=p,image=file)
+                    img.save()
         return super().form_valid(form)
 
     def test_func(self):

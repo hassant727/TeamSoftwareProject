@@ -45,3 +45,8 @@ def get_image_filename(instance, filename):
 class PostImage(models.Model):
     image = models.ImageField('images', upload_to=get_image_filename, null=True, blank=True)
     post = models.ForeignKey(Post, related_name='post_images', on_delete=models.CASCADE)
+
+    def delete(self):
+        # delete the file when the object is deleted
+        self.image.delete()
+        super(PostImage, self).delete()
