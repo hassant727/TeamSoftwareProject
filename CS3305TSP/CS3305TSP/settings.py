@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'chartjs',
     'CS3305TSP',
+    'dashboard.apps.DashboardConfig',
+    'userdata.apps.UserdataConfig',
 ]
 
 MIDDLEWARE = [

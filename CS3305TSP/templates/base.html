@@ -23,8 +23,11 @@
 <body>
     <header class="site-header">
         <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+            <a class="btn" onclick="dashboardNav()" style="color:white;font-size: 24px;"><i class="fa fa-bars"></i> Dashboard </a>
+
             <div class="container">
                 <!--href="{% url 'home-page' %} this saves us form having to hardcode the absolute path-->
+
                 <a class="navbar-brand mr-4" href="{% url 'home-page' %}">Property Pricer</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -63,7 +66,7 @@
     </header>
     <main role="main" class="container">
         <div class="row">
-            <div class="mx-auto w-75">
+            <div class="mx-auto w-100">
                 {% if messages %}
                     {% for message in messages %}
                         <div class="alert alert-{{ message.tags }}">
@@ -99,6 +102,10 @@
 <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/highcharts/highcharts.js' %}"></script>
 
-
+<script type="text/javascript">
+    function dashboardNav() {
+        location.href = 'http://127.0.0.1:8000/dashboard';
+    }
+</script>
 </body>
 </html>
