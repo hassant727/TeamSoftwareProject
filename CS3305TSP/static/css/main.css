@@ -93,7 +93,6 @@ a.article-title:hover {
     position: relative;
     top: 25%;
     width: 100%;
-    /*text-align: center;*/
     margin-top: 40px;
 }
 
@@ -164,3 +163,29 @@ form.update-profile {
 .showPasswordToggle:hover {
     transform: scale(1.2);
 }
+
+
+/*slider start*/
+.landscape {
+    object-position: center;
+    object-fit: cover;
+    height: 488px;
+    width: 100%;
+}
+
+.portrait {
+    object-position: center;
+    object-fit: contain;
+    height: 488px;
+    width: 100%;
+}
+
+.lSPager li {
+    height: 95px;
+    background: white;
+}
+
+.lSSlideOuter {
+    background: #EEEEEE;
+}
+/*slider end*/
