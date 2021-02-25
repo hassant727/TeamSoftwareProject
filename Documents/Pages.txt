@@ -1,32 +1,43 @@
+- Nav bar
+	- Home
+	- User guide
+	- Search box
+	- New post
+	- User's profile
+	- Log in/out, Register
 - Home
 	- Search box
-	- Most viewed properties
+	- Most viewed properties/ Latest properties
+- User guide (About)
 - Register/Log in
+	- Name
 	- Email
 	- Password
-	- Name
-	- Phone number
-	- Location
-- Profile (Manage Profile)
+- Profile (Edit Profile)
 	- Profile picture
+	- Email
 	- Last log-in
-	- Description
-	- Change profile
-	- Change email
-	- Change password
-	- Change name
-	- Change description
+	- Chart
+	- Description (Self intro)
+	- Edit profile
+		- Change name
+		- Change email
+		- Change password
+		- Change profile picture
+		- Change description
 - Search result
 	- Listing
 		- Photos
 		- Price
 		- Key Features
-- Add/Manage Property
+- Add/Manage/Display property
 	- Ower Info
-	- Photos
+		- Contact information
+	- Photos gallery
+		- Floor plan
 	- Address(area)
 	- Property type
-	- Key Features
+	- Key features
 	- Size
 	- Bedrooms
 	- Bathrooms
@@ -34,4 +45,3 @@
 	- Description
 	- Post date
 	- Age (Construction year)
-- Property Display

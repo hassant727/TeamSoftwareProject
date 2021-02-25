@@ -63,10 +63,24 @@ class PostDetailView(DetailView):
     """
     model = Post
 
+POST_FIELDS = [
+        'title',
+        'address_line_1',
+        'address_line_2', 
+        'city', 
+        'county',
+        'property_type',
+        'number_of_bedrooms',
+        'number_of_bathrooms',
+        'property_description',
+        'price',
+        'energy_rating',
+        'floor_plan',
+    ]
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'address_line_1', 'address_line_2', 'city', 'county', 'property_description']
+    fields = POST_FIELDS
 
     def form_valid(self, form):
         """ this function allows user to create a new post if they login """
@@ -81,7 +95,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title', 'address_line_1', 'address_line_2', 'city', 'county', 'property_description']
+    fields = POST_FIELDS
 
     def form_valid(self, form):
         """this function ensure that a user can only  update if they are login"""
