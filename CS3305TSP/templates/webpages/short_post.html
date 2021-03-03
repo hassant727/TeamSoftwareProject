@@ -1,11 +1,34 @@
 <article class="media content-section">
     <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
-    <div class="media-body">
+    <div class="media-body  w-50">
         <div class="article-metadata">
             <a class="mr-2" href="{% url 'profile-page' post.author.username %}">{{ post.author }}</a>
             <small class="text-muted">{{ post.date_posted }}</small>
         </div>
-        <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-        <p class="article-content">{{ post.content }}</p>
+        <!-- Content of the post -->
+        {% if post.post_images.all %}
+            <!-- Slider and gallery -->
+            <ul id="lightSlider" class="gallery list-unstyled cS-hidden">
+            {% for img in post.post_images.all %}
+                <li data-thumb="{{ img.image.url }}" data-source="{{ img.image.url }}">
+                    <img src="{{ img.image.url }}" />
+                </li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if object.address_line_2 %}
+            <h3 class="article-title mt-3"><a class="article-title" href="{% url 'post-detail' post.id %}">{{ object.address_line_1 }}, {{ post.address_line_2 }}, {{ post.city }}, {{ post.county }}</a></h3>
+        {% else %}
+            <h3 class="article-title mt-3"><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.address_line_1 }}, {{ post.city }}, {{ post.county }}</a></h3>
+        {% endif %}
+
+        {% if post.price %}
+            <h4>€{{ post.price }}</h4>
+        {% else %}
+            <h4>POA</h4>
+        {% endif %}
+
+        <p>{{ post.number_of_bedrooms }} bedrooms {{ post.property_type }} for sale</p>
     </div>
 </article>

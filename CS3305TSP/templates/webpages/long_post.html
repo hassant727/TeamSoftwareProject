@@ -28,9 +28,9 @@
         <!-- Information of the Property -->
         
         {% if object.address_line_2 %}
-            <h2 class="article-title mt-3"><a class="article-title" href="{% url 'post-detail' post.id %}">{{ object.address_line_1 }}, {{ post.address_line_2 }}, {{ post.city }}, {{ post.county }}</a></h2>
+            <h3 class="article-title mt-3"><a class="article-title" href="{% url 'post-detail' post.id %}">{{ object.address_line_1 }}, {{ post.address_line_2 }}, {{ post.city }}, {{ post.county }}</a></h3>
         {% else %}
-            <h2 class="article-title mt-3"><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.address_line_1 }}, {{ post.city }}, {{ post.county }}</a></h2>
+            <h3 class="article-title mt-3"><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.address_line_1 }}, {{ post.city }}, {{ post.county }}</a></h3>
         {% endif %}
 
         {% if post.price %}
