@@ -5,6 +5,15 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 
 from .models import Post, PostImage
 
+from django.shortcuts import render
+from django.views import View
+from .forms import UserdataModelForm
+from django.http import JsonResponse
+from .price_predictor import predict
+
+
+
+
 
 # from CS3305TSP.models import Meter
 # from TeamSoftwareProject.CS3305TSP.CS3305TSP.models import Meter
@@ -66,8 +75,8 @@ class PostDetailView(DetailView):
 POST_FIELDS = [
         'title',
         'address_line_1',
-        'address_line_2', 
-        'city', 
+        'address_line_2',
+        'city',
         'county',
         'property_type',
         'number_of_bedrooms',
@@ -76,6 +85,7 @@ POST_FIELDS = [
         'price',
         'energy_rating',
         'floor_plan',
+        'size',
     ]
 
 class PostCreateView(LoginRequiredMixin, CreateView):
@@ -86,11 +96,28 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         """ this function allows user to create a new post if they login """
         form.instance.author = self.request.user
         p = form.save()
+
         if self.request.POST:
             for file in self.request.FILES.getlist('post_images'):
                 img = PostImage(post=p,image=file)
                 img.save()
+
+        f = UserdataModelForm(self.request.POST)
+        print(f)
+
+        data = f.cleaned_data
+
+        no_rooms = data["number_of_bedrooms"]
+        no_bathrooms = data["number_of_bathrooms"]
+        size = data["size"]
+        type = data["property_type"]
+        energy_rating = data["energy_rating"]
+
+        attributes = [[no_rooms, no_bathrooms, size, type, energy_rating]]
+        print(predict(attributes))
+
         return super().form_valid(form)
+
 
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -132,3 +159,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
+
+
+
+
