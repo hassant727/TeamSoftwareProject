@@ -15,12 +15,6 @@
             {% endif %}
         </div>
         <!-- Content of the post -->
-        <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-        {% if object.address_line_2 %}
-            <p class="article-content">{{ object.address_line_1 }}, {{ post.address_line_2 }}, {{ post.city }}, {{ post.county }}</p>
-        {% else %}
-            <p class="article-content">{{ post.address_line_1 }}, {{ post.city }}, {{ post.county }}</p>
-        {% endif %}
         {% if post.post_images.all %}
             <!-- Slider and gallery -->
             <ul id="lightSlider" class="gallery list-unstyled cS-hidden">
@@ -31,6 +25,61 @@
             {% endfor %}
             </ul>
         {% endif %}
-        <p class="article-content">{{ post.property_description }}</p>
+        <!-- Information of the Property -->
+        
+        {% if object.address_line_2 %}
+            <h2 class="article-title mt-3"><a class="article-title" href="{% url 'post-detail' post.id %}">{{ object.address_line_1 }}, {{ post.address_line_2 }}, {{ post.city }}, {{ post.county }}</a></h2>
+        {% else %}
+            <h2 class="article-title mt-3"><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.address_line_1 }}, {{ post.city }}, {{ post.county }}</a></h2>
+        {% endif %}
+
+        {% if post.price %}
+            <h4>€{{ post.price }}</h4>
+        {% else %}
+            <h4>POA</h4>
+        {% endif %}
+
+        <div class="row my-5 border-top border-bottom">
+            <div class="col-md-4">
+                <p>Property type</p>
+                <p>{{ post.property_type }}</p>
+            </div>
+            <div class="col-md-4">
+                <p>Bedrooms</p>
+                <p>{{ post.number_of_bedrooms }}</p>
+            </div>
+            <div class="col-md-4">
+                <p>Bathrooms</p>
+                <p>{{ post.number_of_bathrooms }}</p>
+            </div>
+        </div>
+
+        <div class="my-5">
+            {% if post.floor_plan %}
+                <h5>Floor Plan</h5>
+                <img src="{{ post.floor_plan.url }}" />
+            {% else %}
+                <p>No floor plan</p> 
+            {% endif %}
+        </div>
+
+        <div class="my-5">
+            <h5>Property Description</h5>
+            {% if post.property_description %}
+                <p class="article-content">{{ post.property_description }}</p>
+            {% else %}
+                <p>No property description</p> 
+            {% endif %}
+        </div>
+
+        <div class="my-5">
+            {% if post.energy_rating %}
+                <h5>BER Rating</h5>
+                <p class="article-content">{{ post.energy_rating }}</p>
+            {% else %}
+                <p>No BER Rating</p> 
+            {% endif %}
+        </div>
+        
     </div>
 </article>
