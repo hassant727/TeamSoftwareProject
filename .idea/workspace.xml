@@ -2,28 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e46f7af4-970f-451d-baa0-53211335d95d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/CS3305TSP/media/post_images/webaliser-_TPTXZd9mOo-unsplash.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CS3305TSP/media/post_images/webaliser-_TPTXZd9mOo-unsplash_fgTk89g.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CS3305TSP/media/profile_pics/webaliser-_TPTXZd9mOo-unsplash.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CS3305TSP/static/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CS3305TSP/webpages/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CS3305TSP/webpages/migrations/0002_auto_20210212_0103.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CS3305TSP/webpages/migrations/0003_auto_20210212_0248.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CS3305TSP/webpages/migrations/0004_auto_20210212_0411.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CS3305TSP/webpages/migrations/0005_auto_20210212_0433.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CS3305TSP/webpages/migrations/0006_remove_post_image.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CS3305TSP/webpages/migrations/0007_auto_20210212_0524.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS3305TSP/CS3305TSP/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/CS3305TSP/CS3305TSP/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS3305TSP/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/CS3305TSP/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS3305TSP/requirement.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CS3305TSP/requirement.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS3305TSP/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/CS3305TSP/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS3305TSP/templates/webpages/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/CS3305TSP/templates/webpages/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS3305TSP/templates/webpages/post_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/CS3305TSP/templates/webpages/post_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS3305TSP/templates/webpages/post_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/CS3305TSP/templates/webpages/post_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS3305TSP/webpages/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/CS3305TSP/webpages/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS3305TSP/webpages/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/CS3305TSP/webpages/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +95,10 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="e46f7af4-970f-451d-baa0-53211335d95d" name="Default Changelist" comment="" />
@@ -139,19 +121,20 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.css" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/TeamSoftwareProject$hello.coverage" NAME="hello Coverage Results" MODIFIED="1611937880331" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CS3305TSP" />
   </component>
 </project>
