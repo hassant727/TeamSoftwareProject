@@ -9,6 +9,9 @@ from .models import Post, PostImage
 # from CS3305TSP.models import Meter
 # from TeamSoftwareProject.CS3305TSP.CS3305TSP.models import Meter
 
+def howToUse(request):
+    return render(request, "webpages/how_to_use.html")
+
 def homefunction(request):
     """sql modeling passing in a dictionary of post """
     context = {
