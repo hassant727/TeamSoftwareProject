@@ -1,16 +1,29 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
-
+import json
 from .models import Post, PostImage
 
 
-# from CS3305TSP.models import Meter
-# from TeamSoftwareProject.CS3305TSP.CS3305TSP.models import Meter
-
 def howToUse(request):
     return render(request, "webpages/how_to_use.html")
+
+
+def search_posts(request):
+    if request.method == 'POST':
+        search_str = json.loads(request.body).get('searchText', '')
+        search_word = Post.objects.filter(
+            title__istartswith=search_str) | Post.objects.filter(
+            city__istartswith=search_str) | Post.objects.filter(
+            property_description__icontains=search_str) | Post.objects.filter(
+            address_line_1__icontains=search_str) | Post.objects.filter(
+            address_line_2__icontains=search_str) | Post.objects.filter(
+            county__icontains=search_str)
+        data = search_word.values()
+        return JsonResponse(list(data), safe=False)
+
 
 def homefunction(request):
     """sql modeling passing in a dictionary of post """
@@ -66,20 +79,22 @@ class PostDetailView(DetailView):
     """
     model = Post
 
+
 POST_FIELDS = [
-        'title',
-        'address_line_1',
-        'address_line_2', 
-        'city', 
-        'county',
-        'property_type',
-        'number_of_bedrooms',
-        'number_of_bathrooms',
-        'property_description',
-        'price',
-        'energy_rating',
-        'floor_plan',
-    ]
+    'title',
+    'address_line_1',
+    'address_line_2',
+    'city',
+    'county',
+    'property_type',
+    'number_of_bedrooms',
+    'number_of_bathrooms',
+    'property_description',
+    'price',
+    'energy_rating',
+    'floor_plan',
+]
+
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
@@ -91,7 +106,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         p = form.save()
         if self.request.POST:
             for file in self.request.FILES.getlist('post_images'):
-                img = PostImage(post=p,image=file)
+                img = PostImage(post=p, image=file)
                 img.save()
         return super().form_valid(form)
 
@@ -111,7 +126,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
                 for images in p.post_images.all():
                     images.delete()
                 for file in self.request.FILES.getlist('post_images'):
-                    img = PostImage(post=p,image=file)
+                    img = PostImage(post=p, image=file)
                     img.save()
         return super().form_valid(form)
 
