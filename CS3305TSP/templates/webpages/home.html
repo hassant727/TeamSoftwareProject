@@ -1,24 +1,36 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
-    <h1 class="text-center my-5 py-5">Property Pricer</h1>
-    <!-- Search Bar -->
-    <section class="my-4 mx-auto pb-5">
-        <h2>Search Properties</h2>
-        <form method="GET" action="/search/">
-            <div class="input-group">
-                <input name="q" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                <button class="btn btn-outline-info" type="submit">Search</button>
-            </div>
-        </form>
-    </section>
-    <!-- List Posts -->
-    <section class="my-4 pb-5">
-        <h2>All Posts</h2>
-        {% for post in posts %}
-            {% include 'webpages/short_post.html' %}
-        {% endfor %}
-    </section>
-    <!--  paginating page s  -->
-    {% include 'webpages/pagination.html' %}
+<h1 class="text-center my-5 py-5">Property Pricer</h1>
+<!-- Search Bar -->
+<section class="my-4 mx-auto pb-5">
+    <h2>Search Properties</h2>
+    <form method="GET" action="/search/" id="getsearchResults">
+        <div class="input-group">
+            <input
+                    name="q"
+                    type="search"
+                    class="form-control rounded"
+                    placeholder="Search"
+                    aria-label="Search"
+                    id="searchBar"
+                    aria-describedby="search-addon" />
+            <button class="btn btn-outline-info" type="submit">Search</button>
+        </div>
+    </form>
+</section>
+<!-- List Posts -->
+<section class="my-4 pb-5" id="all_posts" >
+    <h2>All Posts</h2>
+    {% for post in posts %}
+    {% include 'webpages/long_post.html' %}
+    {% endfor %}
+</section>
+<!--do not delete this empty section is used for the result of the search bar-->
+<section class="my-4 pb-5" id="search_posts_output">
 
+</section>
+<!--  paginating page s  -->
+{% include 'webpages/pagination.html' %}
+<script src="{% static 'js/searchbar.js' %}"></script>
 {% endblock content %}
