@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e46f7af4-970f-451d-baa0-53211335d95d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CS3305TSP/templates/webpages/how_to_use.html" beforeDir="false" afterPath="$PROJECT_DIR$/CS3305TSP/templates/webpages/how_to_use.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
