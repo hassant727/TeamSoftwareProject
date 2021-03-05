@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e46f7af4-970f-451d-baa0-53211335d95d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/TeamSoftwareProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TeamSoftwareProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS3305TSP/templates/webpages/how_to_use.html" beforeDir="false" afterPath="$PROJECT_DIR$/CS3305TSP/templates/webpages/how_to_use.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,5 +136,11 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="144" y="0" key="SettingsEditor" timestamp="1614949104075">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="144" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1614949104075" />
   </component>
 </project>
