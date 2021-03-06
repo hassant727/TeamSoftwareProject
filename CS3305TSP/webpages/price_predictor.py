@@ -10,9 +10,6 @@ number_of_bathrooms = 0
 energy_rating = 0
 size = 0
 
-
-x = [[4 ,2 ,139 ,2 ,9]]
-
 coef1 = 12202.62557933
 coef2 = -809.74017648
 coef3 = 773.86062167
@@ -20,6 +17,10 @@ coef4 = -58114.19523757
 coef5 = 8324.17775815
 
 intercept = 220759.72278872645
+
+# average expected price rise of homes = 4%
+# average increase per month
+
 
 def predict(values):
     val1 = values[0][0] * coef1
@@ -29,4 +30,17 @@ def predict(values):
     val5 = values[0][4] * coef5
     price = val1+val2+val3+val4+val5+intercept
     price = int(round(price, 0))
+
     return price
+
+
+def predict_future_price(price):
+    price_array = []
+    for x in range(12):
+        x += 1
+        y = ((1.04) ** (x / 12))
+        p = int(round((price * y), 0))
+        price_array.append(p)
+
+    return price_array
+
