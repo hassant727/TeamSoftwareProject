@@ -1,7 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+from django.contrib.contenttypes import views
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
+from django.views.generic.edit import ModelFormMixin
 
 from .models import Post, PostImage
 
@@ -10,9 +12,6 @@ from django.views import View
 from .forms import UserdataModelForm
 from django.http import JsonResponse
 from .price_predictor import predict
-
-
-
 
 
 # from CS3305TSP.models import Meter
@@ -72,21 +71,23 @@ class PostDetailView(DetailView):
     """
     model = Post
 
+
 POST_FIELDS = [
-        'title',
-        'address_line_1',
-        'address_line_2',
-        'city',
-        'county',
-        'property_type',
-        'number_of_bedrooms',
-        'number_of_bathrooms',
-        'property_description',
-        'price',
-        'energy_rating',
-        'floor_plan',
-        'size',
-    ]
+    'title',
+    'address_line_1',
+    'address_line_2',
+    'city',
+    'county',
+    'property_type',
+    'number_of_bedrooms',
+    'number_of_bathrooms',
+    'property_description',
+    'price',
+    'energy_rating',
+    'floor_plan',
+    'size',
+]
+
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
@@ -95,29 +96,14 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         """ this function allows user to create a new post if they login """
         form.instance.author = self.request.user
-        p = form.save()
-
+        self.object = form.save(commit=False)
         if self.request.POST:
             for file in self.request.FILES.getlist('post_images'):
-                img = PostImage(post=p,image=file)
-                img.save()
-
-        f = UserdataModelForm(self.request.POST)
-        print(f)
-
-        data = f.cleaned_data
-
-        no_rooms = data["number_of_bedrooms"]
-        no_bathrooms = data["number_of_bathrooms"]
-        size = data["size"]
-        type = data["property_type"]
-        energy_rating = data["energy_rating"]
-
-        attributes = [[no_rooms, no_bathrooms, size, type, energy_rating]]
-        print(predict(attributes))
-
+                    img = PostImage(post=self.object, image=file)
+                    img.save()
+            if form.is_valid():
+                form.save()
         return super().form_valid(form)
-
 
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -135,7 +121,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
                 for images in p.post_images.all():
                     images.delete()
                 for file in self.request.FILES.getlist('post_images'):
-                    img = PostImage(post=p,image=file)
+                    img = PostImage(post=p, image=file)
                     img.save()
         return super().form_valid(form)
 
@@ -159,7 +145,3 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
-
-
-
-
