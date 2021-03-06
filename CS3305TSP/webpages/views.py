@@ -115,7 +115,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         """ this function allows user to create a new post if they login """
         form.instance.author = self.request.user
-        self.object = form.save(commit=False)
+        self.object = form.save()
         if self.request.POST:
             for file in self.request.FILES.getlist('post_images'):
                 img = PostImage(post=self.object, image=file)
