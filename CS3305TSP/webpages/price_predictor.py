@@ -29,4 +29,4 @@ def predict(values):
     val5 = values[0][4] * coef5
     price = val1+val2+val3+val4+val5+intercept
     price = int(round(price, 0))
-    print(price)
+    return price
