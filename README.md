@@ -5,8 +5,8 @@ CS3305 Team Software Project - Group 13
 Team Members:
 - Hassan Tariq
 - Kevin Mukuna
-- Kieran 0' Driscoll
-- Killian O' Sullivan
+- Kieran James Sheedy O' Sullivan
+- Killian O' Driscoll
 - Katy Yeung
 
 
