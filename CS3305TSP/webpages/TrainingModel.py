@@ -29,8 +29,6 @@
 #print("Co: ",'\n', linear.coef_)
 #print("Intercept:", '\n', linear.intercept_)
 
-
-
 #predict price
 #predictions = linear.predict(x_test)
 

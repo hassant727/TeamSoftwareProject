@@ -4,7 +4,18 @@ from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 import json
+from django.contrib.contenttypes import views
+from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
+from django.views.generic.edit import ModelFormMixin
+
 from .models import Post, PostImage
+
+from django.shortcuts import render
+from django.views import View
+from .forms import UserdataModelForm
+from django.http import JsonResponse
+from .price_predictor import predict
 
 
 def howToUse(request):
@@ -93,6 +104,7 @@ POST_FIELDS = [
     'price',
     'energy_rating',
     'floor_plan',
+    'size',
 ]
 
 
@@ -103,11 +115,13 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         """ this function allows user to create a new post if they login """
         form.instance.author = self.request.user
-        p = form.save()
+        self.object = form.save(commit=False)
         if self.request.POST:
             for file in self.request.FILES.getlist('post_images'):
-                img = PostImage(post=p, image=file)
+                img = PostImage(post=self.object, image=file)
                 img.save()
+            if form.is_valid():
+                form.save()
         return super().form_valid(form)
 
 
