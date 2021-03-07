@@ -24,7 +24,7 @@ Execution flow
 >  http://127.0.0.1:8000/admin 
 
 > now to create a superuser(we need this in order to log as an admin) we need to run the following command 
->> `pyhton manage.py createsuperuser` and follow the onscreen steps
+>> `python manage.py createsuperuser` and follow the onscreen steps
 > 
 > then run the server by executing 
 >> `python manage.py runserver`

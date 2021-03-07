@@ -8,6 +8,7 @@ from django.contrib.contenttypes import views
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from django.views.generic.edit import ModelFormMixin
+from django.db.models import Q
 
 from .models import Post, PostImage
 
@@ -46,10 +47,6 @@ def homefunction(request):
 
 def aboutfunction(request):
     return render(request, 'webpages/about.html', {'title': 'About'})
-
-
-def searchfunction(request):
-    return render(request, 'webpages/search.html')
 
 
 class PostListView(ListView):
@@ -164,3 +161,16 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
+
+
+class SearchResultView(ListView):
+    model = Post
+    template_name = "webpages/search.html"
+    context_object_name = 'posts'
+
+    def get_queryset(self): # new
+        query = self.request.GET.get('q')
+        return Post.objects.filter(Q(address_line_1__icontains=query) 
+            | Q(address_line_2__icontains=query) 
+                | Q(city__icontains=query )
+                    | Q(county__icontains=query))
