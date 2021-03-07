@@ -7,7 +7,7 @@ Team Members:
 - Kevin Mukuna
 - Kieran Sheedy O'Sullivan
 - Killian O' Driscoll
-- Katy Yeung
+- Kiu Man Yeung
 
 
 After cloning the project 
