@@ -99,9 +99,9 @@ POST_FIELDS = [
     'number_of_bathrooms',
     'property_description',
     'price',
+    'size',
     'energy_rating',
     'floor_plan',
-    'size',
 ]
 
 

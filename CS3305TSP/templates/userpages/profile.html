@@ -69,7 +69,6 @@
 
     {% if request.user.username == user.username %}
         <div class="content-section mx-auto">
-            <h2>Messages</h2>
             {% if messages %}
             {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}">
