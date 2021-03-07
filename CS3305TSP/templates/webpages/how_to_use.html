@@ -2,23 +2,23 @@
 
 {% block content %}
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 mb-4rem">
         <nav class="sticky-top">
             <ul class="list-unstyled">
                 <li>
                     <a href="#Overview">Basic Overview</a>
                 </li>
                 <li>
-                    <a href="#Register">Creating an account & Logging in</a>
+                    <a href="#Register">Create an Account & Log-in</a>
                 </li>
                 <li>
                     <a href="#Profile">Your Profile</a>
                 </li>
                 <li>
-                    <a href="#NewPost">Creating a New Post </a>
+                    <a href="#NewPost">Create a New Post </a>
                 </li>
                 <li>
-                    <a href="#DeletePost">Editing/Deleting a Post</a>
+                    <a href="#DeletePost">Edit/Delete a Post</a>
                 </li>
                 <li>
                     <a href="#About">About Page</a>
@@ -36,7 +36,7 @@
         </nav>
     </div>
     <div class="col-md-9 mx-auto">
-        <section class="guide">
+        <section class="mb-4rem">
             <h2 id="Overview" class="sub-headline anchor">Basic Overview</h2>
             <p>
                 To use our site, you should first register an account, without registering many of our features will be unavailable to you.
@@ -47,10 +47,12 @@
             </p>
         </section>
 
-        <section  class="guide">
-            <h2 id="Register" class="sub-headline anchor">Creating an account & Logging in</h2>
+        <section  class="mb-4rem">
+            <h2 id="Register" class="sub-headline anchor">Create an Account & Log-in</h2>
+
+            <h4>Register</h4>
             <p>
-                To create an account, click on the 'Register' button on the top right hand side of the website. You will be taken to the <a href="/register">registration page</a>, where you will be prompted to choose a username & password and enter a valid email address.
+                To create an account, click on the 'Register' button on the top right hand side of the website. You will be taken to the <a href="{% url 'register-page' %}">registration page</a>, where you will be prompted to choose a username & password and enter a valid email address.
                 Note that usernames can only contain alphanumeric characters and are limited in length to 150 characters, passwords must be at least 8 characters long.
             </p>
             <div class="registration-image">
@@ -60,14 +62,18 @@
                 Once you have done this, you will receive a confirmation email with an account activation link. Log into your email account and click on this link, if you can't find it in your inbox be sure to
                 check your spam folder. After you have activated your account, you will be able to log in using the username and password you have created.
             </p>
+
+            <h4>Reset Password</h4>
             <p>
                 If you ever need to reset your password, click on the 'Reset Password' button on the login screen. A link will be emailed to you, once again be sure to check your spam folder if it's not in your inbox.
                 Once you have clicked the link, you will be able to choose a new password for your account.
             </p>
+
+            <h4>Log-in</h4>
             <p>
-                You can click on the 'Login' button on the top right hand side of the page to take you to the <a href ="/login">login page</a>, where you should enter the username and password you used to register your account.
+                You can click on the 'Login' button on the top right hand side of the page to take you to the <a href ="{% url 'login' %}">login page</a>, where you should enter the username and password you used to register your account.
             </p>
-            <div class="login-imagee">
+            <div class="login-image">
                     <img src="/media/login.png" alt="">
             </div>
             <p>
@@ -79,7 +85,7 @@
             </div>
         </section>
 
-        <section  class="guide">
+        <section  class="mb-4rem">
             <h2 id="Profile" class="sub-headline anchor">Your Profile</h2>
             <p>
                 To view your profile, click on the 'Profile' button on the top right of the site. You will need to make sure you're logged into view your profile.
@@ -87,12 +93,7 @@
             <div class="profile-image">
                     <img src="/media/yourProfile.png" alt="">
             </div>
-            <p>
-                On your profile page, you will be able to change your account details by clicking on the 'Edit Profile' button underneath your email address, on your profile page. You can then change your username and/or email address and choose an image for your profile picture as per your convenience.
-            </p>
-            <div class="profileInfo-image">
-                <img src="/media/profile_info.png" alt="">
-            </div>
+
             <p>
                 On your profile there are also sections for your posts, when you make posts they will be displayed here.
             </p>
@@ -102,13 +103,26 @@
             <p>
                 Underneath the section for your 'posts' is a section for your messages, where you can view messages sent to you by other users.* (Not yet implemented)
             </p>
+
+            <h4>Edit Profile</h4>
+            <p>
+                On your profile page, you will be able to change your account details by clicking on the 'Edit Profile' button underneath your email address, on your profile page. You can then change your username and/or email address and choose an image for your profile picture as per your convenience.
+            </p>
+            <div class="profileInfo-image">
+                <img src="/media/profile_info.png" alt="">
+            </div>
         </section>
 
-        <section class="guide">
-            <h2 id="NewPost" class="sub-headline anchor">Creating a New Post</h2>
+        <section class="mb-4rem">
+            <h2 id="NewPost" class="sub-headline anchor">Create a New Post</h2>
             <p>
                 To create a new post, click on the 'New Post' button in the top right of the site. Note that in order to create a post you will have to be logged in, if you don't see the 'New Post' button then you are not logged in.
             </p>
+
+            <div class="postProperty-image">
+                <img src="/media/postProperty.png" alt="">
+            </div>
+
             <p>
                 When creating a post, there are a series of fields you must fill out with information about your property. Fields that are mandatory are marked with an asterisk (*). You will not be able to create your post if these mandatory fields are left blank.
             </p>
@@ -124,13 +138,10 @@
             <p>
                 Remember that if you make a mistake in your post you can always go back and edit it later.
             </p>
-            <div class="postProperty-image">
-                <img src="/media/postProperty.png" alt="">
-            </div>
         </section>
 
-        <section class="guide">
-            <h2 id="DeletePost" class="sub-headline anchor">Editing/Deleting a Post</h2>
+        <section class="mb-4rem">
+            <h2 id="DeletePost" class="sub-headline anchor">Edit/Delete a Post</h2>
             <p>
                 Once you have made a post, you can navigate to your profile and
                 select it under the 'My Posts' section. Once selected, you can choose to delete it, which will remove the post from the site, or edit it.
@@ -146,20 +157,20 @@
             </p>
         </section>
 
-        <section class="guide">
+        <section class="mb-4rem">
             <h2 id="About" class="sub-headline anchor">About Page</h2>
             <p>
-                To view the <a href="/about">about page</a>, click on the 'About' button on the toolbar, to the right of the 'Home' button
+                To view the <a href="{% url 'about-page' %}">about page</a>, click on the 'About' button on the toolbar, to the right of the 'Home' button
             <p>
             <p>
                 On the about page, you will be able to read about the basics of our site; what it does and why we think you should use it.
             </p>
         </section>
 
-        <section  class="guide">
+        <section  class="mb-4rem">
             <h2 id="Home" class="sub-headline anchor">Home Page</h2>
             <p>
-                On the <a href="../">home page</a> you will be able to see posts made by you and other users. The posts will show the username of the person who posted them as well as the date they were posted.
+                On the <a href="{% url 'home-page' %}">home page</a> you will be able to see posts made by you and other users. The posts will show the username of the person who posted them as well as the date they were posted.
             </p>
             <p>
                 If you want to view an individual post click on the address listed in that post and you will be brought to a new screen where you can view it on its own.
@@ -173,24 +184,23 @@
             </div>
         </section>
 
-        <section class="guide">
+        <section class="mb-4rem">
             <h2 id="Search" class="sub-headline anchor">Search Bar</h2>
              <p>
                 When on the home page you will be able to see the search bar under the 'Search Properties' heading, which is above the 'All Posts' heading. You can use this to search for posts, type in a search term and press the 'Search' button on the right of the bar. The site will return posts which match your search term.
             </p>
-            <p>
-                If you are not on the home page, the search bar will appear on the top of the screen, to the right of the 'About' button.
-            </p>
             <div class="searchbar-image">
                 <img src="/media/searchbar.png" alt="">
             </div>
+            <p>
+                If you are not on the home page, the search bar will appear on the top of the screen, to the right of the 'User Guide' button.
+            </p>
         </section>
 
         <section>
             <h2 id="Prediction" class="sub-headline anchor">Price Prediction</h2>
             <p>
-                When you create a post, our price prediction model will use the information you have provided to give you a predicted price for your property currently and in the near future.
-                A graphical representation of the prediction will be visible on your profile in the form of a chart.
+                When you create a post, our price prediction model will use the information you have provided to give you a predicted price for your property currently and in the near future. A graphical representation of the prediction will be visible on your profile in the form of a chart.
             </p>
             <p>
                 *At the time of writing, the price prediction model has not been fully implemented. The chart you see on your profile page serves as an example, and will not be an accurate representation of your property's predicted price.

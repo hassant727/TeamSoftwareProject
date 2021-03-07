@@ -11,6 +11,10 @@ ul {
     margin: 0;
 }
 
+.mb-4rem {
+    margin-bottom: 4rem;
+}
+
 .bg-steel {
     background-color: #5f788a;
 }
@@ -241,10 +245,6 @@ nav ul li {
 .anchor {
     padding-top: 6rem;
     margin-top: -6rem;
-}
-
-.guide {
-    margin-bottom: 6rem;
 }
 /*anchor with nav bar ends*/
 
