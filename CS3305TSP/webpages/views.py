@@ -89,7 +89,6 @@ class PostDetailView(DetailView):
 
 
 POST_FIELDS = [
-    'title',
     'address_line_1',
     'address_line_2',
     'city',
