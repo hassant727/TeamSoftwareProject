@@ -13,29 +13,52 @@ python manage.py sqlmigrate blog 0001 --> for our case
 """
 
 PROPERTY_TYPE_CHOICES = [
-    [1, 'Detached House'],
-    [2, 'Semi-detached House'],
-    [4, 'Terraced House'],
-    [3, 'Duplex'],
+    ['Detached House', 'Detached House'],
+    ['Semi-detached House', 'Semi-detached House'],
+    ['Terraced House', 'Terraced House'],
+    ['Duplex', 'Duplex'],
 ]
 
 ENERGY_RATING_CHOICES = (
-    (15, 'A1'),
-    (14, 'A2'),
-    (13, 'A3'),
-    (12, 'B1'),
-    (11, 'B2'),
-    (10, 'B3'),
-    (9, 'C1'),
-    (8, 'C2'),
-    (7, 'C3'),
-    (6, 'D1'),
-    (5, 'D2'),
-    (4, 'E1'),
-    (3, 'E2'),
-    (2, 'F'),
-    (1, 'G')
+    ('A1', 'A1'),
+    ('A2', 'A2'),
+    ('A3', 'A3'),
+    ('B1', 'B1'),
+    ('B2', 'B2'),
+    ('B3', 'B3'),
+    ('C1', 'C1'),
+    ('C2', 'C2'),
+    ('C3', 'C3'),
+    ('D1', 'D1'),
+    ('D2', 'D2'),
+    ('E1', 'E1'),
+    ('E2', 'E2'),
+    ('F', 'F'),
+    ('G', 'G')
 )
+
+energy_rating_dict = {'A1': 15,
+                      'A2': 14,
+                      'A3': 13,
+                      'B1': 12,
+                      'B2': 11,
+                      'B3': 10,
+                      'C1': 9,
+                      'C2': 8,
+                      'C3': 7,
+                      'D1': 6,
+                      'D2': 5,
+                      'E1': 4,
+                      'E2': 3,
+                      'F': 2,
+                      'G': 1
+                      }
+
+property_type_dict = {'Detached House': 1,
+                      'Semi-detached House': 2,
+                      'Terraced House': 3,
+                      'Duplex': 4
+                      }
 
 
 def get_image_filename(instance, filename):
@@ -61,10 +84,12 @@ class Post(models.Model):
     city = models.CharField(max_length=128, default='')
     county = models.CharField(max_length=128, default='')
     floor_plan = models.ImageField(upload_to="floor_plan", null=True, blank=True)
-    property_type = models.IntegerField(choices=PROPERTY_TYPE_CHOICES)
+    property_type = models.CharField(max_length=128, default='',
+                                     choices=PROPERTY_TYPE_CHOICES)
     number_of_bedrooms = models.PositiveIntegerField()
     number_of_bathrooms = models.PositiveIntegerField()
-    energy_rating = models.IntegerField(choices=ENERGY_RATING_CHOICES)
+    energy_rating = models.CharField(max_length=128, default='',
+                                     choices=ENERGY_RATING_CHOICES)
     size = models.IntegerField()
     date_posted = models.DateField(default=timezone.now)
     author = models.ForeignKey(User, related_name="user_posts", on_delete=models.CASCADE)
@@ -102,8 +127,8 @@ class Post(models.Model):
             self.number_of_bedrooms,
             self.number_of_bathrooms,
             self.size,
-            self.property_type,
-            self.energy_rating
+            int(property_type_dict[self.property_type]),
+            int(energy_rating_dict[self.energy_rating])
         )
         self.price = estimated_price
         super().save(force_insert, force_update, *args, **kwargs)
