@@ -247,3 +247,8 @@ nav ul li {
     margin-bottom: 6rem;
 }
 /*anchor with nav bar ends*/
+
+/*footer*/
+footer nav.navbar, footer nav ul li {
+    padding: 0px;
+}
