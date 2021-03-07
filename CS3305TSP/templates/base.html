@@ -81,14 +81,30 @@
         </div>
     </main>
 
-    <footer class="container text-center mt-5">
-        <nav class="navbar navbar-expand navbar-light justify-content-center">
+    <footer class="card-footer flex-column text-center" style="background-color: rgb(95, 120, 138); color: #fff; bottom: ">
+        <div class="navbar navbar-expand navbar-light justify-content-center">
             <ul class="list-unstyled navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="{% url 'about-page' %}">About Us</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'userguide' %}">User Guide</a></li>
-                <li class="nav-item"><a class="nav-link" href="mailto:tspgroup13@gmail.com?subject=Inquiry: ">Contact Us</a></li>
+                <li class="nav-item"><a
+                        onMouseOver="this.style.color='#fff'"
+                        onmouseout="this.style.color='#cccccc'"
+                        style="color: #cccccc;"
+                        class="nav-link"
+                        href="{% url 'about-page' %}">About Us</a>
+                </li>
+                <li class="nav-item"><a
+                        onMouseOver="this.style.color='#fff'"
+                        onmouseout="this.style.color='#cccccc'"
+                        style="color: #cccccc;"
+                        class="nav-link"
+                        href="{% url 'userguide' %}">User Guide</a></li>
+                <li class="nav-item"><a
+                        onMouseOver="this.style.color='#fff'"
+                        onmouseout="this.style.color='#cccccc'"
+                        style="color: #cccccc;"
+                        class="nav-link"
+                        href="mailto:tspgroup13@gmail.com?subject=Inquiry: ">Contact Us</a></li>
             </ul>
-        </nav>
+        </div>
         <small>Copyright &copy; 2021 Property Pricer. All Rights Reserved.</small>
     </footer>
 
