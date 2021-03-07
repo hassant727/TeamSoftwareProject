@@ -227,3 +227,23 @@ form.update-profile {
     filter: brightness(50%);
 }
 /*home navigation bar, title and search bar end*/
+
+/*sticky top with nav bar*/
+.sticky-top {
+    top: 6rem;
+}
+
+/*anchor with nav bar*/
+nav ul li {
+    padding: 5px 0px;
+}
+
+.anchor {
+    padding-top: 6rem;
+    margin-top: -6rem;
+}
+
+.guide {
+    margin-bottom: 6rem;
+}
+/*anchor with nav bar ends*/
