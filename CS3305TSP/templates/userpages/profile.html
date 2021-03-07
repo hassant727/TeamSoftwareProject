@@ -61,7 +61,7 @@
         {% else %}
             <h2 class="mb-3">{{ user.username }}'s Posts</h2>
         {% endif %}
-        {% for post in user.user_posts.all %}
+        {% for post in user.user_posts.all reversed %}
             {% include 'webpages/short_post.html' %} 
         {% endfor %}
         {% include 'webpages/pagination.html' %}
