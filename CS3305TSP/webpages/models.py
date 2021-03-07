@@ -60,7 +60,7 @@ class Post(models.Model):
     address_line_2 = models.CharField(max_length=255, null=True, blank=True)
     city = models.CharField(max_length=128, default='')
     county = models.CharField(max_length=128, default='')
-    floor_plan = models.ImageField(upload_to=get_image_filename, null=True, blank=True)
+    floor_plan = models.ImageField(upload_to="floor_plan", null=True, blank=True)
     property_type = models.IntegerField(choices=PROPERTY_TYPE_CHOICES)
     number_of_bedrooms = models.PositiveIntegerField()
     number_of_bathrooms = models.PositiveIntegerField()
