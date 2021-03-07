@@ -55,7 +55,6 @@ def price_pridiction_model(number_of_bedrooms, number_of_bathrooms, size, proper
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=128, default='')
     property_description = models.TextField(null=True, blank=True)
     address_line_1 = models.CharField(max_length=255)
     address_line_2 = models.CharField(max_length=255, null=True, blank=True)
@@ -73,7 +72,13 @@ class Post(models.Model):
     __original_price = None
 
     def __str__(self):
-        return self.title
+        address = ""
+        address_list = [self.address_line_1, self.address_line_2, self.city, self.county]
+        for i in range(4):
+            address = address + address_list[i]
+            if i < 3:
+                address = address + ", "
+        return address
 
     """
         this method return a string to redirect the user after posting to that post by returning post details the 
