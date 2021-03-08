@@ -94,6 +94,7 @@ class Post(models.Model):
     date_posted = models.DateField(default=timezone.now)
     author = models.ForeignKey(User, related_name="user_posts", on_delete=models.CASCADE)
     price = models.PositiveIntegerField(null=True, blank=True, editable=True)
+    estimated_price = models.PositiveIntegerField(null=False, blank=True, editable=False)
     __original_price = None
 
     def __str__(self):
@@ -130,7 +131,7 @@ class Post(models.Model):
             int(property_type_dict[self.property_type]),
             int(energy_rating_dict[self.energy_rating])
         )
-        self.price = estimated_price
+        self.estimated_price = estimated_price
         super().save(force_insert, force_update, *args, **kwargs)
 
 
