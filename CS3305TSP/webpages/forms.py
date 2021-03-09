@@ -6,6 +6,7 @@ class UserdataModelForm(forms.ModelForm):
     class Meta:
         model = Post
         exclude = ['headline']
+        ordering = ['-date',]
 
     def clean(self):
         """cleans all the form data"""
