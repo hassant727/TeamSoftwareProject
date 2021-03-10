@@ -150,7 +150,6 @@
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
-    <div id="hide">
     <div id="content-wrapper" class="d-flex flex-column">
 
         <!-- Main Content -->
@@ -362,17 +361,7 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-
-<!--                &lt;!&ndash; Page Heading &ndash;&gt;-->
-<!--                <div class="d-sm-flex align-items-center justify-content-between mb-4">-->
-<!--                    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>-->
-<!--                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i-->
-<!--                            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
-<!--                </div>-->
-
-                <!-- Content Row -->
                 <div class="row">
-
                     <!-- Earnings (Monthly) Card Example -->
                     <div class="col-xl-3 col-md-6 mb-4">
                         <div class="card border-left-primary shadow h-100 py-2">
@@ -381,7 +370,7 @@
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                             This Month property price (Monthly)</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$ {{ post.price }}</div>
                                     </div>
                                     <div class="col-auto">
                                         <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -570,72 +559,7 @@
                         </div>
 
                         <!-- Color System -->
-                        <div class="row">
-                            <div class="col-lg-6 mb-4">
-                                <div class="card bg-primary text-white shadow">
-                                    <div class="card-body">
-                                        Primary
-                                        <div class="text-white-50 small">#4e73df</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 mb-4">
-                                <div class="card bg-success text-white shadow">
-                                    <div class="card-body">
-                                        Success
-                                        <div class="text-white-50 small">#1cc88a</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 mb-4">
-                                <div class="card bg-info text-white shadow">
-                                    <div class="card-body">
-                                        Info
-                                        <div class="text-white-50 small">#36b9cc</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 mb-4">
-                                <div class="card bg-warning text-white shadow">
-                                    <div class="card-body">
-                                        Warning
-                                        <div class="text-white-50 small">#f6c23e</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 mb-4">
-                                <div class="card bg-danger text-white shadow">
-                                    <div class="card-body">
-                                        Danger
-                                        <div class="text-white-50 small">#e74a3b</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 mb-4">
-                                <div class="card bg-secondary text-white shadow">
-                                    <div class="card-body">
-                                        Secondary
-                                        <div class="text-white-50 small">#858796</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 mb-4">
-                                <div class="card bg-light text-black shadow">
-                                    <div class="card-body">
-                                        Light
-                                        <div class="text-black-50 small">#f8f9fc</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 mb-4">
-                                <div class="card bg-dark text-white shadow">
-                                    <div class="card-body">
-                                        Dark
-                                        <div class="text-white-50 small">#5a5c69</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
 
                     </div>
 
@@ -684,43 +608,38 @@
         <!-- End of Main Content -->
 
         <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2020</span>
-                </div>
+        <footer class="card-footer flex-column text-center" >
+            <div class="navbar navbar-expand navbar-light justify-content-center">
+                <ul class="list-unstyled navbar-nav">
+                    <li class="nav-item"><a
+                            onMouseOver="this.style.color='#5f788a'"
+                            onmouseout="this.style.color='#000'"
+                            style="color: rgb(98, 110, 138);"
+                            class="nav-link"
+                            href="{% url 'about-page' %}">About Us</a>
+                    </li>
+                    <li class="nav-item"><a
+                            onMouseOver="this.style.color='#5f788a'"
+                            onmouseout="this.style.color='#000'"
+                            style="color: rgb(98, 110, 138);"
+                            class="nav-link"
+                            href="{% url 'userguide' %}">User Guide</a></li>
+                    <li class="nav-item"><a
+                            onMouseOver="this.style.color='#5f788a'"
+                            onmouseout="this.style.color='#000'"
+                            style="color: rgb(98, 110, 138)"
+                            class="nav-link"
+                            href="mailto:tspgroup13@gmail.com?subject=Inquiry: ">Contact Us</a></li>
+                </ul>
             </div>
+            <small>Copyright &copy; 2021 Property Pricer. All Rights Reserved.</small>
         </footer>
         <!-- End of Footer -->
 
     </div>
     <!-- End of Content Wrapper -->
-    </div>
 
 </div>
-{% if request.user.username == user.username %}
-<!--    <button class="btn btn-outline-info" onclick="openNav()">Edit Profile</button>-->
-<div id="myNav" class="overlay">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <div class="overlay-content">
-        <!-- FORM HERE -->
-        <!-- enctype is used for saving images in data    -->
-        <div class="container">
-            <form method="POST" enctype="multipart/form-data" class="update-profile">
-                {% csrf_token %}
-                <fieldset class="form-group">
-                    <legend class="border-bottom mb-4">Profile Info</legend>
-                    {{ u_form|crispy }}
-                    {{ p_form|crispy }}
-                </fieldset>
-                <div class="form-group">
-                    <button class="btn btn-outline-info" type="submit">Update</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-{% endif %}
 <!-- End of Page Wrapper -->
 
 <!-- Scroll to Top Button-->
