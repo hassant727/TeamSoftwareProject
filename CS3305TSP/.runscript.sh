@@ -40,7 +40,10 @@ commands () {
       pkill -f manage.py
 
       : ' makes migrations if need be and runs the server and finally lunches the app on web '
-      python manage.py makemigrations
+      python manage.py makemigrations dashboard
+      python manage.py makemigrations userpages
+      python manage.py makemigrations webpages
+
       python manage.py migrate
       python manage.py runserver
 
