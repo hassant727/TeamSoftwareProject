@@ -33,16 +33,16 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
-    'webpages.apps.WebpagesConfig',
-    'crispy_forms',
-    'userpages.apps.UserpagesConfig',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'chartjs',
-    'CS3305TSP',
+    'webpages.apps.WebpagesConfig',
     'dashboard.apps.DashboardConfig',
+    'userpages.apps.UserpagesConfig',
+    'crispy_forms',
+    'chartjs',
+
 ]
 
 MIDDLEWARE = [
