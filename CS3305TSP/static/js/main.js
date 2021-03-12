@@ -6,9 +6,4 @@ $(document).ready(function() {
     } else {
         document.getElementsByTagName("main")[0].classList.add("container-no-background");
     }
-
-    if ((window.location.pathname == '/login/') || window.location.pathname == '/logout/' || window.location.pathname == '/register/' ) {
-        document.getElementsByTagName("footer")[0].classList.add("fixed-bottom");
-    }
-
 });
