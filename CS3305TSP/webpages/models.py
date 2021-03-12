@@ -90,7 +90,7 @@ class Post(models.Model):
     number_of_bathrooms = models.PositiveIntegerField()
     energy_rating = models.CharField(max_length=128, default='',
                                      choices=ENERGY_RATING_CHOICES)
-    size = models.IntegerField()
+    size = models.PositiveIntegerField()
     date_posted = models.DateField(default=timezone.now)
     author = models.ForeignKey(User, related_name="user_posts", on_delete=models.CASCADE)
     price = models.PositiveIntegerField(null=True, blank=True, editable=True)
