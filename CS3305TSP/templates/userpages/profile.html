@@ -1,39 +1,19 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="content-section">
-        <div class="media row">
-            <div class="col-md-4 text-center">
-                <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" />
-                <div class="media-body">
-                    <h2 class="account-heading">{{ user.username }}</h2>
-                    {% if request.user.is_authenticated %}
-                    <p class="text-secondary">{{ user.email }}</p>
-                    {% else %}
-                    <p class="text-secondary">Log-in to contact {{ user.username }}</p>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="chart col-md-8">
-                <h2 class="text-center">Chart</h2>
-
-                <canvas id="myChart" class="w-100"></canvas>
-
-                <script type="text/javascript">
-                    $.get("{% url 'line_chart_json' %}", function (data) {
-                        var ctx = $("#myChart").get(0).getContext("2d");
-                        new Chart(ctx, {
-                            type: 'line',
-                            data: data,
-                            options: {
-                                responsive: false
-                            }
-                        });
-                    });
-                </script>
-            </div>
+<div class="">
+    <div class="content-section row mx-auto">
+        <div>
+            <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" />
         </div>
-        <!--  the button is used for overlay curtain display      -->
+        <div class="d-flex flex-column my-auto">
+            <h2>{{ user.username }}</h2>
+            {% if request.user.is_authenticated %}
+            <p class="text-secondary">{{ user.email }}</p>
+            {% else %}
+            <p class="text-secondary">Log-in to contact {{ user.username }}</p>
+            {% endif %}
+            <!--  the button is used for overlay curtain display      -->
         {% if request.user.username == user.username %}
             <button class="btn btn-outline-info" onclick="openNav()">Edit Profile</button>
             <div id="myNav" class="overlay">
@@ -57,22 +37,21 @@
                 </div>
             </div>
         {% endif %}
+        </div>
     </div>
-
-    <div class="content-section mx-auto">
-        {% if request.user.username == user.username %}
-            <h2 class="mb-3">My Posts</h2>
-        {% else %}
-            <h2 class="mb-3">{{ user.username }}'s Posts</h2>
-        {% endif %}
+    
+    <div class="content-section">
+        <h2 class="mb-3">{{ user.username }}'s Posts</h2>
         {% for post in user.user_posts.all reversed %}
             {% include 'webpages/short_post.html' %} 
         {% endfor %}
         {% include 'webpages/pagination.html' %}
     </div>
+        
 
     {% if request.user.username == user.username %}
         <div class="content-section mx-auto">
+            <h2>Message</h2>
             {% if messages %}
             {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}">
@@ -95,4 +74,5 @@
             document.getElementById("myNav").style.width = "0%";
         }
     </script>
+</div>
 {% endblock content %}

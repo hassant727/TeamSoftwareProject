@@ -13,6 +13,7 @@ ul {
 
 img {
     max-width: 100%;
+    max-height: 488px;
 }
 
 a {
@@ -25,6 +26,10 @@ a {
 
 .bg-steel {
     background-color: #5f788a;
+}
+
+.site-header .navbar {
+    box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15);
 }
 
 .site-header .navbar-nav .nav-link {
@@ -54,6 +59,11 @@ a {
     border-left: .25rem solid #6493b5;
 }
 
+.content-section-borderless {
+    /*padding: 1rem 1rem;*/
+    border: none;
+}
+
 .chart {
     background: #ffffff;
     padding: 10px 20px;
@@ -76,6 +86,7 @@ a.article-title:hover {
 
 .article-img {
     height: 2rem;
+    width: 2rem;
 }
 
 .article-metadata {
@@ -99,10 +110,6 @@ a.article-title:hover {
     height: 125px;
     width: 125px;
     margin: 16px 20px 16px 20px;
-}
-
-.account-heading {
-    font-size: 2.5rem;
 }
 
 .overlay-content {
@@ -182,6 +189,11 @@ form.update-profile {
 
 
 /*slider start*/
+.short-slider {
+    width: 50%;
+    min-width: 300px;
+}
+
 .landscape {
     object-position: center;
     object-fit: cover;
@@ -205,7 +217,7 @@ form.update-profile {
 }
 
 .lSPager li {
-    height: 95px;
+    height: 150px;
 }
 
 .short-slider .lSPager li {
@@ -227,6 +239,7 @@ form.update-profile {
 /*home navigation bar, title and search bar*/
 .clear-nav {
     background-color: rgba(0, 0, 0, 0);
+    box-shadow: none !important;
     position: relative;
     top: 0;
     left: 0;
@@ -254,6 +267,11 @@ form.update-profile {
     background-position: center; 
     background-size: cover;
     filter: brightness(50%);
+}
+
+.search-btn {
+    border-top-left-radius: 0rem;
+    border-bottom-left-radius: 0rem;
 }
 /*home navigation bar, title and search bar end*/
 
