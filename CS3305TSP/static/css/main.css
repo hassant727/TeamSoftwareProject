@@ -15,6 +15,10 @@ img {
     max-width: 100%;
 }
 
+a {
+    color: #438bbf;
+}
+
 .mb-4rem {
     margin-bottom: 4rem;
 }
@@ -43,10 +47,11 @@ img {
 
 .content-section {
     background: #ffffff;
-    padding: 10px 20px;
-    border: 1px solid #dddddd;
+    padding: 1rem 2rem;
     border-radius: 3px;
     margin-bottom: 20px;
+    box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15);
+    border-left: .25rem solid #6493b5;
 }
 
 .chart {
@@ -70,9 +75,7 @@ a.article-title:hover {
 }
 
 .article-img {
-    height: 65px;
-    width: 65px;
-    margin-right: 16px;
+    height: 2rem;
 }
 
 .article-metadata {
@@ -193,13 +196,31 @@ form.update-profile {
     width: 100%;
 }
 
+.short-slider .landscape {
+    height: 300px;
+}
+
+.short-slider .portrait {
+    height: 300px;
+}
+
 .lSPager li {
     height: 95px;
-    background: white;
+}
+
+.short-slider .lSPager li {
+    height: 75px;
 }
 
 .lSSlideOuter {
     background: #EEEEEE;
+}
+
+.lSPager.lSGallery img {
+    object-position: center;
+    object-fit: cover;
+    width: 100% !important; 
+    height: 100% !important;
 }
 /*slider end*/
 
