@@ -6,7 +6,7 @@ class UserdataModelForm(forms.ModelForm):
     class Meta:
         model = Post
         exclude = ['headline']
-        ordering = ['-date',]
+        ordering = ['-date', ]
 
     def clean(self):
         """cleans all the form data"""
@@ -15,3 +15,9 @@ class UserdataModelForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
         super(UserdataModelForm, self).__init__(*args, **kwargs)
+
+
+class GetCurrentUser(forms.Form):
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super(GetCurrentUser, self).__init__(*args, **kwargs)
