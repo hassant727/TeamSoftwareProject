@@ -42,10 +42,14 @@
     
     <div class="content-section">
         <h2 class="mb-3">{{ user.username }}'s Posts</h2>
-        {% for post in user.user_posts.all reversed %}
-            {% include 'webpages/short_post.html' %} 
-        {% endfor %}
-        {% include 'webpages/pagination.html' %}
+        {% if user.user_posts.all %}
+            {% for post in user.user_posts.all reversed %}
+                {% include 'webpages/short_post.html' %} 
+            {% endfor %}
+            {% include 'webpages/pagination.html' %}
+        {% else %}
+            <p>{{ user.username }} has no post</p>
+        {% endif %}
     </div>
         
 
@@ -59,7 +63,7 @@
                 </div>
             {% endfor %}
             {% else %}
-                <p>No Message avaliable</p>
+                <p>You have no message</p>
             {% endif %}
         </div>
     {% endif %}

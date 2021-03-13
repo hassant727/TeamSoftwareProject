@@ -20,7 +20,7 @@ from .price_predictor import predict
 
 
 def howToUse(request):
-    return render(request, "webpages/how_to_use.html")
+    return render(request, "webpages/user_guide.html")
 
 
 def search_posts(request):
