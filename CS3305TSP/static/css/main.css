@@ -312,6 +312,7 @@ footer {
 footer nav.navbar, footer nav ul li {
     padding: 0px;
 }
+/*footer ends*/
 
 /*userguide*/
 .userguide-image img {
@@ -358,3 +359,14 @@ footer nav.navbar, footer nav ul li {
     text-decoration: none;
     cursor: pointer;
 }
+
+/*pagination*/
+.page-link {
+    color: #438bbf;
+}
+
+.page-item.active .page-link {
+    background-color: #438bbf;
+    border-color: #438bbf;
+}
+/*pagination ends*/
