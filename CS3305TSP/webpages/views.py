@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.http import JsonResponse
@@ -8,15 +9,60 @@ from django.contrib.contenttypes import views
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from django.views.generic.edit import ModelFormMixin
-from django.db.models import Q
+from django.db.models import Q, Avg
 
 from .models import Post, PostImage
 
 from django.shortcuts import render
 from django.views import View
-from .forms import UserdataModelForm
+from .forms import UserdataModelForm, GetCurrentUser
 from django.http import JsonResponse
 from .price_predictor import predict
+from django.db.models import Sum
+from django.shortcuts import render
+
+# from dashboard.views import dashboard_user_functionality, dashboardfunction
+
+"""
+    this function will display the average  selling price, estimated price and how much your properties worth
+    this is displayed on the top in dashboard jsut below search menu
+"""
+
+
+@login_required
+def dashboardfunction(request, **kwargs):
+    user = User.objects.get(username=request.user)
+    post_count = float(Post.objects.count())
+    print(post_count)
+    # if post_count > 1:
+    month_price = Post.objects.filter(author=user).aggregate(total=Sum('estimated_price'))['total']
+    average_average = Post.objects.filter(author=user).aggregate(total=Avg('estimated_price'))['total']
+    assert_properties = Post.objects.filter(author=user).aggregate(total=Sum('estimated_price'))['total']
+    value1 = {
+        "monthly_estimate": month_price,
+    }
+    value2 = {
+        "average_average": average_average,
+    }
+    value3 = {
+        "assert_properties": assert_properties
+    }
+    value = {
+        "value1": value1,
+        "value2": value2,
+        "value3": value3
+    }
+
+    if value1['monthly_estimate'] is None:
+        value1['monthly_estimate'] = 0
+        value2['average_average'] = 0
+        value3['assert_properties'] = 0
+    return render(request, 'dashboard/dashboard.html', value)
+
+
+@login_required
+def dashboard_user_functionality(request):
+    return render(request, 'dashboard/all_user_function.html')
 
 
 def howToUse(request):
@@ -75,6 +121,8 @@ class UserPostListView(ListView):
             filter by the user requested and sort by the latest post
         """
         user = get_object_or_404(User, username=self.kwargs.get('username'))
+        total = Post.user.annotate(total=Sum('estimated_price'))
+
         return Post.objects.filter(author=user).order_by('-date_posted')
 
 
@@ -167,9 +215,9 @@ class SearchResultView(ListView):
     template_name = "webpages/search.html"
     context_object_name = 'posts'
 
-    def get_queryset(self): # new
+    def get_queryset(self):  # new
         query = self.request.GET.get('q')
-        return Post.objects.filter(Q(address_line_1__icontains=query) 
-            | Q(address_line_2__icontains=query) 
-                | Q(city__icontains=query )
-                    | Q(county__icontains=query))
+        return Post.objects.filter(Q(address_line_1__icontains=query)
+                                   | Q(address_line_2__icontains=query)
+                                   | Q(city__icontains=query)
+                                   | Q(county__icontains=query))
