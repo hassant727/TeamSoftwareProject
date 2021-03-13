@@ -15,13 +15,15 @@ from .models import Post, PostImage
 
 from django.shortcuts import render
 from django.views import View
-from .forms import UserdataModelForm, GetCurrentUser
+from .forms import UserdataModelForm
 from django.http import JsonResponse
 from .price_predictor import predict
 from django.db.models import Sum
 from django.shortcuts import render
-
+from . price_predictor import predict_future_price
 # from dashboard.views import dashboard_user_functionality, dashboardfunction
+import os
+import os.path
 
 """
     this function will display the average  selling price, estimated price and how much your properties worth
@@ -39,7 +41,7 @@ def dashboardfunction(request, **kwargs):
     average_average = Post.objects.filter(author=user).aggregate(total=Avg('estimated_price'))['total']
     assert_properties = Post.objects.filter(author=user).aggregate(total=Sum('estimated_price'))['total']
     value1 = {
-        "monthly_estimate": month_price,
+        "monthly_estimate": round(month_price/post_count,1)
     }
     value2 = {
         "average_average": average_average,
@@ -52,6 +54,19 @@ def dashboardfunction(request, **kwargs):
         "value2": value2,
         "value3": value3
     }
+    # os.remove("ChangedFile.csv")
+    if os.path.isfile('estimate.json'):
+        os.remove("estimate.json")
+    print(os.path.isfile('estimate.json'))
+    chart = {}
+    chart['dict'] = json.dumps(predict_future_price(float(average_average)))
+    # with open("json.txt", "w") as f:
+    #     f.write(json.dumps(chart))
+
+    with open("estimate.json", "w+") as file:
+        json.dump(chart, file)
+    print(chart)
+    print(os.path.isfile('estimate.json'))
 
     if value1['monthly_estimate'] is None:
         value1['monthly_estimate'] = 0
@@ -121,8 +136,6 @@ class UserPostListView(ListView):
             filter by the user requested and sort by the latest post
         """
         user = get_object_or_404(User, username=self.kwargs.get('username'))
-        total = Post.user.annotate(total=Sum('estimated_price'))
-
         return Post.objects.filter(author=user).order_by('-date_posted')
 
 
