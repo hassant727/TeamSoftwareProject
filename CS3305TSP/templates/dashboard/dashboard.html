@@ -27,16 +27,7 @@
             background-color: #5f788a;
         }
     </style>
-    <!-- the css section for the overlays opening and closing   -->
-    <script>
-        function openNav() {
-            document.getElementById("myNav").style.width = "100%";
-        }
 
-        function closeNav() {
-            document.getElementById("myNav").style.width = "0%";
-        }
-    </script>
 </head>
 
 <body id="page-top">
@@ -370,7 +361,7 @@
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                             This Month property price (Monthly)</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$ {{ post.price }}</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$ {{ value1.monthly_estimate }}</div>
                                     </div>
                                     <div class="col-auto">
                                         <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -388,7 +379,7 @@
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                             last 12 month average selling price (Annual)</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$ {{ value2.average_average }}</div>
                                     </div>
                                     <div class="col-auto">
                                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -405,8 +396,8 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                            Estimated 12 month selling price </div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                            Your Assert Worthy </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$ {{ value3.assert_properties }}</div>
                                     </div>
                                     <div class="col-auto">
                                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
