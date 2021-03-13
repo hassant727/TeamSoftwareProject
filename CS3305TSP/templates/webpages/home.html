@@ -30,12 +30,13 @@
     {% for post in posts %}
     {% include 'webpages/short_post.html' %}
     {% endfor %}
+    {% include 'webpages/pagination.html' %}
 </section>
 <!--do not delete this empty section is used for the result of the search bar-->
 <section class="my-4 pb-5" id="search_posts_output">
 
 </section>
 <!--  paginating page s  -->
-{% include 'webpages/pagination.html' %}
+
 <script src="{% static 'js/searchbar.js' %}"></script>
 {% endblock content %}
