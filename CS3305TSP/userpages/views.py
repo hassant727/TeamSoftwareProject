@@ -32,8 +32,11 @@ class RegistrationView(View):
     def post(self, request):
         """this method is used for getting user data, validating it and creating an account"""
         username = request.POST['username']
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
         email = request.POST['email']
         password = request.POST['password']
+
 
         context = {
             'fieldValues': request.POST
@@ -45,7 +48,12 @@ class RegistrationView(View):
                     messages.error(request, 'Password too short')
                     return render(request, 'userpages/register.html', context)
 
-                user = User.objects.create_user(username=username, email=email)
+                user = User.objects.create_user(
+                    username=username,
+                    first_name=first_name,
+                    last_name=last_name,
+                    email=email
+                )
                 user.set_password(password)
                 user.is_active = False
                 user.save()
