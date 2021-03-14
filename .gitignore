@@ -1,2 +1,5 @@
 enviroment.env
 .gitignore
+
+CS3305TSP/json.txt
+CS3305TSP/static/js/demo/datatables-demo.js
