@@ -43,8 +43,8 @@ Using the software: After cloning the project
 >>>> `./.runscript.sh` 
 
 
-# Project Structure (names with a capital letter represent dir )
-
+Project Structure (names with a capital letter represent dir )
+-
     CS33305TSP
                ------ CS33305TSP
                                  ----- __init__.py  
@@ -145,22 +145,25 @@ Using the software: After cloning the project
                ------ setup.py
     Documentation
                   ----- product brief versions
-#BRANCHES
-        - main: used for the up to date running version of the software
+BRANCHES
+-
+> - main: used for the up to date running version of the software
+> - develop: used for developing new features, addons and functionality for running version of the software
+    this is only merged with master after it has been tested and assurance is given that it will not break
+    the main software running under master branch
 
-        - develop: used for developing new features, addons and functionality for running version of the software
-                this is only merged with master after it has been tested and assurance is given that it will not break
-                the main software running under master branch
 
+CODING CONVENTIONS
+-
+> - python coding conventions (file names with underscore if they consist of multiple words)
+> - separating complex chunks of code/logic to provide readability
+> - django file conventions hierarchy 
 
-#CODING CONVENTIONS
-        - python coding conventions (file names with underscore if they consist of multiple words)
-        - separating complex chunks of code/logic to provide readability
-        - django file conventions hierarchy 
+BUILD COMMANDS FROM THE TOP OF THE DIR
+-
+> `cd CS3305TSP && chmod +x .runscript.sh && ./.runscript.sh `    
 
-#BUILD COMMANDS FROM THE TOP OF THE DIR
-        cd CS3305TSP && chmod +x .runscript.sh && ./.runscript.sh     
-
-#AOB 
+AOB
+-
 > This project implements a web applications with multiple apps in it
 > see the project readme in each app for individual function file/method explanation
