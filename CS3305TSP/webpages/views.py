@@ -36,42 +36,52 @@ def dashboardfunction(request, **kwargs):
     user = User.objects.get(username=request.user)
     post_count = float(Post.objects.count())
     print(post_count)
-    # if post_count > 1:
+    value1 = {}
+    value2 = {}
+    value3 = {}
+    value = {}
     month_price = Post.objects.filter(author=user).aggregate(total=Sum('estimated_price'))['total']
     average_average = Post.objects.filter(author=user).aggregate(total=Avg('estimated_price'))['total']
     assert_properties = Post.objects.filter(author=user).aggregate(total=Sum('estimated_price'))['total']
-    value1 = {
-        "monthly_estimate": round(month_price/post_count,1)
-    }
-    value2 = {
-        "average_average": average_average,
-    }
-    value3 = {
-        "assert_properties": assert_properties
-    }
+    print(month_price)
+    if month_price is None:
+        value1['monthly_estimate'] = 0
+        value2['average_average'] = 0
+        value3['assert_properties'] = 0
+    else:
+
+        value1 = {
+            "monthly_estimate": round(month_price/post_count,1)
+        }
+        value2 = {
+            "average_average": average_average,
+        }
+        value3 = {
+            "assert_properties": assert_properties
+        }
+        # os.remove("ChangedFile.csv")
+        if os.path.isfile('estimate.json'):
+            os.remove("estimate.json")
+        print(os.path.isfile('estimate.json'))
+        chart = {}
+        chart['dict'] = json.dumps(predict_future_price(float(average_average)))
+        # with open("json.txt", "w") as f:
+        #     f.write(json.dumps(chart))
+
+        with open("estimate.json", "w+") as file:
+            json.dump(chart, file)
+        print(chart)
+        print(os.path.isfile('estimate.json'))
     value = {
         "value1": value1,
         "value2": value2,
         "value3": value3
     }
-    # os.remove("ChangedFile.csv")
-    if os.path.isfile('estimate.json'):
-        os.remove("estimate.json")
-    print(os.path.isfile('estimate.json'))
-    chart = {}
-    chart['dict'] = json.dumps(predict_future_price(float(average_average)))
-    # with open("json.txt", "w") as f:
-    #     f.write(json.dumps(chart))
-
-    with open("estimate.json", "w+") as file:
-        json.dump(chart, file)
-    print(chart)
-    print(os.path.isfile('estimate.json'))
-
-    if value1['monthly_estimate'] is None:
-        value1['monthly_estimate'] = 0
-        value2['average_average'] = 0
-        value3['assert_properties'] = 0
+    #
+    # if value1['monthly_estimate'] is None:
+    #     value1['monthly_estimate'] = 0
+    #     value2['average_average'] = 0
+    #     value3['assert_properties'] = 0
     return render(request, 'dashboard/dashboard.html', value)
 
 
