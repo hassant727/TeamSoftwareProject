@@ -20,19 +20,24 @@ from django.http import JsonResponse
 from .price_predictor import predict
 from django.db.models import Sum
 from django.shortcuts import render
-from . price_predictor import predict_future_price
+from .price_predictor import predict_future_price
 # from dashboard.views import dashboard_user_functionality, dashboardfunction
 import os
 import os.path
 
-"""
-    this function will display the average  selling price, estimated price and how much your properties worth
-    this is displayed on the top in dashboard jsut below search menu
-"""
-
 
 @login_required
 def dashboardfunction(request, **kwargs):
+    """
+        this function will display the average  selling price, estimated price and how much your properties worth
+        this is displayed on the top in dashboard just below search menu
+
+        month_price --> get the sum of estimated price of a specific user
+        average_average --> average estimated price of a specific user posts
+        assert_properties -->  sum of estimated prices
+
+        if a user has no post return zeros else do the calculations and return the matrices and render it to the site
+    """
     user = User.objects.get(username=request.user)
     post_count = float(Post.objects.count())
     print(post_count)
@@ -40,10 +45,12 @@ def dashboardfunction(request, **kwargs):
     value2 = {}
     value3 = {}
     value = {}
+
     month_price = Post.objects.filter(author=user).aggregate(total=Sum('estimated_price'))['total']
     average_average = Post.objects.filter(author=user).aggregate(total=Avg('estimated_price'))['total']
     assert_properties = Post.objects.filter(author=user).aggregate(total=Sum('estimated_price'))['total']
     print(month_price)
+
     if month_price is None:
         value1['monthly_estimate'] = 0
         value2['average_average'] = 0
@@ -51,7 +58,7 @@ def dashboardfunction(request, **kwargs):
     else:
 
         value1 = {
-            "monthly_estimate": round(month_price/post_count,1)
+            "monthly_estimate": round(month_price / post_count, 1)
         }
         value2 = {
             "average_average": average_average,
@@ -87,10 +94,16 @@ def dashboardfunction(request, **kwargs):
 
 @login_required
 def dashboard_user_functionality(request):
+    """
+        render the specified template
+    """
     return render(request, 'dashboard/all_user_function.html')
 
 
 def howToUse(request):
+    """
+        render the specified template
+    """
     return render(request, "webpages/user_guide.html")
 
 
@@ -109,7 +122,10 @@ def search_posts(request):
 
 
 def homefunction(request):
-    """sql modeling passing in a dictionary of post """
+    """
+        render the specified template
+        context : sql modeling passing in a dictionary of post
+    """
     context = {
         'posts': Post.objects.all()
     }
@@ -117,6 +133,9 @@ def homefunction(request):
 
 
 def aboutfunction(request):
+    """
+        render the specified template
+    """
     return render(request, 'webpages/about.html', {'title': 'About'})
 
 
@@ -134,6 +153,13 @@ class PostListView(ListView):
 
 
 class UserPostListView(ListView):
+    """
+        model: name of model, in this case post
+        template_name: name of templates, in this case user_posts.html
+        context_object_name: name of the object u want in the template in this case posts'
+        paginate_by: how many post you want in each page, in this case 5
+
+    """
     model = Post
     template_name = 'webpages/user_posts.html'
     context_object_name = 'posts'
@@ -176,6 +202,11 @@ POST_FIELDS = [
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
+    """
+        post creation view, it requires the user to be login
+        model type(as defined in the model file), in this case Post class
+        fields: as define in the model, in this case POST_FIELDS
+    """
     model = Post
     fields = POST_FIELDS
 
@@ -193,6 +224,9 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    """
+        same as above, the only difference is we delete the current images before updating new images
+    """
     model = Post
     fields = POST_FIELDS
 
@@ -221,12 +255,16 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    model = Post
+    """
+        delete view, delete  the post if the user that makes that request is the author
+        this test_func() function ensures that only the user who posted it can edit it
+         --> this use the UserPassesTestMixin
 
+    """
+    model = Post
     success_url = '/'
 
     def test_func(self):
-        """this function ensures that only the user who post a comment can edit --> this use the UserPassesTestMixin """
         post = self.get_object()
         if self.request.user == post.author:
             return True
@@ -234,6 +272,11 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 class SearchResultView(ListView):
+    """
+        this view takes in parameter from teh search bar and searches it using
+         addressline1, addressline2, city and county,
+         returns all that matches, or none
+    """
     model = Post
     template_name = "webpages/search.html"
     context_object_name = 'posts'
