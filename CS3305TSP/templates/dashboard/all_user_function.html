@@ -3,7 +3,13 @@
 {% block content %}
 {% if request.user.is_authenticated %}
     <div>
-    <h1> Dashboard Manager </h1>
+    <div>
+        <h1> Dashboard Manager </h1>
+        <a href="{% url 'dashboard' %}">
+            <small>Back to Bashboard</small>
+        </a>
+
+    </div>
     <hr>
     <small>Property Sale Summary</small><hr>
     <div class="row">
