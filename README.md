@@ -118,7 +118,7 @@ Project Structure (names with a capital letter represent dir )
                                 ----- urls.py
                                 ----- utils.py
                                 ----- views.py
-                                ----- userpageReadMe.md
+                                ----- ReadMe.md
                ------ Venv
                             ----- all python env files such as lib and bin
                ------ Webpages
@@ -134,7 +134,7 @@ Project Structure (names with a capital letter represent dir )
                                 ----- urls.py
                                 ----- utils.py
                                 ----- views.py
-                                ----- WebpageReadMe.md
+                                ----- ReadMe.md
                ------ .runscript.sh
                ------ __init__.py
                ------ db.sqlite3
