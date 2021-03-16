@@ -23,6 +23,11 @@ intercept = 220759.72278872645
 
 
 def predict(values):
+    """
+
+    :param values: an array of fields such as rooms, bathrooms ect
+    :return: an estimate pricing
+    """
     val1 = values[0][0] * coef1
     val2 = values[0][1] * coef2
     val3 = values[0][2] * coef3
@@ -35,12 +40,15 @@ def predict(values):
 
 
 def predict_future_price(price):
+    """
+    :param price: takes in an estimated prices by the matrices above
+    :return: an array of estimated prices
+    """
     price_array = []
     for x in range(12):
         x += 1
         y = ((1.04) ** (x / 12))
         p = int(round((price * y), 0))
         price_array.append(p)
-
     return price_array
 
