@@ -5,11 +5,15 @@ from django.urls import reverse
 from django.template.defaultfilters import slugify
 from .price_predictor import predict
 
-"""this code creates a migrations, takes in the class below and creates an sql query"""
+"""
+this code creates a migrations, takes in the class below and creates an sql 
+query
+"""
 
-"""run the following code to see what sql query the migration will run 
-python manage.py sqlmigrate blog (folder name in our case blog) sequence number created in migration
-python manage.py sqlmigrate blog 0001 --> for our case 
+"""
+run the following code to see what sql query the migration will run python 
+manage.py sqlmigrate blog (folder name in our case blog) sequence number 
+created in migration python manage.py sqlmigrate blog 0001 --> for our case 
 """
 
 COUNTY_CHOICES = [
@@ -49,10 +53,10 @@ COUNTY_CHOICES = [
 
 
 PROPERTY_TYPE_CHOICES = [
-    ['Detached House', 'Detached House'],
-    ['Semi-detached House', 'Semi-detached House'],
-    ['Terraced House', 'Terraced House'],
-    ['Duplex', 'Duplex'],
+    ('Detached House', 'Detached House'),
+    ('Semi-detached House', 'Semi-detached House'),
+    ('Terraced House', 'Terraced House'),
+    ('Duplex', 'Duplex'),
 ]
 
 ENERGY_RATING_CHOICES = (
@@ -96,7 +100,9 @@ property_type_dict = {'Detached House': 1,
                       'Duplex': 4
                       }
 
-
+"""
+retuens the path that contains the address of the post for the image
+"""
 def get_image_filename(instance, filename):
     post = instance.post
     address = "-".join(item for item in [post.address_line_1, post.address_line_2, post.city, post.county] if item)
@@ -104,9 +110,10 @@ def get_image_filename(instance, filename):
     return "post_images/%s-%s" % (slug, filename)
 
 
-"""the below takes in all the parameter needed for the price prediction and returns the estimated price"""
-
-
+"""
+the below takes in all the parameter needed for the price prediction and 
+returns the estimated price
+"""
 def price_pridiction_model(number_of_bedrooms, number_of_bathrooms, size, property_type, energy_rating):
     attributes = [[number_of_bedrooms, number_of_bathrooms, size, property_type, energy_rating]]
     estimated_price = predict(attributes)
@@ -133,6 +140,9 @@ class Post(models.Model):
     estimated_price = models.PositiveIntegerField(null=False, blank=True, editable=False)
     __original_price = None
 
+    """
+    returns the address of a post
+    """
     def __str__(self):
         address = ""
         address_list = [self.address_line_1, self.address_line_2, self.city, self.county]
@@ -143,14 +153,14 @@ class Post(models.Model):
         return address
 
     """
-        this method return a string to redirect the user after posting to that post by returning post details the 
-        primary key of the newly created post
+        this method return a string to redirect the user after posting to that 
+        post by returning post details the primary key of the newly created 
+        post
     """
-
     def get_absolute_url(self):
         """
-        the pk is used to identify each post, meaning when each post is creted, it's assigned a pk number
-        :return:
+        the pk is used to identify each post, meaning when each post is creted, 
+        it's assigned a pk number :return:
         """
         return reverse('post-detail', kwargs={'pk': self.pk})
 
@@ -158,7 +168,6 @@ class Post(models.Model):
         overwriting the django save method 
         by passing in the estimated price into the price before it is saved
     """
-
     def save(self, force_insert=False, force_update=False, *args, **kwargs):
         estimated_price = price_pridiction_model(
             self.number_of_bedrooms,
