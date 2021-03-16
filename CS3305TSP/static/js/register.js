@@ -5,7 +5,7 @@ const feedBackArea = document.querySelector(".invalid_feedback");
 const emailField = document.querySelector("#emailField");
 const emailFeedBackArea = document.querySelector(".emailFeedBackArea");
 const passwordField = document.querySelector("#passwordField");
-const usernameSuccessOutput = document.querySelector(".usernameSuccessOutput");
+const passwordFeedBackArea = document.querySelector(".passwordFeedBackArea")
 const showPasswordToggle = document.querySelector(".showPasswordToggle");
 const submitBtn = document.querySelector(".submit-btn");
 
@@ -61,10 +61,6 @@ emailField.addEventListener("keyup", (e) => {
 usernameField.addEventListener("keyup", (e) => {
     const usernameVal = e.target.value;
 
-    usernameSuccessOutput.style.display = "block";
-
-    usernameSuccessOutput.textContent = `Checking  ${usernameVal}`;
-
     usernameField.classList.remove("is-invalid");
     feedBackArea.style.display = "none";
 
@@ -75,7 +71,6 @@ usernameField.addEventListener("keyup", (e) => {
         })
             .then((res) => res.json())
             .then((data) => {
-                usernameSuccessOutput.style.display = "none";
                 if (data.username_error) {
                     usernameField.classList.add("is-invalid");
                     feedBackArea.style.display = "block";
@@ -85,5 +80,20 @@ usernameField.addEventListener("keyup", (e) => {
                     submitBtn.removeAttribute("disabled");
                 }
             });
+    }
+});
+
+
+// event listeners --> in this case when a user start typing
+passwordField.addEventListener("keyup", (e) => {
+    const passwordVal = e.target.value;
+
+    passwordField.classList.remove("is-invalid");
+    passwordFeedBackArea.style.display = "none";
+
+    if (passwordVal.length < 8) {
+        passwordField.classList.add("is-invalid");
+        passwordFeedBackArea.style.display = "block";
+        passwordFeedBackArea.innerHTML = `<p>Password must be at least 8 character long.</p>`;      
     }
 });
