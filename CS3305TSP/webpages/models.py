@@ -12,6 +12,42 @@ python manage.py sqlmigrate blog (folder name in our case blog) sequence number 
 python manage.py sqlmigrate blog 0001 --> for our case 
 """
 
+COUNTY_CHOICES = [
+    ('Antrim', 'Antrim'),
+    ('Armagh', 'Armagh'),
+    ('Carlow', 'Carlow'),
+    ('Cavan', 'Cavan'),
+    ('Clare', 'Clare'),
+    ('Cork', 'Cork'),
+    ('Donegal', 'Donegal'),
+    ('Down', 'Down'),
+    ('Dublin', 'Dublin'),
+    ('Fermanagh', 'Fermanagh'),
+    ('Galway', 'Galway'),
+    ('Kerry', 'Kerry'),
+    ('Kildare', 'Kildare'),
+    ('Kilkenny', 'Kilkenny'),
+    ('Laois', 'Laois'),
+    ('Leitrim', 'Leitrim'),
+    ('Limerick', 'Limerick'),
+    ('Londonderry', 'Londonderry'),
+    ('Longford', 'Longford'),
+    ('Louth', 'Louth'),
+    ('Mayo', 'Mayo'),
+    ('Meath', 'Meath'),
+    ('Monaghan', 'Monaghan'),
+    ('Offaly', 'Offaly'),
+    ('Roscommon', 'Roscommon'),
+    ('Sligo', 'Sligo'),
+    ('Tipperary', 'Tipperary'),
+    ('Tyrone', 'Tyrone'),
+    ('Waterford', 'Waterford'),
+    ('Westmeath', 'Westmeath'),
+    ('Wexford', 'Wexford'),
+    ('Wicklow', 'Wicklow'),
+]
+
+
 PROPERTY_TYPE_CHOICES = [
     ['Detached House', 'Detached House'],
     ['Semi-detached House', 'Semi-detached House'],
@@ -82,7 +118,7 @@ class Post(models.Model):
     address_line_1 = models.CharField(max_length=255)
     address_line_2 = models.CharField(max_length=255, null=True, blank=True)
     city = models.CharField(max_length=128, default='')
-    county = models.CharField(max_length=128, default='')
+    county = models.CharField(max_length=128, default='', choices=COUNTY_CHOICES)
     floor_plan = models.ImageField(upload_to="floor_plan", null=True, blank=True)
     property_type = models.CharField(max_length=128, default='',
                                      choices=PROPERTY_TYPE_CHOICES)
