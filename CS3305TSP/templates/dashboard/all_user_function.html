@@ -1,312 +1,153 @@
-{% extends "base.html" %}
+{% extends "dashboard/dashboard_base.html" %}
 {% load static %}
 {% block content %}
-{% if request.user.is_authenticated %}
-    <div>
-    <div>
-        <h1> Dashboard Manager </h1>
-        <a href="{% url 'dashboard' %}">
-            <small>Back to Bashboard</small>
-        </a>
 
-    </div>
-    <hr>
-    <small>Property Sale Summary</small><hr>
-    <div class="row">
-        <!-- Earnings (Monthly) Card Example -->
-        <div id="myBtn5" class="col-xl-3 col-md-8 mb-6">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Properties sold this month</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">€ 0</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="myBtn6" class="col-xl-3 col-md-8 mb-6">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Properties sold this Year</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">€ 0</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="myBtn7" class="col-xl-3 col-md-8 mb-6">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                All time sales</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">€ 0</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="myBtn8" class="col-xl-3 col-md-8 mb-6">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Average Property Selling price</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">€ 0</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <hr>
-    <small>User Interaction Summary</small><hr>
-    <div class="row">
-        <!-- Earnings (Monthly) Card Example -->
-        <div id="myBtn1" class="col-xl-3 col-md-8 mb-6">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Average Views per posts</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="myBtn2"  class="col-xl-3 col-md-8 mb-6">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Total views</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="myBtn3"  class="col-xl-3 col-md-8 mb-6">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Total number of post</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                {% for post in user.user_posts.all reversed %}
-                                {{ post | length }}
-                                {% endfor %}
-
+    <!-- Main Content -->
+        <div class="container-fluid">
+            <h1> Stats and Insights </h1>
+            <hr>
+            <small>Property Sale Summary</small><hr>
+            <div class="row">
+                <!-- Earnings (Monthly) Card Example -->
+                <div id="myBtn5" class="col-xl-3 col-md-8 mb-6">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Properties sold this month</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">€ 0</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+                <div id="myBtn6" class="col-xl-3 col-md-8 mb-6">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Properties sold this Year</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">€ 0</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="myBtn7" class="col-xl-3 col-md-8 mb-6">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        All time sales</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">€ 0</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="myBtn8" class="col-xl-3 col-md-8 mb-6">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Average Property Selling price</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">€ 0</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+            <small>User Interaction Summary</small><hr>
+            <div class="row">
+                <!-- Earnings (Monthly) Card Example -->
+                <div id="myBtn1" class="col-xl-3 col-md-8 mb-6">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Average Views per posts</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="myBtn2"  class="col-xl-3 col-md-8 mb-6">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Total views</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="myBtn3"  class="col-xl-3 col-md-8 mb-6">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Total number of post</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        {% for post in user.user_posts.all reversed %}
+                                        {{ post | length }}
+                                        {% endfor %}
+
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="myBtn4" class="col-xl-3 col-md-8 mb-6">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Messages and Request</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="myBtn4" class="col-xl-3 col-md-8 mb-6">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Messages and Request</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <hr>
-    <small>Your Contact Details</small><hr>
-    <div class="row">
-        <!-- Contact Details -->
-        <div class="col-xl-3 col-md-8 mb-6" onclick="location.href='{% url 'profile-page' request.user.username %}';" style="cursor: pointer;">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Email address</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ user.email }}</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-md-8 mb-6" onclick="location.href='{% url 'profile-page' request.user.username %}';" style="cursor: pointer;">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Tel no</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">(012) 1234567 </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div >
-        <div class="col-xl-3 col-md-8 mb-6" onclick="location.href='{% url 'profile-page' request.user.username %}';" style="cursor: pointer;">
-            <div class="card border-left-primary shadow h-100 py-2" >
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Name</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ user.first_name }} {{ user.last_name }}</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-md-8 mb-6" onclick="location.href='{% url 'profile-page' request.user.username %}';" style="cursor: pointer;">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Username</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ user.username }}</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <hr>
-
-    <br>
-    </div>
-
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>Some text in the Modal..
-
-                Lisa Vanderpump
-                Lisa Vanderpump 2014.jpg
-                Vanderpump in 2013
-                Born	Lisa Jane Vanderpump
-                15 September 1960 (age 60)
-                Dulwich, London
-                Nationality	British
-                Other names	Lisa Todd
-                Citizenship	United Kingdom
-                Occupation	Restaurateur, designer, television personality, author, humanitarian, actress
-                Years active	1973–present
-                Employer	Bravo
-                Organization	vanderpumpdogs.org
-                Television	The Real Housewives of Beverly Hills
-                Vanderpump Rules
-                Spouse(s)	Ken Todd ​(m. 1982)​
-                Children	2
-                Parents
-                John Vanderpump (father)
-                Jean Vanderpump (deceased) (mother)
-                Relatives	Warren Todd (stepson)
-                Family	Mark Vanderpump (deceased) (brother)
-                Website	lisavanderpump.com
-                Lisa Vanderpump (born 15 September 1960)[1] is a British restaurateur, television personality, author
-                and actress. She is known for her appearances on Bravo's The Real Housewives of Beverly Hills and
-                Vanderpump Rules, and ABC's Dancing with the Stars. Vanderpump and her husband, Ken Todd, have owned 36
-                restaurants, bars and clubs in London and Los Angeles, including The Shadow Lounge, Bar Soho, SUR, Pump,
-                Villa Blanca, Tom Tom, and Lisa Vanderpump's Stonebaked Stoner Hut in LA, which was opened with
-                comedian Jim Stylus in 2017.
-                Lisa Vanderpump
-                Lisa Vanderpump 2014.jpg
-                Vanderpump in 2013
-                Born	Lisa Jane Vanderpump
-                15 September 1960 (age 60)
-                Dulwich, London
-                Nationality	British
-                Other names	Lisa Todd
-                Citizenship	United Kingdom
-                Occupation	Restaurateur, designer, television personality, author, humanitarian, actress
-                Years active	1973–present
-                Employer	Bravo
-                Organization	vanderpumpdogs.org
-                Television	The Real Housewives of Beverly Hills
-                Vanderpump Rules
-                Spouse(s)	Ken Todd ​(m. 1982)​
-                Children	2
-                Parents
-                John Vanderpump (father)
-                Jean Vanderpump (deceased) (mother)
-                Relatives	Warren Todd (stepson)
-                Family	Mark Vanderpump (deceased) (brother)
-                Website	lisavanderpump.com
-                Lisa Vanderpump (born 15 September 1960)[1] is a British restaurateur, television personality, author
-                and actress. She is known for her appearances on Bravo's The Real Housewives of Beverly Hills and
-                Vanderpump Rules, and ABC's Dancing with the Stars. Vanderpump and her husband, Ken Todd, have owned 36
-                restaurants, bars and clubs in London and Los Angeles, including The Shadow Lounge, Bar Soho, SUR, Pump,
-                Villa Blanca, Tom Tom, and Lisa Vanderpump's Stonebaked Stoner Hut in LA, which was opened with
-                comedian Jim Stylus in 2017.
-            </p>
-        </div>
-
-    </div>
-
-
-<!-- the css section for the overlays opening and closing   -->
-<link href="{% static 'css/dashboard/sb-admin-2.min.css' %}" rel="stylesheet">
-<script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
-<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'js/dashboardManager.js' %}"></script>
-{% endif %}
 {% endblock content%}
