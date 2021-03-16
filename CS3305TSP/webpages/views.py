@@ -26,7 +26,7 @@ import os
 import os.path
 
 
-@login_required
+@login_required(login_url='/login/')
 def dashboardfunction(request, **kwargs):
     """
         this function will display the average  selling price, estimated price and how much your properties worth
@@ -92,7 +92,7 @@ def dashboardfunction(request, **kwargs):
     return render(request, 'dashboard/dashboard.html', value)
 
 
-@login_required
+@login_required(login_url='/login/')
 def dashboard_user_functionality(request):
     """
         render the specified template

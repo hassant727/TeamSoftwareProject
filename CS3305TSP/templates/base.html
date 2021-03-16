@@ -53,9 +53,7 @@
                         <a class="nav-item nav-link" href="{% url 'userguide' %}">User Guide</a>
 
                         {% url 'home-page' as home_url %}
-                        {% url 'login-page' as login_url %}
-                        {% url 'register-page' as register_url %}
-                        {% if request.get_full_path != home_url and request.get_full_path != login_url and request.get_full_path != register_url %}
+                        {% if request.get_full_path != home_url %}
                             <form method="GET" action="/search/" class="nav-item form-inline mx-2">
                                 <div class="input-group">
                                     <input name="q" type="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
