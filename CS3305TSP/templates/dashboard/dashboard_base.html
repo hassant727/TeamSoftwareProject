@@ -44,28 +44,7 @@
             <span class="sidebar-brand">Property Pricer</span>
         </a>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0">
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'profile-page' request.user.username %}">
-                <i class="fas fa-laugh-wink"></i>
-                <span >My Profile</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{% url 'dashboard-post'%}">
-                <i class="fas fa-home"></i>
-                <span>My posts</span>
-            </a>
-        </li>
-
-        <!-- Divider -->
+                <!-- Divider -->
         <hr class="sidebar-divider">
 
         <!-- Heading -->
@@ -87,6 +66,31 @@
                 <span >Stats and Insights</span>
             </a>
         </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            My Account
+        </div>
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'profile-page' request.user.username %}">
+                <i class="fas fa-laugh-wink"></i>
+                <span >My Profile</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{% url 'dashboard-post'%}">
+                <i class="fas fa-home"></i>
+                <span>My posts</span>
+            </a>
+        </li>
+
+
 
         <!-- Divider -->
         <hr class="sidebar-divider">
