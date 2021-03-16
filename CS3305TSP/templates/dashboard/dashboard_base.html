@@ -47,6 +47,9 @@
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
 
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
             <a class="nav-link" href="{% url 'profile-page' request.user.username %}">
@@ -55,20 +58,10 @@
             </a>
         </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'dashboard' %}">
-                <i class="fas fa-laugh-wink"></i>
-                <span >Dashboard</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'function' %}">
-                <i class="fas fa-laugh-wink"></i>
-                <span >Stats and Insights</span>
+            <a class="nav-link collapsed" href="{% url 'dashboard-post'%}">
+                <i class="fas fa-home"></i>
+                <span>My posts</span>
             </a>
         </li>
 
@@ -77,24 +70,31 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            Posts
+            Stats
         </div>
 
-        <!-- Nav Item - Pages Collapse Menu -->
+
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{% url 'login'%}" data-target="#collapseTwo"
-               aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Edit posts</span>
+            <a class="nav-link" href="{% url 'dashboard' %}">
+                <i class="fas fa-chart-line "></i>
+                <span >Dashboard</span>
             </a>
-            <a class="nav-link collapsed" href="{% url 'login'%}" data-target="#collapseTwo"
-               aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Delete posts</span>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'function' %}">
+                <i class="fas fa-chart-line"></i>
+                <span >Stats and Insights</span>
             </a>
-            <a class="nav-link collapsed" href="{% url 'login'%}" data-target="#collapseTwo"
-               aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-cog"></i>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'login'%}" >
+                <i class="fas fa-times"></i>
                 <span>delete account</span>
             </a>
         </li>

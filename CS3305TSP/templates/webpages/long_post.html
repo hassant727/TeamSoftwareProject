@@ -31,10 +31,11 @@
         <h3 class="article-title mt-5"><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post }}</a></h3>
 
         {% if post.price %}
-            <h4>Your Price :  € {{ post.price }}</h4>
-            <h4>Estimated Price : € {{ post.estimated_price }}</h4>
+            <h4>Your Price:  € {{ post.price }}</h4>
+            <h4>Estimated Price: € {{ post.estimated_price }}</h4>
         {% else %}
-            <h4>POA</h4>
+            <h4>Your Price: POA</h4>
+            <h4>Estimated Price: € {{ post.estimated_price }}</h4>
         {% endif %}
 
         <div class="row my-5 border-top border-bottom py-3">

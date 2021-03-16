@@ -152,7 +152,7 @@ class PostListView(ListView):
     paginate_by = 5
 
 
-class UserPostListView(ListView):
+class UserPostListView(LoginRequiredMixin,ListView):
     """
         model: name of model, in this case post
         template_name: name of templates, in this case user_posts.html
@@ -161,9 +161,8 @@ class UserPostListView(ListView):
 
     """
     model = Post
-    template_name = 'webpages/user_posts.html'
+    template_name = 'dashboard/dashboard_post.html'
     context_object_name = 'posts'
-    paginate_by = 5
 
     def get_queryset(self):
         """
@@ -171,8 +170,7 @@ class UserPostListView(ListView):
             a requested user
             filter by the user requested and sort by the latest post
         """
-        user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return Post.objects.filter(author=user).order_by('-date_posted')
+        return Post.objects.filter(author=self.request.user).order_by('-date_posted')
 
 
 class PostDetailView(DetailView):
