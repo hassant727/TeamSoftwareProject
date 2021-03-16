@@ -147,9 +147,10 @@ class Post(models.Model):
         address = ""
         address_list = [self.address_line_1, self.address_line_2, self.city, self.county]
         for i in range(4):
-            address = address + address_list[i]
-            if i < 3:
-                address = address + ", "
+            if address_list[i] is not None:
+                address = address + address_list[i]
+                if i < 3:
+                    address = address + ", "
         return address
 
     """

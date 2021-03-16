@@ -27,11 +27,7 @@
             {% else %}
                 <div class="mx-4">
             {% endif %}
-                {% if object.address_line_2 %}
-                    <h3 class="article-title mt-3"><a class="article-title" href="{% url 'post-detail' post.id %}">{{ object.address_line_1 }}, {{ post.address_line_2 }}, {{ post.city }}, {{ post.county }}</a></h3>
-                {% else %}
-                    <h3 class="article-title mt-3"><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.address_line_1 }}, {{ post.city }}, {{ post.county }}</a></h3>
-                {% endif %}
+                <h3 class="article-title mt-3"><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post }}</a></h3>
 
                 {% if post.price %}
                     <h4>Your Price:  € {{ post.price }}</h4>
@@ -41,7 +37,7 @@
                     <h4>Estimated Price: € {{ post.estimated_price }}</h4>
                 {% endif %}
 
-                <p>{{ post.number_of_bedrooms }} bedrooms {{ post.property_type }} for sale</p>
+                <p class="mb-5">{{ post.number_of_bedrooms }} bedrooms {{ post.property_type }} for sale</p>
             </div>
         </div>
     </div>
