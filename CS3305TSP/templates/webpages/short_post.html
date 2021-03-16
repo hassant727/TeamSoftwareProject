@@ -22,12 +22,13 @@
             </div>
             {% endif %}
 
+            
             {% if post.post_images.all %}
-                <div class="mx-auto my-auto">
+                <a class="mx-auto my-auto article-title" href="{% url 'post-detail' post.id %}">
             {% else %}
-                <div class="mx-4">
+                <a class="mx-4 article-title" href="{% url 'post-detail' post.id %}">
             {% endif %}
-                <h3 class="article-title mt-3"><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post }}</a></h3>
+                <h3 class="mt-3" style="color: inherit;">{{ post }}</h3>
 
                 {% if post.price %}
                     <h4>Your Price:  € {{ post.price }}</h4>
@@ -37,8 +38,10 @@
                     <h4>Estimated Price: € {{ post.estimated_price }}</h4>
                 {% endif %}
 
-                <p class="mb-5">{{ post.number_of_bedrooms }} bedrooms {{ post.property_type }} for sale</p>
-            </div>
+                <p style="color: #444444">{{ post.number_of_bedrooms }} bedrooms {{ post.property_type }} for sale</p>
+
+                <small class="mb-5">Click to view post</small>
+            </a>
         </div>
     </div>
 </article>
