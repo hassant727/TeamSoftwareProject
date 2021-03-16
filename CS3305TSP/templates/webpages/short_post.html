@@ -13,7 +13,9 @@
                 <ul id="lightSlider" class="gallery list-unstyled cS-hidden">
                 {% for img in post.post_images.all %}
                     <li data-thumb="{{ img.image.url }}" data-source="{{ img.image.url }}">
-                        <img src="{{ img.image.url }}" />
+                        <a href="{{ img.image.url }}">
+                            <img src="{{ img.image.url }}" />
+                        </a>
                     </li>
                 {% endfor %}
                 </ul>
