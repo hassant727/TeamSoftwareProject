@@ -126,9 +126,9 @@ class Post(models.Model):
         the fields are defined below come teh model defined above
     """
     property_description = models.TextField(null=True, blank=True)
-    address_line_1 = models.CharField(max_length=255)
-    address_line_2 = models.CharField(max_length=255, null=True, blank=True)
-    city = models.CharField(max_length=128, default='')
+    address_line_1 = models.CharField(max_length=255, verbose_name="Street address")
+    address_line_2 = models.CharField(max_length=255, null=True, blank=True, verbose_name="District or Townland")
+    city = models.CharField(max_length=128, default='', verbose_name="City or town")
     county = models.CharField(max_length=128, default='', choices=COUNTY_CHOICES)
     floor_plan = models.ImageField(upload_to="floor_plan", null=True, blank=True)
     property_type = models.CharField(max_length=128, default='',
@@ -137,10 +137,10 @@ class Post(models.Model):
     number_of_bathrooms = models.PositiveIntegerField()
     energy_rating = models.CharField(max_length=128, default='',
                                      choices=ENERGY_RATING_CHOICES)
-    size = models.PositiveIntegerField()
+    size = models.PositiveIntegerField(verbose_name="Size (m<sup>2</sup>)")
     date_posted = models.DateField(default=timezone.now)
     author = models.ForeignKey(User, related_name="user_posts", on_delete=models.CASCADE)
-    price = models.PositiveIntegerField(null=True, blank=True, editable=True)
+    price = models.PositiveIntegerField(null=True, blank=True, editable=True, verbose_name="Price (&euro;)")
     estimated_price = models.PositiveIntegerField(null=False, blank=True, editable=False)
     __original_price = None
 
