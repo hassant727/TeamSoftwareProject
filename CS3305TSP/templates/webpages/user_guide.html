@@ -27,6 +27,9 @@
                     <a href="#Home">Home Page</a>
                 </li>
                 <li>
+                    <a href="#Dashboard">Dashboard</a>
+                </li>
+                <li>
                     <a href="#Search">Search Bar </a>
                 </li>
                 <li>
@@ -44,6 +47,12 @@
             <p>
                 As this project is still in development phase, not all features have been fully implemented. Features which are not yet complete will be marked with an asterisk (*) under the relevant heading,
                 and where necessary further details will be given.
+            </p>
+            <p>
+                As we had limited time for development, our price prediction algorithm is based only on the price of properties in Ireland. As such, our site will only allow you to list properties that are located in Ireland.
+            </p>
+            <p>
+                For the best experience using this site, we recommend against viewing it on mobile devices. The site is best viewed from a laptop/desktop browser.
             </p>
         </section>
 
@@ -96,18 +105,16 @@
             </div>
 
             <p>
-                On your profile there are also sections for your posts, when you make posts they will be displayed here.
+                On your profile there is a section for your posts, when you make posts they will be displayed here.
             </p>
-            <p>
-                The chart section on your profile will provide a graphical representation of our price prediction model; for the posts you have created, you will be able to see the predicted price of the property you have posted over a period of time.
-            </p>
+
             <p>
                 Underneath the section for your 'posts' is a section for your messages, where you can view messages sent to you by other users.* (Not yet implemented)
             </p>
 
             <h4>Edit Profile</h4>
             <p>
-                On your profile page, you will be able to change your account details by clicking on the 'Edit Profile' button underneath your email address, on your profile page. You can then change your username and/or email address and choose an image for your profile picture as per your convenience.
+                On your profile page, you will be able to change your account details by clicking on the 'Edit Profile' button underneath your email address. You can then change your username, First/Last name and/or email address and choose an image for your profile picture as per your convenience.
             </p>
             <div class="userguide-image">
                 <img src="{% static 'user_guide/profile_info.png' %}" alt="">
@@ -186,6 +193,48 @@
         </section>
 
         <section class="mb-4rem content-section">
+            <h2 id="Dashboard" class="sub-headline anchor">Dashboard</h2>
+            <p>
+                You can navigate to the dashboard by clicking on the 'Dashboard' button on the right hand side of the nav bar, next to the 'Profile' and 'Logout' buttons.
+                You must be logged in to view the dashboard. The dashboard will provide you with various statistics about the value of your properties, as well as some user details.
+            </p>
+
+            <h4>Main Dashboard page</h4>
+
+            <p>
+                On the main dashboard page you will be able to see the value of your properties from this month under the 'This Month Property Price' heading.
+            </p>
+            <p>
+                Under the 'Last 12 Month Average Selling Price' heading, you will be able to see the average price of all properties you have posted over the past year.
+            </p>
+            <p>
+                Under the 'Your Total Asset Worth' heading, you can see the total value of all properties you have posted on our site to date.
+            </p>
+            <p>
+                The graph under the 'Selling overview' heading is a representation of how the value of your property is likely to change over time.
+            </p>
+            <h4>Navigating through the dashboard</h4>
+
+            <p>
+                On the left hand side of the dashboard page, you will be able to see a navbar with several links. Under the 'Stats' heading you will see a link called 'Dashboard' which brings you
+                to the main dashboard page, as described above. The 'Stats and Insights' link will bring you to the Stats and Insights page, which will be described in more detail below.
+            </p>
+            <p>
+                Under the 'My Account' heading on the navbar, you will be able to see links for 'My profile' and 'My posts'. Clicking the 'My profile' link will bring you to your profile page.
+                Clicking the 'My posts' link will bring you to a page on the dashboard where you can view your posts. From here, you can choose to view a post in more detail by clicking on the
+                address, or you can choose to edit or delete a specific post by clicking on the 'edit' or 'delete' buttons.
+            </p>
+            <h4>Stats and Insights</h4>
+            <p>
+                As mentioned above, you can navigate to the 'Stats and Insights' page using the link in the navbar. Here, you will be able to see some of the information from the main dashboard page,
+                as well as a 'User Interaction Summary'. You will be able to see the average number of views on your posts, the total number of views on your posts, the total number of posts you have made,
+                and finally your total number of messages and requests.
+            </p>
+
+
+        </section>
+
+        <section class="mb-4rem content-section">
             <h2 id="Search" class="sub-headline anchor">Search Bar</h2>
              <p>
                 When on the home page you will be able to see the search bar under the 'Search Properties' heading, which is above the 'All Posts' heading. You can use this to search for posts, type in a search term and press the 'Search' button on the right of the bar. The site will return posts which match your search term.
@@ -201,7 +250,9 @@
         <section class="mb-4rem content-section">
             <h2 id="Prediction" class="sub-headline anchor">Price Prediction</h2>
             <p>
-                When you create a post, our price prediction model will use the information you have provided to give you a predicted price for your property currently and in the near future. A graphical representation of the prediction will be visible on your profile in the form of a chart.
+                When you create a post, our price prediction model will use the information you have provided to give you a predicted price for your property currently and in the near future.
+                Once your post has been created, the estimated price of your property will be listed alongside your chosen price on your new post.
+                For more details on the value of your property, you can navigate to the dashboard.
             </p>
             <p>
                *When the prediction model is run, you will get a price estimation, however the prediction has not been fully implemented with all the required matrices as of now.
