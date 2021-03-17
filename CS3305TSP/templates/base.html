@@ -57,7 +57,7 @@
                         {% url 'register-page' as register_url %}
                         {% url 'logout' as logout_url %}
                         {% if request.path != home_url and request.path != login_url and request.path != register_url and request.path != logout_url %}
-                            <form method="GET" action="/search/" class="nav-item form-inline mx-2">
+                            <form method="GET" action="/search/" class="nav-item form-inline mx-3">
                                 <div class="input-group">
                                     <input name="q" type="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                                     <button class="btn btn-outline-light search-btn" type="submit">Search</button>
