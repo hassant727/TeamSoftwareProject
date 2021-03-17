@@ -281,8 +281,4 @@ class SearchResultView(ListView):
 
     def get_queryset(self):  # new
         query = self.request.GET.get('q')
-        return Post.objects.filter(Q(address_line_1__icontains=query)
-                                   | Q(address_line_2__icontains=query)
-                                   | Q(city__icontains=query)
-                                   | Q(county__icontains=query)
-                                   | Q(address__icontains=query))
+        return Post.objects.filter(Q(address__icontains=query))
