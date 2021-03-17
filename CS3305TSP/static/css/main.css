@@ -25,9 +25,10 @@ a {
     color: #438bbf;
 }
 
-small {
+small, i {
     color: rgb(133, 135, 150);
 }
+
 
 .mb-4rem {
     margin-bottom: 4rem;
