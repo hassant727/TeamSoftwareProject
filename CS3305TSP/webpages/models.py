@@ -143,19 +143,13 @@ class Post(models.Model):
     price = models.PositiveIntegerField(null=True, blank=True, editable=True, verbose_name="Price (&euro;)")
     estimated_price = models.PositiveIntegerField(null=False, blank=True, editable=False)
     __original_price = None
+    address = models.CharField(max_length=766, null=False, blank=True, editable=False)
 
     def __str__(self):
         """
             returns the address of a post
         """
-        address = ""
-        address_list = [self.address_line_1, self.address_line_2, self.city, self.county]
-        for i in range(4):
-            if address_list[i] is not None:
-                address = address + address_list[i]
-                if i < 3:
-                    address = address + ", "
-        return address
+        return self.address
 
     def get_absolute_url(self):
         """
@@ -181,6 +175,14 @@ class Post(models.Model):
             int(energy_rating_dict[self.energy_rating])
         )
         self.estimated_price = estimated_price
+        address = ""
+        address_list = [self.address_line_1, self.address_line_2, self.city, self.county]
+        for i in range(4):
+            if address_list[i] is not None:
+                address = address + address_list[i]
+                if i < 3:
+                    address = address + ", "
+        self.address = address
         super().save(force_insert, force_update, *args, **kwargs)
 
 
