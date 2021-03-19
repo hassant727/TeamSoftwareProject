@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'userpages.apps.UserpagesConfig',
     'crispy_forms',
     'chartjs',
+    'chat',
 
 ]
 
