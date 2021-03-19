@@ -66,23 +66,29 @@ def dashboardfunction(request, **kwargs):
         value3 = {
             "assert_properties": assert_properties
         }
-        # os.remove("ChangedFile.csv")
-        if os.path.isfile('estimate.json'):
-            os.remove("estimate.json")
-        print(os.path.isfile('estimate.json'))
-        chart = {}
-        chart['dict'] = json.dumps(predict_future_price(float(average_average)))
-        # with open("json.txt", "w") as f:
-        #     f.write(json.dumps(chart))
 
-        with open("estimate.json", "w+") as file:
-            json.dump(chart, file)
-        print(chart)
-        print(os.path.isfile('estimate.json'))
+        value4 = {
+            "estimate": predict_future_price(average_average)
+        }
+        print(value4.values())
+        # # os.remove("ChangedFile.csv")
+        # if os.path.isfile('estimate.json'):
+        #     os.remove("estimate.json")
+        # print(os.path.isfile('estimate.json'))
+        # chart = {}
+        # chart['dict'] = json.dumps(predict_future_price(float(average_average)))
+        # # with open("json.txt", "w") as f:
+        # #     f.write(json.dumps(chart))
+        #
+        # with open("estimate.json", "w+") as file:
+        #     json.dump(chart, file)
+        # print(chart)
+        # print(os.path.isfile('estimate.json'))
     value = {
         "value1": value1,
         "value2": value2,
-        "value3": value3
+        "value3": value3,
+        "value4": value4
     }
     #
     # if value1['monthly_estimate'] is None:
