@@ -26,11 +26,24 @@ from .utils import account_activation_token
 
 
 class RegistrationView(View):
+    """
+        this is the registration view, a view is simple an http response
+        :return http response
+        each function gives a brief explanation
+    """
     def get(self, request):
+        """
+        :param request: http request
+        :return: http response
+        """
         return render(request, 'userpages/register.html')
 
     def post(self, request):
-        """this method is used for getting user data, validating it and creating an account"""
+        """
+            this method is used for getting user data, validating it and creating an account
+            the method send the user an activation link after registration and wait till the link has been activated,
+            before saving the user. else it return the page again
+        """
         username = request.POST['username']
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
@@ -86,7 +99,10 @@ class RegistrationView(View):
 
 
 class EmailValidationView(View):
-    """this method is used to validate emails as the use is typing or submit an email"""
+    """
+        this method is used to validate emails as the use is typing or submit an email
+        this method is being called by ajax to see if a user with that specific username already exists, as they type
+    """
     def post(self, request):
         data = json.loads(request.body)
         email = data['email']
@@ -98,7 +114,10 @@ class EmailValidationView(View):
 
 
 class UsernameValidationView(View):
-    """this method is used to validate username as the use is typing or submit an email"""
+    """
+        this method is used to validate username as the use is typing or submit an email
+        this method is being called by ajax to see if a user with that specific email already exists, as they type
+    """
 
     def post(self, request):
         data = json.loads(request.body)
@@ -111,7 +130,10 @@ class UsernameValidationView(View):
 
 
 class VerificationView(View):
-    """this method is used to validate account by sending users an email with token for activation """
+    """
+        this method is used to validate account by sending users an email with token for activation
+        this method is used to for generating new unique tokens
+    """
     def get(self, request, uidb64, token):
         try:
             id = force_text(urlsafe_base64_decode(uidb64))
@@ -136,11 +158,11 @@ class VerificationView(View):
 
 def activate(request, uidb64, token):
     """
-    :param request: self explainatory
-    :param uidb64: json encoding base 64 format
-    :param token: reset token being created using the passwordreset token generator to ensure unique password token
-                  is generated everytime
-    :return: redirect the pages to login once the user clicks on their link to send an email or throws in an error
+        :param request: self explainatory
+        :param uidb64: json encoding base 64 format
+        :param token: reset token being created using the passwordreset token generator to ensure unique password token
+                      is generated everytime
+        :return: redirect the pages to login once the user clicks on their link to send an email or throws in an error
     """
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
@@ -161,7 +183,9 @@ def activate(request, uidb64, token):
 
 
 def redirectpages(request):
-    """this will be used to redirect all 404 errors to this page--> i haven't modeled it yet"""
+    """
+        this will be used to redirect all 404 errors to this page--> i haven't modeled it yet
+    """
     return render(request, "userpages/redirect.html")
 
 
@@ -200,7 +224,9 @@ class LoginView(View):
 
 
 class LogoutView(View):
-    """the class is self explanatory"""
+    """
+        the class is self explanatory --> logs the user out
+    """
     def post(self, request):
         auth.logout(request)
         messages.success(request, 'You have been logged out')
@@ -209,15 +235,15 @@ class LogoutView(View):
 
 def profile(request, username):
     """
-    creating an instance of both userformUpdate and profileUpdateform
-    then we storing in the current user details in u_form and p_form for profile picture within the first if condition
-    this is so that the user can see the older credentials when they change to new,
+        creating an instance of both userformUpdate and profileUpdateform
+        then we storing in the current user details in u_form and p_form for profile picture within the first if condition
+        this is so that the user can see the older credentials when they change to new,
 
-    the 2nd if conditions saves the details if both forms are valid regardless of which form is chnaged
+        the 2nd if conditions saves the details if both forms are valid regardless of which form is chnaged
 
-    :param request:
-    :return: if updated we  redirect in place to avoid having to take to the last return which prompt users if they
-    wish to reload th page which will submit the form again
+        :param request:
+        :return: if updated we  redirect in place to avoid having to take to the last return which prompt users if they
+        wish to reload th page which will submit the form again
     """
 
     if request.user.is_authenticated and username == request.user.username:
@@ -245,57 +271,57 @@ def profile(request, username):
         return render(request,'userpages/profile.html', {'user':person})
 
 
-"""-----------The section below is for chart/graph manipulation--------"""
-
-
-class ChartMixin(object):
-    def get_providers(self):
-        """Return names of datasets."""
-        return ["year1", "year2", "year3"]
-
-    def get_labels(self):
-        """Return 12 labels."""
-        return ["January", "February", "March", "April", "May", "June",
-                "July", "August", "September", "October", "November", "December"
-                ]
-
-    def get_data(self):
-        """Return 3 random dataset to plot."""
-
-        def data():
-            """Return 12 randint between 0 and 100."""
-            return [randint(0, 100) for x in range(12)]
-
-        """change the number in range to increase line comparisons, you will have to increase the dataset as well """
-        return [data() for x in range(1)]
-
-    def get_colors(self):
-        """Return a new shuffle list of color so we change the color
-        each time."""
-        colors = COLORS[:]
-        shuffle(colors)
-        return next_color(colors)
-
-
-class LineChartJSONView(ChartMixin, BaseLineChartView):
-    pass
-
-
-class LineHighChartJSONView(ChartMixin, HighchartPlotLineChartView):
-    title = _("Line HighChart Test")
-    y_axis_title = _("Kangaroos")
-
-    # special - line charts credits are personalized
-    credits = {
-        "enabled": True,
-        "href": "http://example.com",
-        "text": "Novapost Team",
-    }
-
-
-# Pre-configured views.
-# colors = ColorsView.as_view()
-
-line_chart = TemplateView.as_view(template_name="userpages/profile.html")
-line_chart_json = LineChartJSONView.as_view()
-line_highchart_json = LineHighChartJSONView.as_view()
+# """-----------The section below is for chart/graph manipulation--------"""
+#
+#
+# class ChartMixin(object):
+#     def get_providers(self):
+#         """Return names of datasets."""
+#         return ["year1", "year2", "year3"]
+#
+#     def get_labels(self):
+#         """Return 12 labels."""
+#         return ["January", "February", "March", "April", "May", "June",
+#                 "July", "August", "September", "October", "November", "December"
+#                 ]
+#
+#     def get_data(self):
+#         """Return 3 random dataset to plot."""
+#
+#         def data():
+#             """Return 12 randint between 0 and 100."""
+#             return [randint(0, 100) for x in range(12)]
+#
+#         """change the number in range to increase line comparisons, you will have to increase the dataset as well """
+#         return [data() for x in range(1)]
+#
+#     def get_colors(self):
+#         """Return a new shuffle list of color so we change the color
+#         each time."""
+#         colors = COLORS[:]
+#         shuffle(colors)
+#         return next_color(colors)
+#
+#
+# class LineChartJSONView(ChartMixin, BaseLineChartView):
+#     pass
+#
+#
+# class LineHighChartJSONView(ChartMixin, HighchartPlotLineChartView):
+#     title = _("Line HighChart Test")
+#     y_axis_title = _("Kangaroos")
+#
+#     # special - line charts credits are personalized
+#     credits = {
+#         "enabled": True,
+#         "href": "http://example.com",
+#         "text": "Novapost Team",
+#     }
+#
+#
+# # Pre-configured views.
+# # colors = ColorsView.as_view()
+#
+# line_chart = TemplateView.as_view(template_name="userpages/profile.html")
+# line_chart_json = LineChartJSONView.as_view()
+# line_highchart_json = LineHighChartJSONView.as_view()
