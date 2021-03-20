@@ -115,6 +115,11 @@ def howToUse(request):
 
 
 def search_posts(request):
+    """
+
+    :param request: the queryset from the user
+    :return: anything that matches the query
+    """
     if request.method == 'POST':
         search_str = json.loads(request.body).get('searchText', '')
         search_word = Post.objects.filter(
@@ -128,20 +133,20 @@ def search_posts(request):
         return JsonResponse(list(data), safe=False)
 
 
-def homefunction(request):
-    """
-        render the specified template
-        context : sql modeling passing in a dictionary of post
-    """
-    post = Post.objects.all()
-    listingFilter = postFilter(request.GET, queryset=post)
-    post = listingFilter.qs
-    context = {
-        'posts': post,
-        'lsitingFilter':postFilter,
-    }
-    print("shit")
-    return render(request, 'webpages/home.html', context)
+# def homefunction(request):
+#     """
+#         render the specified template
+#         context : sql modeling passing in a dictionary of post
+#     """
+#     post = Post.objects.all()
+#     listingFilter = postFilter(request.GET, queryset=post)
+#     post = listingFilter.qs
+#     context = {
+#         'posts': post,
+#         'lsitingFilter':postFilter,
+#     }
+#     print("shit")
+#     return render(request, 'webpages/home.html', context)
 
 
 def aboutfunction(request):
