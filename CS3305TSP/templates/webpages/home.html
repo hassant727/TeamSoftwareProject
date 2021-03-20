@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load bootstrap %}
+{% load crispy_forms_tags %}
 {% block content %}
 <!-- Search bar and background -->
 <div class="home-background"></div>
@@ -25,13 +27,28 @@
 </div>
     
 <!-- List Posts -->
-<section class="my-4 pb-5" id="all_posts" >
-    <h2>All Posts</h2>
-    {% for post in posts %}
-    {% include 'webpages/short_post.html' %}
-    {% endfor %}
-    {% include 'webpages/pagination.html' %}
-</section>
+<div class="row">
+    <div class="col-md-3 mb-4rem px-1 pl-5">
+        <div class="content-section">
+            <form method="GET" >
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Filter Your Search</legend>
+                    {{lsitingFilter.form|bootstrap}}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <section class="col-md-7 mx-auto" id="all_posts" >
+        <h2>All Posts</h2>
+        {% for post in posts %}
+        {% include 'webpages/short_post.html' %}
+        {% endfor %}
+        {% include 'webpages/pagination.html' %}
+    </section>
+</div>
 <!--do not delete this empty section is used for the result of the search bar-->
 <section class="my-4 pb-5" id="search_posts_output">
 
