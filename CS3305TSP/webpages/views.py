@@ -12,7 +12,7 @@ from django.views.generic.edit import ModelFormMixin
 from django.db.models import Q, Avg
 
 from .models import Post, PostImage
-
+from .filter import postFilter
 from django.shortcuts import render
 from django.views import View
 from .forms import UserdataModelForm
@@ -95,6 +95,7 @@ def dashboardfunction(request, **kwargs):
     #     value1['monthly_estimate'] = 0
     #     value2['average_average'] = 0
     #     value3['assert_properties'] = 0
+    print("shit")
     return render(request, 'dashboard/dashboard.html', value)
 
 
@@ -132,9 +133,14 @@ def homefunction(request):
         render the specified template
         context : sql modeling passing in a dictionary of post
     """
+    post = Post.objects.all()
+    listingFilter = postFilter(request.GET, queryset=post)
+    post = listingFilter.qs
     context = {
-        'posts': Post.objects.all()
+        'posts': post,
+        'lsitingFilter':postFilter,
     }
+    print("shit")
     return render(request, 'webpages/home.html', context)
 
 
@@ -156,6 +162,17 @@ class PostListView(ListView):
     context_object_name = 'posts'
     ordering = ["-date_posted"]
     paginate_by = 5
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        post = Post.objects.all()
+        listingFilter = postFilter(self.request.GET, queryset=post)
+        post = listingFilter.qs
+        context = {
+            'posts': post,
+            'lsitingFilter':postFilter,
+        }
+        return  context
 
 
 class UserPostListView(LoginRequiredMixin,ListView):
