@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'userpages.apps.UserpagesConfig',
     'crispy_forms',
     'chartjs',
+    'django_filters',
+    'bootstrapform'
 
 ]
 
