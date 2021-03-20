@@ -17,8 +17,8 @@ def chatroom(request, pk: int):
     messages.update(seen=True)
     messages = messages | Message.objects.filter(
         Q(receiver=other_user, sender=request.user))
-    return render(request, "chatroom.html",
-                  {"other_user": other_user, "messages": messages})
+    return render(request, "chat/chatroom.html",
+                  {"other_user": other_user, "chat_messages": messages})
 
 
 @login_required
