@@ -5,6 +5,9 @@ from .models import Profile
 
 
 class UserRegisterForm(UserCreationForm):
+    """
+        registration forms
+    """
     # email = forms.EmailField()
     username = forms.CharField()
     first_name = forms.CharField(max_length=32, help_text='First name')
@@ -18,8 +21,10 @@ class UserRegisterForm(UserCreationForm):
         fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2']
 
 
-# forms to update the email and users name
 class UserUpdateForm(forms.ModelForm):
+    """
+        forms to update the email and users name
+    """
     username = forms.CharField()
     first_name = forms.CharField(max_length=32, help_text='First name')
     last_name = forms.CharField(max_length=32, help_text='Last name')
@@ -30,8 +35,10 @@ class UserUpdateForm(forms.ModelForm):
         fields = ['username', 'email', 'first_name', 'last_name']
 
 
-# forms to update the image
 class ProfileUpdateForm(forms.ModelForm):
+    """
+        forms to update the image
+    """
     class Meta:
         model = Profile
         fields = ['image']
