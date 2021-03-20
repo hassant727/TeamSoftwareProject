@@ -9,8 +9,12 @@
             {% url 'post-detail' object.id as post_url %}
             {% if request.get_full_path == post_url and object.author == user%}
                 <div class="float-right">
-                    <a class="btn-info btn-sm" href="{% url 'post-update' object.id %}">Edit</a>
-                    <a class="btn-danger btn-sm" href="{% url 'post-delete' object.id %}">Delete</a>
+                    <a class="btn-info btn-sm py-2 px-4" href="{% url 'post-update' object.id %}">Edit</a>
+                    <a class="btn-danger btn-sm py-2 px-4" href="{% url 'post-delete' object.id %}">Delete</a>
+                </div>
+            {% else %}
+                <div class="float-right">
+                    <a  class="btn-info btn-sm py-2 px-4"  href="{% url 'chatroom' post.author.pk %}">Message {{ post.author }}</a>
                 </div>
             {% endif %}
         </div>
@@ -83,6 +87,12 @@
                 <p>No BER Rating</p> 
             {% endif %}
         </div>
+
+        {% if object.author != user%}
+            <div class="my-5">
+                <a  class="btn btn-info py-2 px-3"  href="{% url 'chatroom' post.author.pk %}">Message {{ post.author }}</a>
+            </div>
+        {% endif %}
         
     </div>
 </article>
