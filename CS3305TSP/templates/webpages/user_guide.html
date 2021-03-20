@@ -1,263 +1,265 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<div class="row">
-    <div class="col-md-3 mb-4rem px-1">
-        <nav class="sticky-top content-section">
-            <ul class="list-unstyled">
-                <li>
-                    <a href="#Overview">Basic Overview</a>
-                </li>
-                <li>
-                    <a href="#Register">Create an Account & Log-in</a>
-                </li>
-                <li>
-                    <a href="#Profile">Your Profile</a>
-                </li>
-                <li>
-                    <a href="#NewPost">Create a New Post </a>
-                </li>
-                <li>
-                    <a href="#DeletePost">Edit/Delete a Post</a>
-                </li>
-                <li>
-                    <a href="#About">About Page</a>
-                </li>
-                <li>
-                    <a href="#Home">Home Page</a>
-                </li>
-                <li>
-                    <a href="#Dashboard">Dashboard</a>
-                </li>
-                <li>
-                    <a href="#Search">Search Bar </a>
-                </li>
-                <li>
-                    <a href="#Prediction">Price Prediction</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-    <div class="col-md-9 mx-auto">
-        <section class="mb-4rem content-section">
-            <h2 id="Overview" class="sub-headline anchor">Basic Overview</h2>
-            <p>
-                To use our site, you should first register an account, without registering many of our features will be unavailable to you.
-            </p>
-            <p>
-                As this project is still in development phase, not all features have been fully implemented. Features which are not yet complete will be marked with an asterisk (*) under the relevant heading,
-                and where necessary further details will be given.
-            </p>
-            <p>
-                As we had limited time for development, our price prediction algorithm is based only on the price of properties in Ireland. As such, our site will only allow you to list properties that are located in Ireland.
-            </p>
-            <p>
-                For the best experience using this site, we recommend against viewing it on mobile devices. The site is best viewed from a laptop/desktop browser.
-            </p>
-        </section>
+<div class="col-md-9 mx-auto">
+    <div class="row">
+        <div class="col-md-3 mb-4rem px-1">
+            <nav class="sticky-top content-section">
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#Overview">Basic Overview</a>
+                    </li>
+                    <li>
+                        <a href="#Register">Create an Account & Log-in</a>
+                    </li>
+                    <li>
+                        <a href="#Profile">Your Profile</a>
+                    </li>
+                    <li>
+                        <a href="#NewPost">Create a New Post </a>
+                    </li>
+                    <li>
+                        <a href="#DeletePost">Edit/Delete a Post</a>
+                    </li>
+                    <li>
+                        <a href="#About">About Page</a>
+                    </li>
+                    <li>
+                        <a href="#Home">Home Page</a>
+                    </li>
+                    <li>
+                        <a href="#Dashboard">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#Search">Search Bar </a>
+                    </li>
+                    <li>
+                        <a href="#Prediction">Price Prediction</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-9 mx-auto">
+            <section class="mb-4rem content-section">
+                <h2 id="Overview" class="sub-headline anchor">Basic Overview</h2>
+                <p>
+                    To use our site, you should first register an account, without registering many of our features will be unavailable to you.
+                </p>
+                <p>
+                    As this project is still in development phase, not all features have been fully implemented. Features which are not yet complete will be marked with an asterisk (*) under the relevant heading,
+                    and where necessary further details will be given.
+                </p>
+                <p>
+                    As we had limited time for development, our price prediction algorithm is based only on the price of properties in Ireland. As such, our site will only allow you to list properties that are located in Ireland.
+                </p>
+                <p>
+                    For the best experience using this site, we recommend against viewing it on mobile devices. The site is best viewed from a laptop/desktop browser.
+                </p>
+            </section>
 
-        <section  class="mb-4rem content-section">
-            <h2 id="Register" class="sub-headline anchor">Create an Account & Log-in</h2>
+            <section  class="mb-4rem content-section">
+                <h2 id="Register" class="sub-headline anchor">Create an Account & Log-in</h2>
 
-            <h4>Register</h4>
-            <p>
-                To create an account, click on the 'Register' button on the top right hand side of the website. You will be taken to the <a href="{% url 'register-page' %}">registration page</a>, where you will be prompted to choose a username & password and enter a valid email address.
-                Note that usernames can only contain alphanumeric characters and are limited in length to 150 characters, passwords must be at least 8 characters long.
-            </p>
-            <div class="userguide-image">
-                <img src="{% static 'user_guide/registration.png' %}" alt="">
-            </div>
-            <p>
-                Once you have done this, you will receive a confirmation email with an account activation link. Log into your email account and click on this link, if you can't find it in your inbox be sure to
-                check your spam folder. After you have activated your account, you will be able to log in using the username and password you have created.
-            </p>
+                <h4>Register</h4>
+                <p>
+                    To create an account, click on the 'Register' button on the top right hand side of the website. You will be taken to the <a href="{% url 'register-page' %}">registration page</a>, where you will be prompted to choose a username & password and enter a valid email address.
+                    Note that usernames can only contain alphanumeric characters and are limited in length to 150 characters, passwords must be at least 8 characters long.
+                </p>
+                <div class="userguide-image">
+                    <img src="{% static 'user_guide/registration.png' %}" alt="">
+                </div>
+                <p>
+                    Once you have done this, you will receive a confirmation email with an account activation link. Log into your email account and click on this link, if you can't find it in your inbox be sure to
+                    check your spam folder. After you have activated your account, you will be able to log in using the username and password you have created.
+                </p>
 
-            <h4>Reset Password</h4>
-            <p>
-                If you ever need to reset your password, click on the 'Reset Password' button on the login screen. A link will be emailed to you, once again be sure to check your spam folder if it's not in your inbox.
-                Once you have clicked the link, you will be able to choose a new password for your account.
-            </p>
+                <h4>Reset Password</h4>
+                <p>
+                    If you ever need to reset your password, click on the 'Reset Password' button on the login screen. A link will be emailed to you, once again be sure to check your spam folder if it's not in your inbox.
+                    Once you have clicked the link, you will be able to choose a new password for your account.
+                </p>
 
-            <h4>Log-in</h4>
-            <p>
-                You can click on the 'Login' button on the top right hand side of the page to take you to the <a href ="{% url 'login' %}">login page</a>, where you should enter the username and password you used to register your account.
-            </p>
-            <div class="userguide-image">
+                <h4>Log-in</h4>
+                <p>
+                    You can click on the 'Login' button on the top right hand side of the page to take you to the <a href ="{% url 'login' %}">login page</a>, where you should enter the username and password you used to register your account.
+                </p>
+                <div class="userguide-image">
                     <img src="{% static 'user_guide/login.png' %}" alt="">
-            </div>
-            <p>
-                Once you have logged in, the layout of the site will appear slightly different. The 'Login' and 'Register' buttons on the top right will be replaced by 'New Post', 'Profile', and 'Logout'.
-                If at any point you wish to log out of your account, simply click the 'Logout button on the top right' and you will be logged out of your account.
-            </p>
-            <div class="userguide-image">
+                </div>
+                <p>
+                    Once you have logged in, the layout of the site will appear slightly different. The 'Login' and 'Register' buttons on the top right will be replaced by 'New Post', 'Profile', and 'Logout'.
+                    If at any point you wish to log out of your account, simply click the 'Logout button on the top right' and you will be logged out of your account.
+                </p>
+                <div class="userguide-image">
                     <img src="{% static 'user_guide/nav.png' %}" alt="" class="mb-4">
                     <img src="{% static 'user_guide/navlogin.png' %}" alt="">
-            </div>
-        </section>
+                </div>
+            </section>
 
-        <section  class="mb-4rem content-section">
-            <h2 id="Profile" class="sub-headline anchor">Your Profile</h2>
-            <p>
-                To view your profile, click on the 'Profile' button on the top right of the site. You will need to make sure you're logged into view your profile.
-            </p>
-            <div class="userguide-image">
+            <section  class="mb-4rem content-section">
+                <h2 id="Profile" class="sub-headline anchor">Your Profile</h2>
+                <p>
+                    To view your profile, click on the 'Profile' button on the top right of the site. You will need to make sure you're logged into view your profile.
+                </p>
+                <div class="userguide-image">
                     <img src="{% static 'user_guide/yourProfile.png' %}" alt="">
-            </div>
+                </div>
 
-            <p>
-                On your profile there is a section for your posts, when you make posts they will be displayed here.
-            </p>
+                <p>
+                    On your profile there is a section for your posts, when you make posts they will be displayed here.
+                </p>
 
-            <p>
-                Underneath the section for your 'posts' is a section for your messages, where you can view messages sent to you by other users.* (Not yet implemented)
-            </p>
+                <p>
+                    Underneath the section for your 'posts' is a section for your messages, where you can view messages sent to you by other users.* (Not yet implemented)
+                </p>
 
-            <h4>Edit Profile</h4>
-            <p>
-                On your profile page, you will be able to change your account details by clicking on the 'Edit Profile' button underneath your email address. You can then change your username, First/Last name and/or email address and choose an image for your profile picture as per your convenience.
-            </p>
-            <div class="userguide-image">
-                <img src="{% static 'user_guide/profile_info.png' %}" alt="">
-            </div>
-        </section>
+                <h4>Edit Profile</h4>
+                <p>
+                    On your profile page, you will be able to change your account details by clicking on the 'Edit Profile' button underneath your email address. You can then change your username, First/Last name and/or email address and choose an image for your profile picture as per your convenience.
+                </p>
+                <div class="userguide-image">
+                    <img src="{% static 'user_guide/profile_info.png' %}" alt="">
+                </div>
+            </section>
 
-        <section class="mb-4rem content-section">
-            <h2 id="NewPost" class="sub-headline anchor">Create a New Post</h2>
-            <p>
-                To create a new post, click on the 'New Post' button in the top right of the site. Note that in order to create a post you will have to be logged in, if you don't see the 'New Post' button then you are not logged in.
-            </p>
+            <section class="mb-4rem content-section">
+                <h2 id="NewPost" class="sub-headline anchor">Create a New Post</h2>
+                <p>
+                    To create a new post, click on the 'New Post' button in the top right of the site. Note that in order to create a post you will have to be logged in, if you don't see the 'New Post' button then you are not logged in.
+                </p>
 
-            <div class="userguide-image">
-                <img src="{% static 'user_guide/postProperty.png' %}" alt="">
-            </div>
+                <div class="userguide-image">
+                    <img src="{% static 'user_guide/postProperty.png' %}" alt="">
+                </div>
 
-            <p>
-                When creating a post, there are a series of fields you must fill out with information about your property. Fields that are mandatory are marked with an asterisk (*). You will not be able to create your post if these mandatory fields are left blank.
-            </p>
-            <p>
-                Fields that are not marked with an asterisk are not mandatory, you can choose whether or not you want to fill them out.
-            </p>
-            <p>
-                You can choose to upload images for the floor plan, as well as images showing the rest of the property.
-            </p>
-            <p>
-                Once you are happy with the information you have entered, click on the 'Post' button at the bottom of the page to create your post.
-            </p>
-            <p>
-                Remember that if you make a mistake in your post you can always go back and edit it later.
-            </p>
-        </section>
+                <p>
+                    When creating a post, there are a series of fields you must fill out with information about your property. Fields that are mandatory are marked with an asterisk (*). You will not be able to create your post if these mandatory fields are left blank.
+                </p>
+                <p>
+                    Fields that are not marked with an asterisk are not mandatory, you can choose whether or not you want to fill them out.
+                </p>
+                <p>
+                    You can choose to upload images for the floor plan, as well as images showing the rest of the property.
+                </p>
+                <p>
+                    Once you are happy with the information you have entered, click on the 'Post' button at the bottom of the page to create your post.
+                </p>
+                <p>
+                    Remember that if you make a mistake in your post you can always go back and edit it later.
+                </p>
+            </section>
 
-        <section class="mb-4rem content-section">
-            <h2 id="DeletePost" class="sub-headline anchor">Edit/Delete a Post</h2>
-            <p>
-                Once you have made a post, you can navigate to your profile and
-                select it under the 'My Posts' section. Once selected, you can choose to delete it, which will remove the post from the site, or edit it.
-            </p>
-            <div class="userguide-image">
-                <img src="{% static 'user_guide/editPost.png' %}" alt="">
-            </div>
-            <p>
-                When editing your post, you will be shown the same screen you saw when creating it. You can choose to change as many fields as you like and leave fields the same if they already contain the correct information.
-            </p>
-            <p>
-                Re-uploading images will remove all old images, so if you are adding a new image for instance you will have to reselect the previous images when editing the post.
-            </p>
-        </section>
+            <section class="mb-4rem content-section">
+                <h2 id="DeletePost" class="sub-headline anchor">Edit/Delete a Post</h2>
+                <p>
+                    Once you have made a post, you can navigate to your profile and
+                    select it under the 'My Posts' section. Once selected, you can choose to delete it, which will remove the post from the site, or edit it.
+                </p>
+                <div class="userguide-image">
+                    <img src="{% static 'user_guide/editPost.png' %}" alt="">
+                </div>
+                <p>
+                    When editing your post, you will be shown the same screen you saw when creating it. You can choose to change as many fields as you like and leave fields the same if they already contain the correct information.
+                </p>
+                <p>
+                    Re-uploading images will remove all old images, so if you are adding a new image for instance you will have to reselect the previous images when editing the post.
+                </p>
+            </section>
 
-        <section class="mb-4rem content-section">
-            <h2 id="About" class="sub-headline anchor">About Page</h2>
-            <p>
-                To view the <a href="{% url 'about-page' %}">about page</a>, click on the 'About' button on the toolbar, to the right of the 'Home' button
-            <p>
-            <p>
-                On the about page, you will be able to read about the basics of our site; what it does and why we think you should use it.
-            </p>
-        </section>
+            <section class="mb-4rem content-section">
+                <h2 id="About" class="sub-headline anchor">About Page</h2>
+                <p>
+                    To view the <a href="{% url 'about-page' %}">about page</a>, click on the 'About' button on the toolbar, to the right of the 'Home' button
+                <p>
+                <p>
+                    On the about page, you will be able to read about the basics of our site; what it does and why we think you should use it.
+                </p>
+            </section>
 
-        <section  class="mb-4rem content-section">
-            <h2 id="Home" class="sub-headline anchor">Home Page</h2>
-            <p>
-                On the <a href="{% url 'home-page' %}">home page</a> you will be able to see posts made by you and other users. The posts will show the username of the person who posted them as well as the date they were posted.
-            </p>
-            <p>
-                If you want to view an individual post click on the address listed in that post and you will be brought to a new screen where you can view it on its own.
-            </p>
-            <p>
-                Clicking on one of your own posts on the home screen will allow you to edit/delete that post as detailed above, but only when you are logged in.
-            </p>
+            <section  class="mb-4rem content-section">
+                <h2 id="Home" class="sub-headline anchor">Home Page</h2>
+                <p>
+                    On the <a href="{% url 'home-page' %}">home page</a> you will be able to see posts made by you and other users. The posts will show the username of the person who posted them as well as the date they were posted.
+                </p>
+                <p>
+                    If you want to view an individual post click on the address listed in that post and you will be brought to a new screen where you can view it on its own.
+                </p>
+                <p>
+                    Clicking on one of your own posts on the home screen will allow you to edit/delete that post as detailed above, but only when you are logged in.
+                </p>
 
-             <div class="userguide-image">
-                <img src="{% static 'user_guide/homePage.png' %}" alt="">
-            </div>
-        </section>
+                <div class="userguide-image">
+                    <img src="{% static 'user_guide/homePage.png' %}" alt="">
+                </div>
+            </section>
 
-        <section class="mb-4rem content-section">
-            <h2 id="Dashboard" class="sub-headline anchor">Dashboard</h2>
-            <p>
-                You can navigate to the dashboard by clicking on the 'Dashboard' button on the right hand side of the nav bar, next to the 'Profile' and 'Logout' buttons.
-                You must be logged in to view the dashboard. The dashboard will provide you with various statistics about the value of your properties, as well as some user details.
-            </p>
+            <section class="mb-4rem content-section">
+                <h2 id="Dashboard" class="sub-headline anchor">Dashboard</h2>
+                <p>
+                    You can navigate to the dashboard by clicking on the 'Dashboard' button on the right hand side of the nav bar, next to the 'Profile' and 'Logout' buttons.
+                    You must be logged in to view the dashboard. The dashboard will provide you with various statistics about the value of your properties, as well as some user details.
+                </p>
 
-            <h4>Main Dashboard page</h4>
+                <h4>Main Dashboard page</h4>
 
-            <p>
-                On the main dashboard page you will be able to see the value of your properties from this month under the 'This Month Property Price' heading.
-            </p>
-            <p>
-                Under the 'Last 12 Month Average Selling Price' heading, you will be able to see the average price of all properties you have posted over the past year.
-            </p>
-            <p>
-                Under the 'Your Total Asset Worth' heading, you can see the total value of all properties you have posted on our site to date.
-            </p>
-            <p>
-                The graph under the 'Selling overview' heading is a representation of how the value of your property is likely to change over time.
-            </p>
-            <h4>Navigating through the dashboard</h4>
+                <p>
+                    On the main dashboard page you will be able to see the value of your properties from this month under the 'This Month Property Price' heading.
+                </p>
+                <p>
+                    Under the 'Last 12 Month Average Selling Price' heading, you will be able to see the average price of all properties you have posted over the past year.
+                </p>
+                <p>
+                    Under the 'Your Total Asset Worth' heading, you can see the total value of all properties you have posted on our site to date.
+                </p>
+                <p>
+                    The graph under the 'Selling overview' heading is a representation of how the value of your property is likely to change over time.
+                </p>
+                <h4>Navigating through the dashboard</h4>
 
-            <p>
-                On the left hand side of the dashboard page, you will be able to see a navbar with several links. Under the 'Stats' heading you will see a link called 'Dashboard' which brings you
-                to the main dashboard page, as described above. The 'Stats and Insights' link will bring you to the Stats and Insights page, which will be described in more detail below.
-            </p>
-            <p>
-                Under the 'My Account' heading on the navbar, you will be able to see links for 'My profile' and 'My posts'. Clicking the 'My profile' link will bring you to your profile page.
-                Clicking the 'My posts' link will bring you to a page on the dashboard where you can view your posts. From here, you can choose to view a post in more detail by clicking on the
-                address, or you can choose to edit or delete a specific post by clicking on the 'edit' or 'delete' buttons.
-            </p>
-            <h4>Stats and Insights</h4>
-            <p>
-                As mentioned above, you can navigate to the 'Stats and Insights' page using the link in the navbar. Here, you will be able to see some of the information from the main dashboard page,
-                as well as a 'User Interaction Summary'. You will be able to see the average number of views on your posts, the total number of views on your posts, the total number of posts you have made,
-                and finally your total number of messages and requests.
-            </p>
+                <p>
+                    On the left hand side of the dashboard page, you will be able to see a navbar with several links. Under the 'Stats' heading you will see a link called 'Dashboard' which brings you
+                    to the main dashboard page, as described above. The 'Stats and Insights' link will bring you to the Stats and Insights page, which will be described in more detail below.
+                </p>
+                <p>
+                    Under the 'My Account' heading on the navbar, you will be able to see links for 'My profile' and 'My posts'. Clicking the 'My profile' link will bring you to your profile page.
+                    Clicking the 'My posts' link will bring you to a page on the dashboard where you can view your posts. From here, you can choose to view a post in more detail by clicking on the
+                    address, or you can choose to edit or delete a specific post by clicking on the 'edit' or 'delete' buttons.
+                </p>
+                <h4>Stats and Insights</h4>
+                <p>
+                    As mentioned above, you can navigate to the 'Stats and Insights' page using the link in the navbar. Here, you will be able to see some of the information from the main dashboard page,
+                    as well as a 'User Interaction Summary'. You will be able to see the average number of views on your posts, the total number of views on your posts, the total number of posts you have made,
+                    and finally your total number of messages and requests.
+                </p>
 
 
-        </section>
+            </section>
 
-        <section class="mb-4rem content-section">
-            <h2 id="Search" class="sub-headline anchor">Search Bar</h2>
-             <p>
-                When on the home page you will be able to see the search bar under the 'Search Properties' heading, which is above the 'All Posts' heading. You can use this to search for posts, type in a search term and press the 'Search' button on the right of the bar. The site will return posts which match your search term.
-            </p>
-            <p>
-                If you are not on the home page, the search bar will appear on the top of the screen, to the right of the 'User Guide' button.
-            </p>
-            <div class="userguide-image">
-                <img src="{% static 'user_guide/searchbar.png' %}" alt="">
-            </div>
-        </section>
+            <section class="mb-4rem content-section">
+                <h2 id="Search" class="sub-headline anchor">Search Bar</h2>
+                <p>
+                    When on the home page you will be able to see the search bar under the 'Search Properties' heading, which is above the 'All Posts' heading. You can use this to search for posts, type in a search term and press the 'Search' button on the right of the bar. The site will return posts which match your search term.
+                </p>
+                <p>
+                    If you are not on the home page, the search bar will appear on the top of the screen, to the right of the 'User Guide' button.
+                </p>
+                <div class="userguide-image">
+                    <img src="{% static 'user_guide/searchbar.png' %}" alt="">
+                </div>
+            </section>
 
-        <section class="mb-4rem content-section">
-            <h2 id="Prediction" class="sub-headline anchor">Price Prediction</h2>
-            <p>
-                When you create a post, our price prediction model will use the information you have provided to give you a predicted price for your property currently and in the near future.
-                Once your post has been created, the estimated price of your property will be listed alongside your chosen price on your new post.
-                For more details on the value of your property, you can navigate to the dashboard.
-            </p>
-            <p>
-               *When the prediction model is run, you will get a price estimation, however the prediction has not been fully implemented with all the required matrices as of now.
-            </p>
-         </section>
+            <section class="mb-4rem content-section">
+                <h2 id="Prediction" class="sub-headline anchor">Price Prediction</h2>
+                <p>
+                    When you create a post, our price prediction model will use the information you have provided to give you a predicted price for your property currently and in the near future.
+                    Once your post has been created, the estimated price of your property will be listed alongside your chosen price on your new post.
+                    For more details on the value of your property, you can navigate to the dashboard.
+                </p>
+                <p>
+                    *When the prediction model is run, you will get a price estimation, however the prediction has not been fully implemented with all the required matrices as of now.
+                </p>
+            </section>
+        </div>
     </div>
 </div>
 {% endblock content%}
