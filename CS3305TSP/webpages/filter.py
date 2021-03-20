@@ -2,6 +2,10 @@ import django_filters
 from . models import *
 
 class postFilter(django_filters.FilterSet):
+    """
+        this class uses the django in built generic view for filter,
+        for the field specified in the model
+    """
     class Meta:
         model = Post
         fields = (
