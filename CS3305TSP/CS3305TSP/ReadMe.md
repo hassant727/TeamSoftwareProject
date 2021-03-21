@@ -1,6 +1,7 @@
-changes in the setting.py
+setting.py (setting.py is the main app configuration file)
 -
-line 80 -> 89
+
+line 85 -> 93(at the time of writing this)
 > I have configured the setting to use .env file in order to hide the database credentials
 ----
 > > so in the CS3305TSP I created a file called .env 

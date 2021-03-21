@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'chartjs',
     'chat',
+    'django_filters',
+    'bootstrapform',
 
 ]
 

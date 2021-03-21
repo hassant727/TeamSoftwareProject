@@ -1,30 +1,129 @@
 {% extends "base.html" %}
 {% block content %}
     <h2>Search Results</h2>
-    {% if posts %}
-        {% for post in posts %}
-            {% include 'webpages/short_post.html' %}
-        {% endfor %}
-    {% else %}
-        <p>No There are no results that matches your search</p>
-    {% endif %}
-    <!--  paginating page s  -->
-    {% if is_paginated %}
-        {% if page_obj.has_previous %}
-            <a class="btn btn-outline-info m-b-4" href="?page=1">First</a>
-            <a class="btn btn-outline-info m-b-4" href="?page={{ page_obj.previous_page_number}}">Previous</a>
-        {% endif %}
-        {% for num in page_obj.paginator.page_range %}
-            {% if page_obj.number == num %}
-                <a class="btn btn-outline-info m-b-4" href="?page={{num}}">{{ num }}</a>
-            {% elif num > page_obj.number|add:'-3' and num  < page_obj.number|add:'-3' %}
-                <a class="btn btn-outline-info m-b-4" href="?page={{num}}">{{ num }}</a>
+    <div class="row">
+        <div class="col-xl-3 mx-auto px-1">
+            <form class="content-section" method="GET" action="/search">
+                <legend class="border-bottom mb-4">Filter the search</legend>
+                    <div class="form-group">
+                        <label>Address</label><br>
+                        <input class="form-control" type="text" name="q" value="{{request.GET.q}}">
+                    </div>
+                    <div class="form-group">
+                        <label>County</label><br>
+                        <select class="form-control" id="county" name="county">
+                            <option value=""></option>
+                            <option value="Antrim">Antrim</option>
+                            <option value="Armagh">Armagh</option>
+                            <option value="Carlow">Carlow</option>
+                            <option value="Cavan">Cavan</option>
+                            <option value="Clare">Clare</option>
+                            <option value="Cork">Cork</option>
+                            <option value="Donegal">Donegal</option>
+                            <option value="Down">Down</option>
+                            <option value="Dublin">Dublin</option>
+                            <option value="Fermanagh">Fermanagh</option>
+                            <option value="Galway">Galway</option>
+                            <option value="Kerry">Kerry</option>
+                            <option value="Kildare">Kildare</option>
+                            <option value="Kilkenny">Kilkenny</option>
+                            <option value="Laois">Laois</option>
+                            <option value="Leitrim">Leitrim</option>
+                            <option value="Limerick">Limerick</option>
+                            <option value="Londonderry">Londonderry</option>
+                            <option value="Longford">Longford</option>
+                            <option value="Louth">Louth</option>
+                            <option value="Mayo">Mayo</option>
+                            <option value="Meath">Meath</option>
+                            <option value="Monaghan">Monaghan</option>
+                            <option value="Offaly">Offaly</option>
+                            <option value="Roscommon">Roscommon</option>
+                            <option value="Sligo">Sligo</option>
+                            <option value="Tipperary">Tipperary</option>
+                            <option value="Tyrone">Tyrone</option>
+                            <option value="Waterford">Waterford</option>
+                            <option value="Westmeath">Westmeath</option>
+                            <option value="Wexford">Wexford</option>
+                            <option value="Wicklow">Wicklow</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Property type</label><br>
+                        <select class="form-control" id="type" name="type">
+                            <option value=""></option>
+                            <option value="Detached House">Detached House</option>
+                            <option value="Semi-detached House">Semi-detached House</option>
+                            <option value="Terraced House">Terraced House</option>
+                            <option value="Duplex">Duplex</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Number of Bedrooms</label><br>
+                        <input class="form-control" type="number" name="rooms" min="0" value="{{request.GET.rooms}}">
+                    </div>
+                    <div class="form-group">
+                        <label>NUmber of Bathrooms</label><br>
+                        <input class="form-control" type="number" name="baths" min="0" value="{{request.GET.baths}}">
+                    </div>
+                    <div class="form-group">
+                        <label>Min Price (&euro;)</label><br>
+                        <input class="form-control" type="number" name="minprice" min="0" value="{{request.GET.minprice}}">
+                    </div>
+                    <div class="form-group">
+                        <label>Max Price (&euro;)</label><br>
+                        <input class="form-control" type="number" name="maxprice" min="0" value="{{request.GET.maxprice}}">
+                    </div>
+                    <div class="form-group">
+                        <label>Min Size (m<sup>2</sup>)</label><br>
+                        <input class="form-control" type="number" name="minsize" min="0" value="{{request.GET.minsize}}">
+                    </div>
+                    <div class="form-group">
+                        <label>Max Size (m<sup>2</sup>)</label><br>
+                        <input class="form-control" type="number" name="maxsize" min="0" value="{{request.GET.maxsize}}">
+                    </div>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Filter</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-xl-9 mx-auto">
+            {% if posts %}
+                {% for post in posts %}
+                    {% include 'webpages/short_post.html' %}
+                {% endfor %}
+            {% else %}
+                <p>No There are no results that matches your search</p>
             {% endif %}
-        {% endfor %}
-        {% if page_obj.has_next %}
-            <a class="btn btn-outline-info m-b-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-            <a class="btn btn-outline-info m-b-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-        {% endif %}
-    {% endif %}
+            <!--  paginating page s  -->
+            {% if is_paginated %}
+                {% if page_obj.has_previous %}
+                    <a class="btn btn-outline-info m-b-4" href="?page=1">First</a>
+                    <a class="btn btn-outline-info m-b-4" href="?page={{ page_obj.previous_page_number}}">Previous</a>
+                {% endif %}
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a class="btn btn-outline-info m-b-4" href="?page={{num}}">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-3' and num  < page_obj.number|add:'-3' %}
+                        <a class="btn btn-outline-info m-b-4" href="?page={{num}}">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <a class="btn btn-outline-info m-b-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+                    <a class="btn btn-outline-info m-b-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+<!-- Keep search form input -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        var url = new URL(document.location);
+        var params = url.searchParams;
+        var county = params.get("county");
+        $("#county").val(county);
+        var type = params.get("type");
+        $("#type").val(type);
+});
+</script>
 
 {% endblock content %}

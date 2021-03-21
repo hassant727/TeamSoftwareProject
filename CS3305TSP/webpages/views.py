@@ -12,7 +12,7 @@ from django.views.generic.edit import ModelFormMixin
 from django.db.models import Q, Avg
 
 from .models import Post, PostImage
-
+from .filter import postFilter
 from django.shortcuts import render
 from django.views import View
 from .forms import UserdataModelForm
@@ -44,6 +44,7 @@ def dashboardfunction(request, **kwargs):
     value1 = {}
     value2 = {}
     value3 = {}
+    value4 = {}
     value = {}
 
     month_price = Post.objects.filter(author=user).aggregate(total=Sum('estimated_price'))['total']
@@ -55,6 +56,8 @@ def dashboardfunction(request, **kwargs):
         value1['monthly_estimate'] = 0
         value2['average_average'] = 0
         value3['assert_properties'] = 0
+        value3['estimate'] = 0
+
     else:
 
         value1 = {
@@ -95,6 +98,7 @@ def dashboardfunction(request, **kwargs):
     #     value1['monthly_estimate'] = 0
     #     value2['average_average'] = 0
     #     value3['assert_properties'] = 0
+    print("shit")
     return render(request, 'dashboard/dashboard.html', value)
 
 
@@ -114,6 +118,11 @@ def howToUse(request):
 
 
 def search_posts(request):
+    """
+
+    :param request: the queryset from the user
+    :return: anything that matches the query
+    """
     if request.method == 'POST':
         search_str = json.loads(request.body).get('searchText', '')
         search_word = Post.objects.filter(
@@ -127,15 +136,20 @@ def search_posts(request):
         return JsonResponse(list(data), safe=False)
 
 
-def homefunction(request):
-    """
-        render the specified template
-        context : sql modeling passing in a dictionary of post
-    """
-    context = {
-        'posts': Post.objects.all()
-    }
-    return render(request, 'webpages/home.html', context)
+# def homefunction(request):
+#     """
+#         render the specified template
+#         context : sql modeling passing in a dictionary of post
+#     """
+#     post = Post.objects.all()
+#     listingFilter = postFilter(request.GET, queryset=post)
+#     post = listingFilter.qs
+#     context = {
+#         'posts': post,
+#         'lsitingFilter':postFilter,
+#     }
+#     print("shit")
+#     return render(request, 'webpages/home.html', context)
 
 
 def aboutfunction(request):
@@ -156,6 +170,17 @@ class PostListView(ListView):
     context_object_name = 'posts'
     ordering = ["-date_posted"]
     paginate_by = 5
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     post = Post.objects.all()
+    #     listingFilter = postFilter(self.request.GET, queryset=post)
+    #     post = listingFilter.qs
+    #     context = {
+    #         'posts': post,
+    #         'lsitingFilter':postFilter,
+    #     }
+    #     return  context
 
 
 class UserPostListView(LoginRequiredMixin,ListView):
@@ -285,6 +310,32 @@ class SearchResultView(ListView):
     template_name = "webpages/search.html"
     context_object_name = 'posts'
 
-    def get_queryset(self):  # new
+    def get_queryset(self):
         query = self.request.GET.get('q')
-        return Post.objects.filter(Q(address__icontains=query))
+        county = self.request.GET.get('county')
+        typ = self.request.GET.get('type')
+        rooms = self.request.GET.get('rooms')
+        baths = self.request.GET.get('baths')
+        minprice = self.request.GET.get('minprice')
+        maxprice = self.request.GET.get('maxprice')
+        minsize = self.request.GET.get('minsize')
+        maxsize = self.request.GET.get('maxsize')
+        q = Q()
+        q |= Q(address__icontains=query)
+        if county != "" and county != None:
+            q &= Q(county=county)
+        if typ != "" and typ != None:
+            q &= Q(property_type=typ)
+        if rooms != "" and rooms != None:
+            q &= Q(number_of_bedrooms=rooms)
+        if baths != "" and baths != None:
+            q &= Q(number_of_bathrooms=baths)
+        if minprice != "" and minprice != None:
+            q &= Q(price__gte=int(minprice))
+        if maxprice != "" and maxprice != None:
+            q &= Q(price__lte=int(maxprice))
+        if minsize != "" and minsize != None:
+            q &= Q(size__gte=int(minsize))
+        if maxsize != "" and maxsize != None:
+            q &= Q(size__lte=int(maxsize))
+        return Post.objects.filter(q)

@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load bootstrap %}
+{% load crispy_forms_tags %}
 {% block content %}
 <!-- Search bar and background -->
 <div class="home-background"></div>
@@ -25,13 +27,15 @@
 </div>
     
 <!-- List Posts -->
-<section class="my-4 pb-5" id="all_posts" >
-    <h2>All Posts</h2>
-    {% for post in posts %}
+
+<section class="mx-auto my-5" id="all_posts" >
+    <h2 class="text-center">Latest Listings</h2>
+    {% for post in posts reversed %}
     {% include 'webpages/short_post.html' %}
     {% endfor %}
     {% include 'webpages/pagination.html' %}
 </section>
+
 <!--do not delete this empty section is used for the result of the search bar-->
 <section class="my-4 pb-5" id="search_posts_output">
 
