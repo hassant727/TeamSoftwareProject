@@ -59,7 +59,7 @@
                         {% if request.path != home_url and request.path != login_url and request.path != register_url and request.path != logout_url %}
                             <form method="GET" action="/search/" class="nav-item form-inline mx-3">
                                 <div class="input-group">
-                                    <input name="q" type="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                                    <input name="q" type="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-addon" value="{{request.GET.q}}"/>
                                     <button class="btn btn-outline-light search-btn" type="submit">Search</button>
                                 </div>
                             </form>
@@ -82,7 +82,12 @@
             </div>
         </nav>
     </header>
-    <main role="main" class="container-fluid">
+    {% url 'search-page' as search_url %}
+    {% if request.path == search_url %}
+    <main role="main" class="container mx-auto" style=" max-width: 1230px; width: 100vw;">
+    {% else %}
+    <main role="main" class="container">
+    {% endif %}
         <div class="mx-auto w-75">
             {% if messages %}
                 {% for message in messages %}

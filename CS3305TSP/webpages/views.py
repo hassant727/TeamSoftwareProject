@@ -44,7 +44,6 @@ def dashboardfunction(request, **kwargs):
     value1 = {}
     value2 = {}
     value3 = {}
-    value4 = {}
     value = {}
 
     month_price = Post.objects.filter(author=user).aggregate(total=Sum('estimated_price'))['total']
@@ -56,7 +55,6 @@ def dashboardfunction(request, **kwargs):
         value1['monthly_estimate'] = 0
         value2['average_average'] = 0
         value3['assert_properties'] = 0
-        value4['estimate'] =0
     else:
 
         value1 = {
@@ -309,6 +307,32 @@ class SearchResultView(ListView):
     template_name = "webpages/search.html"
     context_object_name = 'posts'
 
-    def get_queryset(self):  # new
+    def get_queryset(self):
         query = self.request.GET.get('q')
-        return Post.objects.filter(Q(address__icontains=query))
+        county = self.request.GET.get('county')
+        typ = self.request.GET.get('type')
+        rooms = self.request.GET.get('rooms')
+        baths = self.request.GET.get('baths')
+        minprice = self.request.GET.get('minprice')
+        maxprice = self.request.GET.get('maxprice')
+        minsize = self.request.GET.get('minsize')
+        maxsize = self.request.GET.get('maxsize')
+        q = Q()
+        q |= Q(address__icontains=query)
+        if county != "" and county != None:
+            q &= Q(county=county)
+        if typ != "" and typ != None:
+            q &= Q(property_type=typ)
+        if rooms != "" and rooms != None:
+            q &= Q(number_of_bedrooms=rooms)
+        if baths != "" and baths != None:
+            q &= Q(number_of_bathrooms=baths)
+        if minprice != "" and minprice != None:
+            q &= Q(price__gte=int(minprice))
+        if maxprice != "" and maxprice != None:
+            q &= Q(price__lte=int(maxprice))
+        if minsize != "" and minsize != None:
+            q &= Q(size__gte=int(minsize))
+        if maxsize != "" and maxsize != None:
+            q &= Q(size__lte=int(maxsize))
+        return Post.objects.filter(q)
