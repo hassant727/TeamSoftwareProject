@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Delete User</title>
-</head>
-<body>
-<form action="." method="POST" >{% csrf_token %}
+{% extends "dashboard/dashboard_base.html" %}
+{% block content %}
+<form action="{% url 'delete-user' %}" method="POST" >{% csrf_token %}
     <h1>Are you sure you wish to delete your account?</h1>
-        <p><input type="submit" value="Yes" /> <a href="../">Cancel</a></p>p>
+        <p><input type="submit" value="Yes" /> <a href="/dashboard">Cancel</a></p>
 </form>
-</body>
-</html>
+{% endblock content%}
