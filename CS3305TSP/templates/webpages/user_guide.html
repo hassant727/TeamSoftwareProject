@@ -15,6 +15,9 @@
                     <a href="#Profile">Your Profile</a>
                 </li>
                 <li>
+                    <a href="#Message">Messaging</a>
+                </li>
+                <li>
                     <a href="#NewPost">Create a New Post </a>
                 </li>
                 <li>
@@ -61,7 +64,7 @@
 
             <h4>Register</h4>
             <p>
-                To create an account, click on the 'Register' button on the top right hand side of the website. You will be taken to the <a href="{% url 'register-page' %}">registration page</a>, where you will be prompted to choose a username & password and enter a valid email address.
+                To create an account, click on the 'Register' button on the top right hand side of the website. You will be taken to the <a href="{% url 'register-page' %}">registration page</a>, where you will be prompted to enter your first & last name, choose a username & password, and enter a valid email address.
                 Note that usernames can only contain alphanumeric characters and are limited in length to 150 characters, passwords must be at least 8 characters long.
             </p>
             <div class="userguide-image">
@@ -119,6 +122,13 @@
             <div class="userguide-image">
                 <img src="{% static 'user_guide/profile_info.png' %}" alt="">
             </div>
+        </section>
+
+        <section  class="mb-4rem content-section">
+            <h2 id="Message" class="sub-headline anchor">Messaging</h2>
+            <p>
+                On your profile, you will be able to view messages sent to you under the 'Message' heading. To send another user a message, you can navigate to their profile and click the 'Send message' button.
+            </p>
         </section>
 
         <section class="mb-4rem content-section">
@@ -217,19 +227,23 @@
 
             <p>
                 On the left hand side of the dashboard page, you will be able to see a navbar with several links. Under the 'Stats' heading you will see a link called 'Dashboard' which brings you
-                to the main dashboard page, as described above. The 'Stats and Insights' link will bring you to the Stats and Insights page, which will be described in more detail below.
+                to the main dashboard page, as described above.
             </p>
             <p>
                 Under the 'My Account' heading on the navbar, you will be able to see links for 'My profile' and 'My posts'. Clicking the 'My profile' link will bring you to your profile page.
                 Clicking the 'My posts' link will bring you to a page on the dashboard where you can view your posts. From here, you can choose to view a post in more detail by clicking on the
                 address, or you can choose to edit or delete a specific post by clicking on the 'edit' or 'delete' buttons.
             </p>
-            <h4>Stats and Insights</h4>
             <p>
-                As mentioned above, you can navigate to the 'Stats and Insights' page using the link in the navbar. Here, you will be able to see some of the information from the main dashboard page,
-                as well as a 'User Interaction Summary'. You will be able to see the average number of views on your posts, the total number of views on your posts, the total number of posts you have made,
-                and finally your total number of messages and requests.
+                At the top of the dashboard pages, you will see a search bar where you can search for properties. This search bar functions the same way as the search bar on the main section of the site, for more details
+                please read the 'Search' section below.
             </p>
+            <p>
+                You can navigate back to the site's home page at any time by clicking the the 'Property Pricer' heading on the top left of the dashboard.
+            </p>
+            <h4>
+                Delete account
+            </h4>
 
 
         </section>
@@ -237,7 +251,8 @@
         <section class="mb-4rem content-section">
             <h2 id="Search" class="sub-headline anchor">Search Bar</h2>
             <p>
-                When on the home page you will be able to see the search bar under the 'Search Properties' heading, which is above the 'All Posts' heading. You can use this to search for posts, type in a search term and press the 'Search' button on the right of the bar. The site will return posts which match your search term.
+                When on the home page you will be able to see the search bar under the 'Search Properties' heading, which is above the 'All Posts' heading. You can use this to search for posts, type in a search term and press the 'Search' button on the right of the bar.
+                The site will return posts which match your search term. Once you have searched for a term, you will be able to filter your search using the interface on the left hand side of the screen. Enter whatever filters you want, and then click the 'Filter' button to apply them to your search.
             </p>
             <p>
                 If you are not on the home page, the search bar will appear on the top of the screen, to the right of the 'User Guide' button.
