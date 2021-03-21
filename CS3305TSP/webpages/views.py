@@ -44,6 +44,7 @@ def dashboardfunction(request, **kwargs):
     value1 = {}
     value2 = {}
     value3 = {}
+    value4 = {}
     value = {}
 
     month_price = Post.objects.filter(author=user).aggregate(total=Sum('estimated_price'))['total']
@@ -55,6 +56,7 @@ def dashboardfunction(request, **kwargs):
         value1['monthly_estimate'] = 0
         value2['average_average'] = 0
         value3['assert_properties'] = 0
+        value4['estimate'] =0
     else:
 
         value1 = {
