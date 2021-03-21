@@ -25,8 +25,12 @@ def deleteUser(request):
     current_user = request.user
     username = current_user.username
     u = User.objects.get(username=username)
-    u.delete()
+    if request.method == "POST":
+        u.delete()
     return render(request, 'userpages/register.html')
+
+def confirmDeleteUser(request):
+    return render(request, 'dashboard/user_delete.html')
 
 
 
