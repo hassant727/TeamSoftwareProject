@@ -42,6 +42,8 @@ Using the software: After cloning the project
 >> `cd CS3305TSP`
 >>> `chmod +x .runscript.sh`
 >>>> `./.runscript.sh` 
+<br>
+just run `runscript.bat`
 
 
 Project Structure (names with a capital letter represent dir )
@@ -137,6 +139,7 @@ Project Structure (names with a capital letter represent dir )
                                 ----- views.py
                                 ----- ReadMe.md
                ------ .runscript.sh
+               ------ runscript.bat
                ------ __init__.py
                ------ db.sqlite3
                ------ estimate.json
