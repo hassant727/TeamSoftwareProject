@@ -31,8 +31,8 @@ commands () {
       pip3 install -r requirement.txt
 
       : ' gives permission for the execution file and runs it '
-      chmod +x ./.runprocess.py #giving process execution permission
-      python3 ./.runprocess.py
+#      chmod +x ./.runprocess.py #giving process execution permission
+#      python3 ./.runprocess.py
 
       : ' this list all process running manage.py and the following commands kills them '
 
