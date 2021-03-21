@@ -8,7 +8,6 @@
             <small class="text-muted my-auto">{{ post.date_posted|date:"F d, Y" }}</small>
             {% url 'post-detail' object.id as post_url %}
             {% if request.get_full_path == post_url and object.author == user%}
-<<<<<<< HEAD
                 <div class="float-right">
                     <a class="btn-info btn-sm py-2 px-4" href="{% url 'post-update' object.id %}">Edit</a>
                     <a class="btn-danger btn-sm py-2 px-4" href="{% url 'post-delete' object.id %}">Delete</a>
@@ -17,12 +16,10 @@
                 <div class="float-right">
                     <a  class="btn-info btn-sm py-2 px-4"  href="{% url 'chatroom' post.author.pk %}">Message {{ post.author }}</a>
                 </div>
-=======
             <div class="float-right">
                 <a class="btn-info btn-sm" href="{% url 'post-update' object.id %}">Edit</a>
                 <a class="btn-danger btn-sm" href="{% url 'post-delete' object.id %}">Delete</a>
             </div>
->>>>>>> main
             {% endif %}
         </div>
         <!-- Content of the post -->
@@ -95,14 +92,11 @@
             {% endif %}
         </div>
 
-<<<<<<< HEAD
         {% if object.author != user%}
             <div class="my-5">
                 <a  class="btn btn-info py-2 px-3"  href="{% url 'chatroom' post.author.pk %}">Message {{ post.author }}</a>
             </div>
         {% endif %}
         
-=======
->>>>>>> main
     </div>
 </article>
